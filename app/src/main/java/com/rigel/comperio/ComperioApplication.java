@@ -14,7 +14,7 @@ public class ComperioApplication extends Application {
         BindingUtils.setDefaultBinder(new ViewModelBinder() {
             @Override
             public void bind(ViewDataBinding viewDataBinding, ViewModel viewModel) {
-                viewDataBinding.setVariable(com.rigel.comperio.BR.vm, viewModel);
+                viewDataBinding.setVariable(BR.vm,viewModel);
             }
         });
     }
