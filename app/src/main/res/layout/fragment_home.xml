@@ -5,12 +5,12 @@
     <data>
         <variable
             name="vm"
-            type="com.rigel.comperio.ViewModel.MainViewModel" />
+            type="com.rigel.comperio.viewmodel.MainViewModel" />
     </data>
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rigel.comperio.View.HomeFragment">
+    tools:context="com.rigel.comperio.view.HomeFragment">
 
     <TextView
         android:layout_width="match_parent"

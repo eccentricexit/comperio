@@ -15,4 +15,6 @@
     <string name="homeTabTitle">Home</string>
     <string name="favoritesTabTitle">Favorites</string>
     <string name="filtersTabTitle">Filters</string>
+    <string name="scheduleWeekdaysButton">Days of the Week</string>
+    <string name="buttonNext">Next</string>
 </resources>
