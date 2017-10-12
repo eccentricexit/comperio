@@ -1,11 +1,10 @@
-package com.rigel.comperio.View;
+package com.rigel.comperio.view;
 
 import android.support.annotation.NonNull;
 
-import com.manaschaudhari.android_mvvm.MvvmActivity;
 import com.manaschaudhari.android_mvvm.ViewModel;
 import com.rigel.comperio.R;
-import com.rigel.comperio.ViewModel.ScheduleViewModel;
+import com.rigel.comperio.viewmodel.ScheduleViewModel;
 
 public class ScheduleActivity extends BaseActivity {
 
