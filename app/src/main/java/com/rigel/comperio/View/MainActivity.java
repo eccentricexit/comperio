@@ -19,7 +19,7 @@ import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends MvvmActivity {
+public class MainActivity extends BaseActivity {
 
     private static final int FAVORITES = 0;
     private static final int HOME = 1;
@@ -43,7 +43,7 @@ public class MainActivity extends MvvmActivity {
     @NonNull
     @Override
     protected ViewModel createViewModel() {
-        return new MainViewModel();
+        return new MainViewModel(getNavigator());
     }
 
     @Override

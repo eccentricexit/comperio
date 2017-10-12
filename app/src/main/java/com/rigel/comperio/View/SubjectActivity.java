@@ -1,18 +1,20 @@
 package com.rigel.comperio.View;
 
+import android.support.annotation.NonNull;
+
 import com.manaschaudhari.android_mvvm.MvvmActivity;
 import com.manaschaudhari.android_mvvm.ViewModel;
 import com.rigel.comperio.R;
 import com.rigel.comperio.ViewModel.SubjectViewModel;
 
-import io.reactivex.annotations.NonNull;
 
-public class SubjectActivity extends MvvmActivity {
+
+public class SubjectActivity extends BaseActivity {
 
     @NonNull
     @Override
     protected ViewModel createViewModel() {
-        return new SubjectViewModel();
+        return new SubjectViewModel(getNavigator());
     }
 
     @Override

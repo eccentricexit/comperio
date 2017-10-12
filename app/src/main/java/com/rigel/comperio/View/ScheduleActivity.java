@@ -7,12 +7,12 @@ import com.manaschaudhari.android_mvvm.ViewModel;
 import com.rigel.comperio.R;
 import com.rigel.comperio.ViewModel.ScheduleViewModel;
 
-public class ScheduleActivity extends MvvmActivity {
+public class ScheduleActivity extends BaseActivity {
 
     @NonNull
     @Override
     protected ViewModel createViewModel() {
-        return new ScheduleViewModel();
+        return new ScheduleViewModel(getNavigator());
     }
 
     @Override

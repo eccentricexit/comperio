@@ -2,7 +2,7 @@
     <string name="app_name">Comperio</string>
     <string name="subjectScreenTitle">What do you want to learn?</string>
     <string name="subjectTextHint">Spanish...</string>
-    <string name="next">subjectButtonLabel</string>
+    <string name="subjectButtonLabel">Next</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
