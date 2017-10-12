@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.manaschaudhari.android_mvvm.ViewModel;
 import com.rigel.comperio.R;
+import com.rigel.comperio.viewmodel.HomeViewModel;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment {
 
     public HomeFragment() { }
 
@@ -17,5 +19,4 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
-
 }

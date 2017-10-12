@@ -13,6 +13,9 @@ import android.util.Log;
 
 import com.manaschaudhari.android_mvvm.ViewModel;
 import com.rigel.comperio.R;
+import com.rigel.comperio.viewmodel.FavoritesViewModel;
+import com.rigel.comperio.viewmodel.FiltersViewModel;
+import com.rigel.comperio.viewmodel.HomeViewModel;
 import com.rigel.comperio.viewmodel.MainViewModel;
 
 import butterknife.BindString;
@@ -26,12 +29,17 @@ public class MainActivity extends BaseActivity {
     private static final int FILTERS = 2;
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
-    @BindString(R.string.homeTabTitle) String homeTabTitle;
-    @BindString(R.string.favoritesTabTitle) String favoritesTabTitle;
-    @BindString(R.string.filtersTabTitle) String filtersTabTitle;
+    @BindString(R.string.homeTabTitle)
+    String homeTabTitle;
+    @BindString(R.string.favoritesTabTitle)
+    String favoritesTabTitle;
+    @BindString(R.string.filtersTabTitle)
+    String filtersTabTitle;
 
-    @BindView(R.id.tabLayout_main) TabLayout tabLayout;
-    @BindView(R.id.viewPager_main) ViewPager viewPager;
+    @BindView(R.id.tabLayout_main)
+    TabLayout tabLayout;
+    @BindView(R.id.viewPager_main)
+    ViewPager viewPager;
 
 
     @Override
@@ -58,17 +66,17 @@ public class MainActivity extends BaseActivity {
             @Override
             public Fragment getItem(int position) {
 
-                switch(position){
-                    case(FAVORITES):{
-                        return new FavoritesFragment();
+                switch (position) {
+                    case (FAVORITES): {
+                        return FavoritesFragment.getInstance(FavoritesFragment.class, new FavoritesViewModel(getNavigator()));
                     }
-                    case(HOME):{
-                        return new HomeFragment();
+                    case (HOME): {
+                        return HomeFragment.getInstance(HomeFragment.class, new HomeViewModel(getNavigator()));
                     }
-                    case(FILTERS):{
-                        return new FiltersFragment();
+                    case (FILTERS): {
+                        return FiltersFragment.getInstance(FiltersFragment.class,new FiltersViewModel(getNavigator()));
                     }
-                    default:{
+                    default: {
                         throw new UnsupportedOperationException();
                     }
                 }
@@ -82,17 +90,17 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public CharSequence getPageTitle(int position) {
-                switch(position){
-                    case(FAVORITES):{
+                switch (position) {
+                    case (FAVORITES): {
                         return favoritesTabTitle;
                     }
-                    case(HOME):{
+                    case (HOME): {
                         return homeTabTitle;
                     }
-                    case(FILTERS):{
+                    case (FILTERS): {
                         return filtersTabTitle;
                     }
-                    default:{
+                    default: {
                         throw new UnsupportedOperationException();
                     }
                 }

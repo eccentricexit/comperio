@@ -7,12 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rigel.comperio.R;
+import com.rigel.comperio.viewmodel.FiltersViewModel;
 
 
-public class FiltersFragment extends Fragment {
+public class FiltersFragment extends BaseFragment {
 
     public FiltersFragment() { }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

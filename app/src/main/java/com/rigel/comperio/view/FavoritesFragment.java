@@ -7,8 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rigel.comperio.R;
+import com.rigel.comperio.viewmodel.FavoritesViewModel;
 
-public class FavoritesFragment extends Fragment {
+public class FavoritesFragment extends BaseFragment {
 
     public FavoritesFragment() { }
 
