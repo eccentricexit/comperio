@@ -1,22 +1,22 @@
-package com.rigel.comperio;
+package com.rigel.comperio.View;
 
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.manaschaudhari.android_mvvm.MvvmActivity;
 import com.manaschaudhari.android_mvvm.ViewModel;
+import com.rigel.comperio.R;
+import com.rigel.comperio.ViewModel.ScheduleViewModel;
 
-public class FiltersActivity extends MvvmActivity {
+public class ScheduleActivity extends MvvmActivity {
 
     @NonNull
     @Override
     protected ViewModel createViewModel() {
-        return new FiltersViewModel();
+        return new ScheduleViewModel();
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_filters;
+        return R.layout.activity_schedule;
     }
 }

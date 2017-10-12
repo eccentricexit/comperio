@@ -3,4 +3,16 @@
     <string name="subjectScreenTitle">What do you want to learn?</string>
     <string name="subjectTextHint">Spanish...</string>
     <string name="next">subjectButtonLabel</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="homeTabTitle">Home</string>
+    <string name="favoritesTabTitle">Favorites</string>
+    <string name="filtersTabTitle">Filters</string>
 </resources>

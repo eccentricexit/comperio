@@ -6,12 +6,12 @@
     <data>
         <variable
             name="vm"
-            type="com.rigel.comperio.ScheduleViewModel" />
+            type="com.rigel.comperio.ViewModel.ScheduleViewModel" />
     </data>
 <android.support.constraint.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rigel.comperio.ScheduleActivity">
+    tools:context="com.rigel.comperio.View.ScheduleActivity">
 
     <TextView
         android:text="When are you available?"

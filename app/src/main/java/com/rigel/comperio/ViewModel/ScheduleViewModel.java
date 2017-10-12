@@ -1,4 +1,4 @@
-package com.rigel.comperio;
+package com.rigel.comperio.ViewModel;
 
 import com.manaschaudhari.android_mvvm.ViewModel;
 

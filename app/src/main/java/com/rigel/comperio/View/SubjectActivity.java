@@ -1,10 +1,9 @@
-package com.rigel.comperio;
-
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+package com.rigel.comperio.View;
 
 import com.manaschaudhari.android_mvvm.MvvmActivity;
 import com.manaschaudhari.android_mvvm.ViewModel;
+import com.rigel.comperio.R;
+import com.rigel.comperio.ViewModel.SubjectViewModel;
 
 import io.reactivex.annotations.NonNull;
 
