@@ -9,13 +9,36 @@ import com.rigel.comperio.model.Schedule;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeViewModel implements ViewModel {
-    @NonNull
-    private final Navigator navigator;
+import io.reactivex.Observable;
+import io.reactivex.functions.Function;
+import io.reactivex.subjects.BehaviorSubject;
 
-    public HomeViewModel(Navigator navigator){
-        this.navigator = navigator;
+public class HomeViewModel implements ViewModel {
+
+    public final Observable<List<ScheduleViewModel>> itemVms;
+    private static final Observable<List<Schedule>> itemsSource;
+
+    static {
+        List<Schedule> items = new ArrayList<>();
+
+        items.add(new Schedule("item 1","asdf","fff","fghd","dfghdf"));
+        items.add(new Schedule("item 2","f4f1","f1f1","hdfghdf","dfghdf"));
+        items.add(new Schedule("item 3","f1f1","f1ff1","dfh","dfghdf"));
+
+        itemsSource = BehaviorSubject.createDefault(items);
     }
 
+    public HomeViewModel(@NonNull final Navigator navigator) {
+        this.itemVms = itemsSource.map(new Function<List<Schedule>, List<ScheduleViewModel>>() {
+            @Override
+            public List<ScheduleViewModel> apply(List<Schedule> items) throws Exception {
+                List<ScheduleViewModel> vms = new ArrayList<>();
+                for (Schedule item : items) {
+                    vms.add(new ScheduleViewModel(item, navigator));
+                }
+                return vms;
+            }
+        });
+    }
 
 }

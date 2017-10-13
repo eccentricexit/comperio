@@ -2,6 +2,7 @@ package com.rigel.comperio.view;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.widget.Toast;
 
 import com.manaschaudhari.android_mvvm.MvvmActivity;
 import com.rigel.comperio.Navigator;
@@ -13,18 +14,18 @@ public abstract class BaseActivity extends MvvmActivity {
         return new Navigator() {
 
             @Override
-            public void navigateToScheduleActivity() {
-                navigate(ScheduleActivity.class);
-            }
-
-            @Override
-            public void navigateToSubjectActivity() {
-                navigate(SubjectActivity.class);
+            public void navigateToFreeTimeActivity() {
+                navigate(FreeTimeActivity.class);
             }
 
             @Override
             public void navigateToMainActivity() {
                 navigate(MainActivity.class);
+            }
+
+            @Override
+            public void navigateToScheduleDetailsActivity() {
+                navigate(ScheduleDetailActivity.class);
             }
 
             private void navigate(Class<?> destination) {
@@ -33,4 +34,5 @@ public abstract class BaseActivity extends MvvmActivity {
             }
         };
     }
+
 }

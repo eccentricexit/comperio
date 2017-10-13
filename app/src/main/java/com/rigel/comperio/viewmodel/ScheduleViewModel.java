@@ -1,20 +1,21 @@
 package com.rigel.comperio.viewmodel;
 
-import android.support.annotation.NonNull;
-
 import com.manaschaudhari.android_mvvm.ViewModel;
 import com.rigel.comperio.Navigator;
+import com.rigel.comperio.model.Schedule;
+
+import io.reactivex.annotations.Nullable;
+import io.reactivex.functions.Action;
 
 public class ScheduleViewModel implements ViewModel {
 
-    @NonNull
-    private final Navigator navigator;
+    public final Schedule schedule;
+    public final Navigator navigator;
 
-    public ScheduleViewModel(Navigator navigator) {
+    public ScheduleViewModel(Schedule schedule, final Navigator navigator) {
+        this.schedule = schedule;
         this.navigator = navigator;
     }
 
-    public void nextOnClick(){
-        navigator.navigateToMainActivity();
-    }
+
 }

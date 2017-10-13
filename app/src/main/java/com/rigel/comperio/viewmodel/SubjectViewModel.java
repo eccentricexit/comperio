@@ -16,6 +16,6 @@ public class SubjectViewModel implements ViewModel {
     }
 
     public void nextOnClick(){
-        navigator.navigateToScheduleActivity();
+        navigator.navigateToFreeTimeActivity();
     }
 }

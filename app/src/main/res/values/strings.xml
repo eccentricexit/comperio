@@ -17,4 +17,5 @@
     <string name="filtersTabTitle">Filters</string>
     <string name="scheduleWeekdaysButton">Days of the Week</string>
     <string name="buttonNext">Next</string>
+    <string name="freeTimeActivity">When are you available?</string>
 </resources>

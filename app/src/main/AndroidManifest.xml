@@ -17,8 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.ScheduleActivity" />
+        <activity android:name=".view.FreeTimeActivity" />
         <activity android:name=".view.MainActivity" />
+        <activity android:name=".view.ScheduleDetailActivity" />
     </application>
 
 </manifest>
