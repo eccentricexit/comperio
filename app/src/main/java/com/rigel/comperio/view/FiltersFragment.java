@@ -3,6 +3,7 @@ package com.rigel.comperio.view;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.text.format.Time;
 import android.util.Log;
@@ -30,13 +31,10 @@ public class FiltersFragment extends BaseFragment {
     private static final String END_TIME_PICKER = "endTimePicker";
     private static final String RECURRENCE_PICKER = "RECURRENCEPicker";
     private static final String LOG_TAG = FiltersFragment.class.getSimpleName();
-
-    private ViewDataBinding binding;
-
     @BindView(R.id.btnSelectDaysOfTheWeek) Button btnSelectRecurrence;
     @BindView(R.id.txtStarTime) TextView txtStartTime;
     @BindView(R.id.txtEndTime) TextView txtEndTime;
-
+    private ViewDataBinding binding;
     private String mRrule;
 
     private EventRecurrence mEventRecurrence = new EventRecurrence();
@@ -46,20 +44,13 @@ public class FiltersFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_filters, container, false);
-
-        Log.d(LOG_TAG,"onCreateStarted... binding");
-
-        binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_filters);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_filters, container, false);
         getDefaultBinder().bind(binding, viewModel);
 
-        Log.d(LOG_TAG,"Bound. finishing onCreateView.");
-        Log.d(LOG_TAG,"FilterViewModel data"+((FiltersViewModel) viewModel).subject);
+        View view = binding.getRoot();
 
         ButterKnife.bind(this, view);
-
         setupClickListeners();
-
         return view;
     }
 
