@@ -40,7 +40,8 @@ public class HomeFragment extends BaseFragment {
 
         //TODO: check MvvmActivity to fix null defaultBinder warning
         recyclerView.setAdapter(new ScheduleRecyclerViewAdapter(
-                ((HomeViewModel)viewModel).itemVms, ViewProviders.getItemListing(), BindingUtils.getDefaultBinder())
+                ((HomeViewModel)viewModel).itemVms, ViewProviders.getItemListing(),
+                BindingUtils.getDefaultBinder())
         );
     }
 }

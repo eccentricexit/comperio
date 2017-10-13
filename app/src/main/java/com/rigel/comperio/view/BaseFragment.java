@@ -1,5 +1,6 @@
 package com.rigel.comperio.view;
 
+import android.support.v13.app.FragmentCompat;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
@@ -11,7 +12,7 @@ public abstract class BaseFragment extends Fragment {
 
     public static <T extends BaseFragment> T getInstance(Class<T> t, ViewModel viewModel) {
 
-        T fragment = null;
+        T fragment;
         try {
             fragment = t.newInstance();
         } catch (java.lang.InstantiationException e) {
@@ -26,6 +27,7 @@ public abstract class BaseFragment extends Fragment {
 
         return fragment;
     }
+
 
     public void setViewModel(ViewModel viewModel){
         this.viewModel = viewModel;

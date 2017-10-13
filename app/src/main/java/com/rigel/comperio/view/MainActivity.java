@@ -24,22 +24,17 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
-    private static final int FAVORITES = 0;
-    private static final int HOME = 1;
+    private static final int HOME = 0;
+    private static final int FAVORITES = 1;
     private static final int FILTERS = 2;
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
-    @BindString(R.string.homeTabTitle)
-    String homeTabTitle;
-    @BindString(R.string.favoritesTabTitle)
-    String favoritesTabTitle;
-    @BindString(R.string.filtersTabTitle)
-    String filtersTabTitle;
+    @BindString(R.string.homeTabTitle) String homeTabTitle;
+    @BindString(R.string.favoritesTabTitle) String favoritesTabTitle;
+    @BindString(R.string.filtersTabTitle) String filtersTabTitle;
 
-    @BindView(R.id.tabLayout_main)
-    TabLayout tabLayout;
-    @BindView(R.id.viewPager_main)
-    ViewPager viewPager;
+    @BindView(R.id.tabLayout_main) TabLayout tabLayout;
+    @BindView(R.id.viewPager_main) ViewPager viewPager;
 
 
     @Override
@@ -74,7 +69,7 @@ public class MainActivity extends BaseActivity {
                         return HomeFragment.getInstance(HomeFragment.class, new HomeViewModel(getNavigator()));
                     }
                     case (FILTERS): {
-                        return FiltersFragment.getInstance(FiltersFragment.class,new FiltersViewModel(getNavigator()));
+                        return FiltersFragment.getInstance(FiltersFragment.class,new FiltersViewModel());
                     }
                     default: {
                         throw new UnsupportedOperationException();

@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.manaschaudhari.android_mvvm.utils.BindingUtils;
 import com.rigel.comperio.R;
@@ -19,8 +20,7 @@ import butterknife.ButterKnife;
 
 public class FavoritesFragment extends BaseFragment {
 
-    @BindView(R.id.recycler_favorites)
-    RecyclerView recyclerView;
+    @BindView(R.id.recycler_favorites) RecyclerView recyclerView;
 
     public FavoritesFragment() { }
 
