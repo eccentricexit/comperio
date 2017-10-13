@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -7,30 +8,28 @@
             name="vm"
             type="com.rigel.comperio.viewmodel.ScheduleDetailsViewModel" />
     </data>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+    <android.support.constraint.ConstraintLayout
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.rigel.comperio.view.ScheduleDetailActivity">
 
-
-
     <LinearLayout
         android:layout_width="340dp"
         android:layout_height="408dp"
-        android:background="#CCC"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        android:layout_marginTop="27dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:gravity="center_horizontal"
         android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="27dp"
+        android:background="#CCC"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
         app:layout_constraintVertical_bias="1.0"
         tools:layout_editor_absoluteY="95dp">
         
@@ -38,14 +37,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:textSize="26sp"
-            android:text="Spanish Teacher"/>
+            android:text="@{vm.schedule.teacherName}"
+            android:textSize="26sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="3km away"/>
+            android:text="@{vm.schedule.distance}"
+            android:textSize="18sp" />
         
         <LinearLayout
             android:layout_width="wrap_content"
@@ -55,27 +54,28 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:text="$40.00"/>
+                android:text="@{vm.schedule.hourPrice}"
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:text="4.5"/>
+                android:text="@{vm.schedule.rating}"
+                android:textSize="18sp" />
 
         </LinearLayout>
         
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ever since I traveled to Mars..."
+            android:text="@{vm.schedule.teacherStory}"
             android:textSize="18sp"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/lets_talk_button_label"/>
+            android:onClick="@{(v) -> vm.letsTalk()}"
+            android:text="@string/lets_talk_button_label" />
 
     </LinearLayout>
 

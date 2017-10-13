@@ -15,17 +15,18 @@ import io.reactivex.subjects.BehaviorSubject;
 
 public class FavoritesViewModel implements ViewModel{
 
-    public final Observable<List<ScheduleViewModel>> itemVms;
     private static final Observable<List<Schedule>> itemsSource;
 
     static {
         List<Schedule> items = new ArrayList<>();
 
-        items.add(new Schedule("Favorite 1","asdf","fff","fghd","dfghdf"));
-        items.add(new Schedule("Favorite 2","f4f1","f1f1","hdfghdf","dfghdf"));
+        items.add(new Schedule("Favorite Teacher 1", "4.3", "$34.00", "", "5.5km", "+55 (13) 2423-4242", "Ever since I started lorem ipsum dolor amet mono aba did ololo afa afesdaf", "Spanish"));
+        items.add(new Schedule("Favorite Teacher 2", "4.8", "$38.00", "", "4.5km", "+55 (12) 2323-4242", "Ever since I started lorem ipsum dolor amet mono aba did ololo afa afesdaf", "English"));
 
         itemsSource = BehaviorSubject.createDefault(items);
     }
+
+    public final Observable<List<ScheduleViewModel>> itemVms;
 
     public FavoritesViewModel(@NonNull final Navigator navigator) {
         this.itemVms = itemsSource.map(new Function<List<Schedule>, List<ScheduleViewModel>>() {

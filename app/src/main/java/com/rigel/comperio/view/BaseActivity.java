@@ -2,10 +2,13 @@ package com.rigel.comperio.view;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.widget.Toast;
 
 import com.manaschaudhari.android_mvvm.MvvmActivity;
 import com.rigel.comperio.Navigator;
+import com.rigel.comperio.R;
+import com.rigel.comperio.model.Schedule;
+
+import org.parceler.Parcels;
 
 public abstract class BaseActivity extends MvvmActivity {
 
@@ -24,8 +27,14 @@ public abstract class BaseActivity extends MvvmActivity {
             }
 
             @Override
-            public void navigateToScheduleDetailsActivity() {
-                navigate(ScheduleDetailActivity.class);
+            public void navigateToScheduleDetailsActivity(Schedule schedule) {
+                Intent i = new Intent(BaseActivity.this, ScheduleDetailActivity.class);
+                i.putExtra(
+                        BaseActivity.this.getString(R.string.EXTRA_SCHEDULE_ID),
+                        Parcels.wrap(schedule)
+                );
+
+                startActivity(i);
             }
 
             private void navigate(Class<?> destination) {

@@ -2,7 +2,6 @@ package com.rigel.comperio.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,7 +12,6 @@ import com.manaschaudhari.android_mvvm.utils.BindingUtils;
 import com.rigel.comperio.R;
 import com.rigel.comperio.ViewProviders;
 import com.rigel.comperio.adapters.ScheduleRecyclerViewAdapter;
-import com.rigel.comperio.viewmodel.FavoritesViewModel;
 import com.rigel.comperio.viewmodel.FavoritesViewModel;
 
 import butterknife.BindView;
@@ -39,6 +37,7 @@ public class FavoritesFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        //TODO: check MvvmActivity to fix null defaultBinder warning
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new ScheduleRecyclerViewAdapter(
                 ((FavoritesViewModel)viewModel).itemVms, ViewProviders.getItemListing(),

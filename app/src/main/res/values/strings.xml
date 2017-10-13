@@ -19,4 +19,5 @@
     <string name="buttonNext">Next</string>
     <string name="freeTimeActivity">When are you available?</string>
     <string name="lets_talk_button_label">Let\'s Talk</string>
+    <string name="EXTRA_SCHEDULE_ID">extra_schedule_id</string>
 </resources>
