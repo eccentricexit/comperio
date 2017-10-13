@@ -17,5 +17,9 @@ public class ScheduleViewModel implements ViewModel {
         this.navigator = navigator;
     }
 
+    public void onClick(){
+        navigator.navigateToScheduleDetailsActivity();
+    }
+
 
 }

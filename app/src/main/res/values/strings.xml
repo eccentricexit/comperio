@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Comperio</string>
     <string name="subjectScreenTitle">What do you want to learn?</string>
-    <string name="subjectTextHint">Spanish...</string>
+    <string name="subjectTextHint">Spanish&#8230;</string>
     <string name="subjectButtonLabel">Next</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
@@ -18,4 +18,5 @@
     <string name="scheduleWeekdaysButton">Days of the Week</string>
     <string name="buttonNext">Next</string>
     <string name="freeTimeActivity">When are you available?</string>
+    <string name="lets_talk_button_label">Let\'s Talk</string>
 </resources>
