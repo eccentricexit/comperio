@@ -90,8 +90,8 @@ public class FreeTimeActivity extends BaseActivity {
                     }
                 })
                 .setStartTime(10, 10)
-                .setDoneText(getString(R.string.OK))
-                .setCancelText(getString(R.string.Cancel))
+                .setDoneText(getString(R.string.lblOK))
+                .setCancelText(getString(R.string.lblCancel))
                 .setThemeDark();
 
         rtpd.show(getSupportFragmentManager(), START_TIME_PICKER);
@@ -106,8 +106,8 @@ public class FreeTimeActivity extends BaseActivity {
                     }
                 })
                 .setStartTime(10, 10)
-                .setDoneText(getString(R.string.OK))
-                .setCancelText(getString(R.string.Cancel))
+                .setDoneText(getString(R.string.lblOK))
+                .setCancelText(getString(R.string.lblCancel))
                 .setThemeDark();
 
         rtpd.show(getSupportFragmentManager(), END_TIME_PICKER);

@@ -31,7 +31,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_subject"
+                android:hint="@string/lblSubject"
                 android:text="@={vm.subject}" />
 
             <TextView
@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="@={vm.useMetricSystem}"
-                android:text="@string/lbl_use_metric_system" />
+                android:text="@string/lblUseMetricSystem" />
 
             <Button
                 android:id="@+id/btnSelectDaysOfTheWeek"
@@ -89,7 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="@{(v) -> vm.persistSettings()}"
-                android:text="@string/OK" />
+                android:text="@string/lblOK" />
 
         </LinearLayout>
 

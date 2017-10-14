@@ -21,7 +21,7 @@ public abstract class BaseActivity extends MvvmActivity {
         return new MessageHelper() {
             @Override
             public void requestSubjectSelection() {
-                Toast.makeText(BaseActivity.this, getString(R.string.msg_select_subject), Toast.LENGTH_SHORT).show();
+                Toast.makeText(BaseActivity.this, getString(R.string.lblSelectSubject), Toast.LENGTH_SHORT).show();
             }
         };
     }

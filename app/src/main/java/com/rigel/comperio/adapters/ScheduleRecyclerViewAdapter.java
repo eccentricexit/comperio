@@ -7,8 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.manaschaudhari.android_mvvm.ViewModel;
-import com.manaschaudhari.android_mvvm.adapters.RecyclerViewAdapter;
 import com.manaschaudhari.android_mvvm.adapters.ViewModelBinder;
 import com.manaschaudhari.android_mvvm.adapters.ViewProvider;
 import com.rigel.comperio.viewmodel.ScheduleViewModel;

@@ -1,15 +1,11 @@
 package com.rigel.comperio.view;
 
-import android.os.PersistableBundle;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 
 import com.manaschaudhari.android_mvvm.ViewModel;
 import com.rigel.comperio.R;
@@ -29,9 +25,9 @@ public class MainActivity extends BaseActivity {
     private static final int FILTERS = 2;
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
-    @BindString(R.string.homeTabTitle) String homeTabTitle;
-    @BindString(R.string.favoritesTabTitle) String favoritesTabTitle;
-    @BindString(R.string.filtersTabTitle) String filtersTabTitle;
+    @BindString(R.string.lblHome) String homeTabTitle;
+    @BindString(R.string.lblFavorites) String favoritesTabTitle;
+    @BindString(R.string.lblFilters) String filtersTabTitle;
 
     @BindView(R.id.tabLayout_main) TabLayout tabLayout;
     @BindView(R.id.viewPager_main) ViewPager viewPager;

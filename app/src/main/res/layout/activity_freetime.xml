@@ -23,7 +23,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="243dp"
-        android:text="@string/freeTimeActivity"
+        android:text="@string/lblWhenAreYouAvailable"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -38,7 +38,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        android:text="@string/scheduleWeekdaysButton"
+        android:text="@string/lblRecurrence"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -51,7 +51,10 @@
         android:layout_marginTop="8dp"
         android:gravity="center_horizontal"
         app:layout_constraintTop_toBottomOf="@+id/btnSelectRecurrence"
-        tools:layout_editor_absoluteX="8dp">
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent">
 
         <TextView
             android:id="@+id/txtStarTime"
@@ -85,7 +88,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:onClick="@{(v) -> vm.nextOnClick()}"
-        android:text="@string/buttonNext"
+        android:text="@string/lblNext"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />

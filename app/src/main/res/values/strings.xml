@@ -1,41 +1,39 @@
 <resources>
     <string name="app_name">Comperio</string>
-    <string name="subjectScreenTitle">What do you want to learn?</string>
-    <string name="subjectTextHint">Spanish&#8230;</string>
-    <string name="subjectButtonLabel">Next</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <string name="homeTabTitle">Home</string>
-    <string name="favoritesTabTitle">Favorites</string>
-    <string name="filtersTabTitle">Filters</string>
-    <string name="scheduleWeekdaysButton">Days of the Week</string>
-    <string name="buttonNext">Next</string>
-    <string name="freeTimeActivity">When are you available?</string>
-    <string name="lets_talk_button_label">Let\'s Talk</string>
     <string name="EXTRA_SCHEDULE_ID">extra_schedule_id</string>
-    <string name="OK">Ok</string>
-    <string name="Cancel">Cancel</string>
+
+    <string name="lblWhatDoYouWantToLearn">What do you want to learn?</string>
+    <string name="lblHome">Home</string>
+    <string name="lblFavorites">Favorites</string>
+    <string name="lblFilters">Filters</string>
+    <string name="lblNext">Next</string>
+    <string name="lblWhenAreYouAvailable">When are you available?</string>
+    <string name="lblLetsTalk">Let\'s Talk</string>
+    <string name="lblOK">OK</string>
+    <string name="lblCancel">Cancel</string>
+    <string name="lblRecurrence">Days of the week</string>
+    <string name="lblUseMetricSystem">Use Metric System</string>
+    <string name="lblSelectSubject">Please select a subject</string>
+    <string name="lblSubject">Subject</string>
+
+    <string name="ctDescTeacherPic">Teacher profile picture</string>
+
     <string name="pref_subject">pref_subject</string>
     <string name="pref_recurrence">pref_recurrence</string>
-    <string name="pref_distance">pref_distance</string>
     <string name="pref_metric">pref_metric</string>
     <string name="pref_startHour">pref_startHour</string>
     <string name="pref_startMinute">pref_startMinute</string>
     <string name="pref_endHour">pref_endHour</string>
     <string name="pref_endMinute">pref_endMinute</string>
     <string name="pref_default_distance">2000</string>
-    <string name="msg_select_subject">Please select a subject</string>
-    <string name="lblRecurrence">Days of the week</string>
-    <string name="lbl_use_metric_system">Use Metric System</string>
-    <string name="hint_subject">Subject</string>
+    <string name="pref_distance">pref_distance</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notification</string>
+    <string name="action_settings">Settings</string>
+
 
     <string-array name="available_subjects">
         <item>German</item>
