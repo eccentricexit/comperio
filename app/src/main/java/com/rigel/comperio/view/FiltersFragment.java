@@ -34,7 +34,7 @@ public class FiltersFragment extends BaseFragment {
     @BindView(R.id.btnSelectDaysOfTheWeek) Button btnSelectRecurrence;
     @BindView(R.id.txtStarTime) TextView txtStartTime;
     @BindView(R.id.txtEndTime) TextView txtEndTime;
-    private ViewDataBinding binding;
+
     private String mRrule;
 
     private EventRecurrence mEventRecurrence = new EventRecurrence();
@@ -44,14 +44,16 @@ public class FiltersFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_filters, container, false);
-        getDefaultBinder().bind(binding, viewModel);
-
-        View view = binding.getRoot();
+        View view = super.onCreateView(inflater,container,savedInstanceState);
 
         ButterKnife.bind(this, view);
         setupClickListeners();
         return view;
+    }
+
+    @Override
+    protected int getLayout() {
+        return R.layout.fragment_filters;
     }
 
 

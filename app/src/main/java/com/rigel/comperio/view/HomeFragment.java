@@ -26,11 +26,16 @@ public class HomeFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = super.onCreateView(inflater,container,savedInstanceState);
 
         ButterKnife.bind(this, view);
 
         return view;
+    }
+
+    @Override
+    protected int getLayout() {
+        return R.layout.fragment_home;
     }
 
 
