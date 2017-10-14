@@ -4,15 +4,12 @@ import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v13.app.FragmentCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.manaschaudhari.android_mvvm.ViewModel;
-import com.rigel.comperio.R;
-import com.rigel.comperio.viewmodel.HomeViewModel;
 
 import static com.manaschaudhari.android_mvvm.utils.BindingUtils.getDefaultBinder;
 

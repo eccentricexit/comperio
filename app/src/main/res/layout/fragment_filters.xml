@@ -9,53 +9,54 @@
             type="com.rigel.comperio.viewmodel.FiltersViewModel" />
     </data>
     <android.support.constraint.ConstraintLayout
-        tools:context="com.rigel.comperio.view.MainActivity"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context="com.rigel.comperio.view.MainActivity">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
-            app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginRight="8dp"
-            app:layout_constraintRight_toRightOf="parent"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp">
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={vm.subject}"
-                android:hint="Subject"/>
+                android:hint="@string/lblSubject"
+                android:text="@={vm.subject}" />
 
             <TextView
-                android:text="@{vm.distanceLabel}"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <SeekBar
-                android:progress="@={vm.distance}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:max="50000"/>
+                android:text="@{vm.distanceLabel}" />
+
+            <SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="50000"
+                android:progress="@={vm.distance}" />
 
 
             <Switch
-                android:text="Use Metric System"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="@={vm.useMetricSystem}"/>
+                android:checked="@={vm.useMetricSystem}"
+                android:text="@string/lblUseMetricSystem" />
 
             <Button
                 android:id="@+id/btnSelectDaysOfTheWeek"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Days of the week"/>
+                android:text="@string/lblRecurrence" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -66,21 +67,29 @@
                     android:id="@+id/txtStarTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
                     android:layout_margin="5dp"
                     android:clickable="true"
-                    android:text="@{vm.startTime}"/>
+                    android:text="@{vm.startTime}"
+                    android:textSize="20sp"
+                    tools:text="1:00" />
 
                 <TextView
                     android:id="@+id/txtEndTime"
-                    android:textSize="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:clickable="true"
-                    android:text="@{vm.endTime}"/>
+                    android:text="@{vm.endTime}"
+                    android:textSize="20sp"
+                    tools:text="23:30" />
+
             </LinearLayout>
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v) -> vm.persistSettings()}"
+                android:text="@string/lblOK" />
 
         </LinearLayout>
 

@@ -1,9 +1,6 @@
 package com.rigel.comperio.view;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.text.format.Time;
 import android.util.Log;
@@ -22,8 +19,6 @@ import com.rigel.comperio.viewmodel.FiltersViewModel;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.manaschaudhari.android_mvvm.utils.BindingUtils.getDefaultBinder;
-
 
 public class FiltersFragment extends BaseFragment {
 
@@ -31,13 +26,14 @@ public class FiltersFragment extends BaseFragment {
     private static final String END_TIME_PICKER = "endTimePicker";
     private static final String RECURRENCE_PICKER = "RECURRENCEPicker";
     private static final String LOG_TAG = FiltersFragment.class.getSimpleName();
+
     @BindView(R.id.btnSelectDaysOfTheWeek) Button btnSelectRecurrence;
     @BindView(R.id.txtStarTime) TextView txtStartTime;
     @BindView(R.id.txtEndTime) TextView txtEndTime;
 
-    private String mRrule;
+    private String rRule;
 
-    private EventRecurrence mEventRecurrence = new EventRecurrence();
+    private EventRecurrence eventRecurrence = new EventRecurrence();
 
     public FiltersFragment() { }
 
@@ -89,8 +85,8 @@ public class FiltersFragment extends BaseFragment {
                     }
                 })
                 .setStartTime(10, 10)
-                .setDoneText(getString(R.string.OK))
-                .setCancelText(getString(R.string.Cancel))
+                .setDoneText(getString(R.string.lblOK))
+                .setCancelText(getString(R.string.lblCancel))
                 .setThemeDark();
 
         rtpd.show(getFragmentManager(), START_TIME_PICKER);
@@ -105,8 +101,8 @@ public class FiltersFragment extends BaseFragment {
                     }
                 })
                 .setStartTime(10, 10)
-                .setDoneText(getString(R.string.OK))
-                .setCancelText(getString(R.string.Cancel))
+                .setDoneText(getString(R.string.lblOK))
+                .setCancelText(getString(R.string.lblCancel))
                 .setThemeDark();
 
         rtpd.show(getFragmentManager(), END_TIME_PICKER);
@@ -119,7 +115,7 @@ public class FiltersFragment extends BaseFragment {
         time.setToNow();
         bundle.putLong(RecurrencePickerDialogFragment.BUNDLE_START_TIME_MILLIS, time.toMillis(false));
         bundle.putString(RecurrencePickerDialogFragment.BUNDLE_TIME_ZONE, time.timezone);
-        bundle.putString(RecurrencePickerDialogFragment.BUNDLE_RRULE, mRrule);
+        bundle.putString(RecurrencePickerDialogFragment.BUNDLE_RRULE, rRule);
         bundle.putBoolean(RecurrencePickerDialogFragment.BUNDLE_HIDE_SWITCH_BUTTON, true);
 
         RecurrencePickerDialogFragment rpd = new RecurrencePickerDialogFragment();
@@ -127,17 +123,22 @@ public class FiltersFragment extends BaseFragment {
         rpd.setOnRecurrenceSetListener(new RecurrencePickerDialogFragment.OnRecurrenceSetListener() {
             @Override
             public void onRecurrenceSet(String rRule) {
-                mRrule = rRule;
-                if (mRrule == null) {
-                    Log.w(LOG_TAG,"mRrule is null.");
+                FiltersFragment.this.rRule = rRule;
+                if (FiltersFragment.this.rRule == null) {
+                    Log.w(LOG_TAG, "rRule is null.");
                     return;
                 }
 
-                mEventRecurrence.parse(mRrule);
-                ((FiltersViewModel)viewModel).setRecurrence(mEventRecurrence);
+                eventRecurrence.parse(FiltersFragment.this.rRule);
+                ((FiltersViewModel) viewModel).setRecurrence(eventRecurrence);
             }
         });
         rpd.show(fm, RECURRENCE_PICKER);
     }
 
+    @Override
+    public void onDestroyView() {
+        ((FiltersViewModel) viewModel).persistSettings();
+        super.onDestroyView();
+    }
 }
