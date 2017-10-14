@@ -1,0 +1,25 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.rigel.comperio.viewmodel.HomeViewModel" />
+
+        <import type="com.rigel.comperio.ViewProviders" />
+    </data>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_home"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/colorPrimaryDark"
+        />
+
+</LinearLayout>
+</layout>
