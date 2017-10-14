@@ -12,6 +12,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="homeTabTitle">Home</string>
     <string name="favoritesTabTitle">Favorites</string>
     <string name="filtersTabTitle">Filters</string>
@@ -30,4 +31,13 @@
     <string name="pref_startMinute">pref_startMinute</string>
     <string name="pref_endHour">pref_endHour</string>
     <string name="pref_endMinute">pref_endMinute</string>
+    <string name="pref_default_distance">2000</string>
+    <string name="msg_select_subject">Please select a subject</string>
+
+    <string-array name="available_subjects">
+        <item>German</item>
+        <item>Spanish</item>
+        <item>French</item>
+        <item>English</item>
+    </string-array>
 </resources>

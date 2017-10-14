@@ -21,6 +21,7 @@ public class FiltersViewModel implements ViewModel {
     public final ObservableField<Integer> endMinutes = new ObservableField<>(0);
 
     public final ObservableField<Boolean> useMetricSystem = new ObservableField<>(true);
+
     public final ObservableField<EventRecurrence> recurrence = new ObservableField<>(new EventRecurrence());
 
     public FiltersViewModel() {

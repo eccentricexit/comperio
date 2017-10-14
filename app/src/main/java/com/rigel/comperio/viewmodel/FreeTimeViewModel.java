@@ -10,11 +10,12 @@ import com.rigel.comperio.SettingsManager;
 
 public class FreeTimeViewModel implements ViewModel {
 
-    public final ObservableField<Integer> startHour = new ObservableField<>(18);
+    public final ObservableField<Integer> startHour = new ObservableField<>(0);
     public final ObservableField<Integer> startMinute = new ObservableField<>(0);
-    public final ObservableField<Integer> endHour = new ObservableField<>(22);
+    public final ObservableField<Integer> endHour = new ObservableField<>(0);
     public final ObservableField<Integer> endMinutes = new ObservableField<>(0);
     public final ObservableField<EventRecurrence> recurrence = new ObservableField<>(new EventRecurrence());
+
     @NonNull
     private final Navigator navigator;
     @NonNull
@@ -23,6 +24,11 @@ public class FreeTimeViewModel implements ViewModel {
     public FreeTimeViewModel(Navigator navigator, SettingsManager settingsManager) {
         this.navigator = navigator;
         this.settingsManager = settingsManager;
+
+        startHour.set(settingsManager.getStartHour());
+        startMinute.set(settingsManager.getStartMinute());
+        endHour.set(settingsManager.getEndHour());
+        endMinutes.set(settingsManager.getEndMinute());
     }
 
     public void nextOnClick(){

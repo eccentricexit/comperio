@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.widget.Toast;
 
 import com.manaschaudhari.android_mvvm.MvvmActivity;
+import com.rigel.comperio.MessageHelper;
 import com.rigel.comperio.Navigator;
 import com.rigel.comperio.R;
 import com.rigel.comperio.SettingsManager;
@@ -14,6 +16,15 @@ import com.rigel.comperio.model.Schedule;
 import org.parceler.Parcels;
 
 public abstract class BaseActivity extends MvvmActivity {
+
+    protected MessageHelper getMessageHelper() {
+        return new MessageHelper() {
+            @Override
+            public void requestSubjectSelection() {
+                Toast.makeText(BaseActivity.this, getString(R.string.msg_select_subject), Toast.LENGTH_SHORT).show();
+            }
+        };
+    }
 
     protected SettingsManager getSettingsManager() {
         return new SettingsManager() {
@@ -70,32 +81,43 @@ public abstract class BaseActivity extends MvvmActivity {
 
             @Override
             public Integer getDistance() {
-                return getSharedPreferences().getInt(getString(R.string.pref_distance), -1);
+                return getSharedPreferences().getInt(
+                        getString(R.string.pref_distance), getResources().getInteger(R.integer.default_distance)
+                );
+
             }
 
             @Override
             public Boolean getUseMetricSystem() {
-                return getSharedPreferences().getBoolean(getString(R.string.pref_metric), false);
+                return getSharedPreferences().getBoolean(getString(R.string.pref_metric), true);
             }
 
             @Override
             public Integer getStartHour() {
-                return getSharedPreferences().getInt(getString(R.string.pref_startHour), -1);
+                return getSharedPreferences().getInt(
+                        getString(R.string.pref_startHour), getResources().getInteger(R.integer.default_StartHour)
+                );
             }
 
             @Override
             public Integer getStartMinute() {
-                return getSharedPreferences().getInt(getString(R.string.pref_startMinute), -1);
+                return getSharedPreferences().getInt(
+                        getString(R.string.pref_startHour), getResources().getInteger(R.integer.default_StartMinute)
+                );
             }
 
             @Override
             public Integer getEndHour() {
-                return getSharedPreferences().getInt(getString(R.string.pref_endHour), -1);
+                return getSharedPreferences().getInt(
+                        getString(R.string.pref_startHour), getResources().getInteger(R.integer.default_EndHour)
+                );
             }
 
             @Override
             public Integer getEndMinute() {
-                return getSharedPreferences().getInt(getString(R.string.pref_endMinute), -1);
+                return getSharedPreferences().getInt(
+                        getString(R.string.pref_startHour), getResources().getInteger(R.integer.default_EndMinute)
+                );
             }
 
             private SharedPreferences.Editor getEditor() {

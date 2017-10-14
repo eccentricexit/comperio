@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="default_distance">2000</integer>
+    <integer name="default_StartHour">1</integer>
+    <integer name="default_StartMinute">0</integer>
+    <integer name="default_EndHour">23</integer>
+    <integer name="default_EndMinute">30</integer>
+</resources>
