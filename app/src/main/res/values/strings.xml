@@ -22,4 +22,12 @@
     <string name="EXTRA_SCHEDULE_ID">extra_schedule_id</string>
     <string name="OK">Ok</string>
     <string name="Cancel">Cancel</string>
+    <string name="pref_subject">pref_subject</string>
+    <string name="pref_recurrence">pref_recurrence</string>
+    <string name="pref_distance">pref_distance</string>
+    <string name="pref_metric">pref_metric</string>
+    <string name="pref_startHour">pref_startHour</string>
+    <string name="pref_startMinute">pref_startMinute</string>
+    <string name="pref_endHour">pref_endHour</string>
+    <string name="pref_endMinute">pref_endMinute</string>
 </resources>

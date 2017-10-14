@@ -15,16 +15,15 @@ public class FiltersViewModel implements ViewModel {
     public final ObservableField<String> subject = new ObservableField<>("Spanish");
 
     public final ObservableField<Integer> distance = new ObservableField<>(2000); //in meters
-    public final ObservableField<Integer> startHour = new ObservableField<>(18); //in meters
-    public final ObservableField<Integer> startMinutes = new ObservableField<>(0); //in meters
-    public final ObservableField<Integer> endHour = new ObservableField<>(22); //in meters
-    public final ObservableField<Integer> endMinutes = new ObservableField<>(0); //in meters
+    public final ObservableField<Integer> startHour = new ObservableField<>(18);
+    public final ObservableField<Integer> startMinutes = new ObservableField<>(0);
+    public final ObservableField<Integer> endHour = new ObservableField<>(22);
+    public final ObservableField<Integer> endMinutes = new ObservableField<>(0);
 
     public final ObservableField<Boolean> useMetricSystem = new ObservableField<>(true);
     public final ObservableField<EventRecurrence> recurrence = new ObservableField<>(new EventRecurrence());
 
-    public FiltersViewModel(){
-        subject.set("Testytest");
+    public FiltersViewModel() {
     }
 
     public void setStartTime(int hour, int minute) {
