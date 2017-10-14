@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity {
                         return HomeFragment.getInstance(HomeFragment.class, new HomeViewModel(getNavigator()));
                     }
                     case (FILTERS): {
-                        return FiltersFragment.getInstance(FiltersFragment.class,new FiltersViewModel());
+                        return FiltersFragment.getInstance(FiltersFragment.class, new FiltersViewModel(getSettingsManager()));
                     }
                     default: {
                         throw new UnsupportedOperationException();

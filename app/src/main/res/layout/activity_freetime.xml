@@ -18,12 +18,13 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="154dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="243dp"
         android:text="@string/freeTimeActivity"
         android:textSize="20sp"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,21 +33,25 @@
         android:id="@+id/btnSelectRecurrence"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:text="@string/scheduleWeekdaysButton"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-         />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
+        android:layout_width="344dp"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/btnSelectRecurrence"
+        tools:layout_editor_absoluteX="8dp">
 
         <TextView
             android:id="@+id/txtStarTime"
@@ -55,7 +60,8 @@
             android:layout_margin="5dp"
             android:clickable="true"
             android:text="@{vm.startTime}"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:text="00:00" />
 
         <TextView
             android:id="@+id/txtEndTime"
@@ -64,7 +70,8 @@
             android:layout_margin="5dp"
             android:clickable="true"
             android:text="@{vm.endTime}"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:text="23:00" />
     </LinearLayout>
 
 
@@ -72,9 +79,11 @@
         android:id="@+id/btnNext_schedule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:onClick="@{(v) -> vm.nextOnClick()}"
         android:text="@string/buttonNext"
         app:layout_constraintLeft_toLeftOf="parent"

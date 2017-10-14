@@ -18,6 +18,7 @@ public class SubjectActivity extends BaseActivity {
 
     @BindView(R.id.subjectSpinner)
     Spinner subjectSpinner;
+
     private SubjectViewModel viewModel;
 
     @Override

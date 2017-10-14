@@ -17,19 +17,23 @@ import com.rigel.comperio.R;
 import com.rigel.comperio.viewmodel.FreeTimeViewModel;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class FreeTimeActivity extends BaseActivity {
+
+    private static final String LOG_TAG = FreeTimeActivity.class.getSimpleName();
 
     private static final String START_TIME_PICKER = "startTimePicker";
     private static final String END_TIME_PICKER = "endTimePicker";
     private static final String RECURRENCE_PICKER = "RECURRENCEPicker";
-    private static final String LOG_TAG = FreeTimeActivity.class.getSimpleName();
+
     @BindView(R.id.btnSelectRecurrence)
     Button btnSelectRecurrence;
     @BindView(R.id.txtStarTime)
     TextView txtStartTime;
     @BindView(R.id.txtEndTime)
     TextView txtEndTime;
+
     private FreeTimeViewModel viewModel;
     private String rRule;
     private EventRecurrence eventRecurrence = new EventRecurrence();
@@ -37,6 +41,7 @@ public class FreeTimeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
 
         setupClickListeners();
     }
@@ -88,7 +93,6 @@ public class FreeTimeActivity extends BaseActivity {
                 .setDoneText(getString(R.string.OK))
                 .setCancelText(getString(R.string.Cancel))
                 .setThemeDark();
-
 
         rtpd.show(getSupportFragmentManager(), START_TIME_PICKER);
     }

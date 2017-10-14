@@ -136,4 +136,9 @@ public class FiltersFragment extends BaseFragment {
         rpd.show(fm, RECURRENCE_PICKER);
     }
 
+    @Override
+    public void onDestroyView() {
+        ((FiltersViewModel) viewModel).persistSettings();
+        super.onDestroyView();
+    }
 }

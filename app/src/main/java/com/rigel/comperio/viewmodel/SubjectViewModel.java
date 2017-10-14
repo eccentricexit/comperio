@@ -8,8 +8,6 @@ import com.rigel.comperio.MessageHelper;
 import com.rigel.comperio.Navigator;
 import com.rigel.comperio.SettingsManager;
 
-import java.util.Set;
-
 
 public class SubjectViewModel implements ViewModel {
 

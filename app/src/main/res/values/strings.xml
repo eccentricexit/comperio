@@ -33,6 +33,9 @@
     <string name="pref_endMinute">pref_endMinute</string>
     <string name="pref_default_distance">2000</string>
     <string name="msg_select_subject">Please select a subject</string>
+    <string name="lblRecurrence">Days of the week</string>
+    <string name="lbl_use_metric_system">Use Metric System</string>
+    <string name="hint_subject">Subject</string>
 
     <string-array name="available_subjects">
         <item>German</item>

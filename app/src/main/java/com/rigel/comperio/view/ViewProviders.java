@@ -1,9 +1,10 @@
-package com.rigel.comperio;
+package com.rigel.comperio.view;
 
 import android.support.annotation.NonNull;
 
 import com.manaschaudhari.android_mvvm.ViewModel;
 import com.manaschaudhari.android_mvvm.adapters.ViewProvider;
+import com.rigel.comperio.R;
 import com.rigel.comperio.viewmodel.ScheduleViewModel;
 
 public class ViewProviders {
