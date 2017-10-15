@@ -126,6 +126,11 @@ public class Schedule {
 
     @Override
     public String toString() {
-        return "ClassPojo [startMinute = " + startMinute + ", hourPrice = " + hourPrice + ", subjectName = " + subjectName + ", teacherPicUrl = " + teacherPicUrl + ", _id = " + _id + ", weekDaysAvailable = " + weekDaysAvailable + ", endMinute = " + endMinute + ", loc = " + loc + ", startHour = " + startHour + ", teacherPhone = " + teacherPhone + ", teacherRating = " + teacherRating + ", endHour = " + endHour + ", teacherName = " + teacherName + "]";
+        return "ClassPojo [startMinute = " + startMinute + ", hourPrice = " + hourPrice +
+                ", subjectName = " + subjectName + ", teacherPicUrl = " + teacherPicUrl +
+                ", _id = " + _id + ", weekDaysAvailable = " + weekDaysAvailable + ", endMinute = " +
+                endMinute + ", loc = " + loc + ", startHour = " + startHour + ", teacherPhone = " +
+                teacherPhone + ", teacherRating = " + teacherRating + ", endHour = " + endHour +
+                ", teacherName = " + teacherName + "]";
     }
 }

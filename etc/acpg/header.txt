@@ -1,0 +1,1 @@
+//Code generated with BoD's tool. For more information, visit his repository at https://github.com/BoD/android-contentprovider-generator.

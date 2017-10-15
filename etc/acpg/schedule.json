@@ -1,0 +1,37 @@
+{
+  "fields": [
+    {
+      "name": "teacher_id",
+      "type": "Long",
+      "nullable": false,
+      "foreignKey": {
+        "table": "teacher",
+        "onDelete": "RESTRICT"
+      }
+    },
+    {
+      "name": "subject_id",
+      "type": "Long",
+      "nullable": false,
+      "foreignKey": {
+        "table": "subject",
+        "onDelete": "RESTRICT"
+      }
+    },
+    {
+      "name": "hour_price",
+      "type": "Float",
+      "nullable": false
+    },
+    {
+      "name": "start_date_time",
+      "type": "Date",
+      "nullable": false
+    },
+    {
+      "name": "end_date_time",
+      "type": "Date",
+      "nullable": false
+    }
+  ]
+}
