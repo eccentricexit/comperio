@@ -20,8 +20,8 @@ public class FavoritesViewModel implements ViewModel{
     static {
         List<Schedule> items = new ArrayList<>();
 
-        items.add(new Schedule("Favorite Teacher 1", "4.3", "$34.00", "", "5.5km", "+55 (13) 2423-4242", "Ever since I started lorem ipsum dolor amet mono aba did ololo afa afesdaf", "Spanish"));
-        items.add(new Schedule("Favorite Teacher 2", "4.8", "$38.00", "", "4.5km", "+55 (12) 2323-4242", "Ever since I started lorem ipsum dolor amet mono aba did ololo afa afesdaf", "English"));
+        items.add(new Schedule());
+        items.add(new Schedule());
 
         itemsSource = BehaviorSubject.createDefault(items);
     }
