@@ -108,7 +108,7 @@ public class ComperioContract {
         public static final String COLUMN_SCHEDULE_KEY = "schedule_id";
 
 
-        public static Uri buildScheduleUri(long id) {
+        public static Uri buildFavoriteUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
     }
