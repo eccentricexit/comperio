@@ -39,9 +39,6 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
 
-        Log.d(LOG_TAG, "saved subject: " + getSettingsManager().getSubject());
-        Log.d(LOG_TAG, "saved preferences initialized: " + getSettingsManager().getPreferencesInitialized());
-
         setupViewPager();
     }
 

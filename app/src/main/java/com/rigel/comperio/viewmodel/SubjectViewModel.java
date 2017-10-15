@@ -42,13 +42,11 @@ public class SubjectViewModel implements ViewModel {
 
     public void nextOnClick() {
         saveToSharedPreferences();
-        Log.d(LOG_TAG, "inintialized  " + settingsManager.getPreferencesInitialized());
+
         navigator.navigateToFreeTimeActivity();
     }
 
     private void saveToSharedPreferences() {
-        Log.d(LOG_TAG, "saving subject id:" + subject.get());
         settingsManager.saveSubject(subject.get());
-        Log.d(LOG_TAG, "loaded subject id:" + settingsManager.getSubject());
     }
 }

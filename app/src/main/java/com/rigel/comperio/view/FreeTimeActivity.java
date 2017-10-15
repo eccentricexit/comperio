@@ -43,8 +43,6 @@ public class FreeTimeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
 
-        Log.d(LOG_TAG, "saved subject: " + getSettingsManager().getSubject());
-
         setupClickListeners();
     }
 

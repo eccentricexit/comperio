@@ -85,8 +85,7 @@ public class FiltersViewModel implements ViewModel {
     }
 
     public void persistSettings() {
-        Log.d(LOG_TAG, "persisting settings");
-        Log.d(LOG_TAG, "saving subject id:" + subject.get());
+
         settingsManager.saveSubject(subject.get());
         settingsManager.saveRecurrence(recurrence.get().toString());
         settingsManager.saveDistance(distance.get());
@@ -97,7 +96,6 @@ public class FiltersViewModel implements ViewModel {
         settingsManager.saveEndHour(endHour.get());
         settingsManager.saveEndMinute(endMinute.get());
 
-        Log.d(LOG_TAG, "get subject id:" + settingsManager.getSubject());
     }
 
     public Integer getStartHour() {

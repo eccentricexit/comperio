@@ -47,6 +47,6 @@ public class HomeViewModel implements ViewModel {
     }
 
     public void updateItems() {
-        //testytest
+
     }
 }

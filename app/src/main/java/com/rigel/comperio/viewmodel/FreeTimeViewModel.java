@@ -40,24 +40,11 @@ public class FreeTimeViewModel implements ViewModel {
     }
 
     private void saveToSharedPreferences() {
-        Log.d(LOG_TAG, "current startTime: " + settingsManager.getStartHour() + ":" + settingsManager.getStartMinute());
-        Log.d(LOG_TAG, "current endTime: " + settingsManager.getEndHour() + ":" + settingsManager.getEndMinute());
-
-        Log.d(LOG_TAG, "saving startTime: " + startHour.get() + ":" + startMinute.get());
-        Log.d(LOG_TAG, "saving endTime: " + endHour.get() + ":" + endMinute.get());
-
         settingsManager.saveStartHour(startHour.get());
         settingsManager.saveStartMinute(startMinute.get());
         settingsManager.saveEndHour(endHour.get());
         settingsManager.saveEndMinute(endMinute.get());
-
-
         settingsManager.setPreferencesInitialized(true);
-
-        Log.d(LOG_TAG, "getPreferencesInitialized:" + settingsManager.getPreferencesInitialized());
-
-        Log.d(LOG_TAG, "saved startTime: " + settingsManager.getStartHour() + ":" + settingsManager.getStartMinute());
-        Log.d(LOG_TAG, "saved endTime: " + settingsManager.getEndHour() + ":" + settingsManager.getEndMinute());
     }
 
     public void setStartTime(int hour, int minute) {

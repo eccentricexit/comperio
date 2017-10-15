@@ -31,9 +31,6 @@ public class SubjectActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
 
-        Log.d(LOG_TAG, "initialized  " + getSettingsManager().getPreferencesInitialized());
-        Log.d(LOG_TAG, "saved subject: " + getSettingsManager().getSubject());
-
         if (getSettingsManager().getPreferencesInitialized()) {
             getNavigator().navigateToMainActivity();
         }
@@ -50,7 +47,6 @@ public class SubjectActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Long id = ((Subject) subjectSpinner.getSelectedItem()).getId();
-                Log.d(LOG_TAG, "selected a subject:" + id);
                 viewModel.subject.set(id);
             }
 

@@ -41,7 +41,6 @@ public class FiltersFragment extends BaseFragment {
 
     private String rRule;
     private FiltersViewModel viewModel;
-
     private EventRecurrence eventRecurrence = new EventRecurrence();
 
     public FiltersFragment() { }
@@ -53,9 +52,6 @@ public class FiltersFragment extends BaseFragment {
         ButterKnife.bind(this, view);
 
         viewModel = (FiltersViewModel) super.viewModel;
-
-        Log.d(LOG_TAG, "Initialized " + viewModel.getSettingsManager().getPreferencesInitialized());
-        Log.d(LOG_TAG, "Subject Id from viewmodel: " + viewModel.subject.get());
 
         setupSpinner();
         setupClickListeners();
@@ -184,7 +180,6 @@ public class FiltersFragment extends BaseFragment {
 
     @Override
     public void onDestroyView() {
-        Log.d(LOG_TAG, "onDestroy");
         viewModel.persistSettings();
         super.onDestroyView();
     }
