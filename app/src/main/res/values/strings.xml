@@ -33,12 +33,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notification</string>
     <string name="action_settings">Settings</string>
+    <string name="pref_initialized">pref_initialized</string>
 
-
-    <string-array name="available_subjects">
-        <item>German</item>
-        <item>Spanish</item>
-        <item>French</item>
-        <item>English</item>
-    </string-array>
 </resources>

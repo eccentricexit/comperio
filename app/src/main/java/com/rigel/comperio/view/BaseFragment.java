@@ -15,16 +15,7 @@ import static com.manaschaudhari.android_mvvm.utils.BindingUtils.getDefaultBinde
 
 public abstract class BaseFragment extends Fragment {
     ViewModel viewModel;
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewDataBinding binding = DataBindingUtil.inflate(inflater, getLayout(), container, false);
-
-        getDefaultBinder().bind(binding, viewModel);
-
-        return binding.getRoot();
-    }
+    ViewDataBinding binding;
 
     public static <T extends BaseFragment> T getInstance(Class<T> t, ViewModel viewModel) {
 
@@ -42,6 +33,16 @@ public abstract class BaseFragment extends Fragment {
         fragment.setViewModel(viewModel);
 
         return fragment;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        binding = DataBindingUtil.inflate(inflater, getLayout(), container, false);
+
+        getDefaultBinder().bind(binding, viewModel);
+
+        return binding.getRoot();
     }
 
     protected abstract int getLayout();

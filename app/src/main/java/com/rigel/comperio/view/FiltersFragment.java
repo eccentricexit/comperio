@@ -1,5 +1,6 @@
 package com.rigel.comperio.view;
 
+import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.text.format.Time;
@@ -7,13 +8,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.codetroopers.betterpickers.radialtimepicker.RadialTimePickerDialogFragment;
 import com.codetroopers.betterpickers.recurrencepicker.EventRecurrence;
 import com.codetroopers.betterpickers.recurrencepicker.RecurrencePickerDialogFragment;
+import com.manaschaudhari.android_mvvm.utils.BindingUtils;
 import com.rigel.comperio.R;
+import com.rigel.comperio.adapters.SubjectAdapter;
+import com.rigel.comperio.model.Subject;
 import com.rigel.comperio.viewmodel.FiltersViewModel;
 
 import butterknife.BindView;
@@ -24,14 +30,17 @@ public class FiltersFragment extends BaseFragment {
 
     private static final String START_TIME_PICKER = "startTimePicker";
     private static final String END_TIME_PICKER = "endTimePicker";
-    private static final String RECURRENCE_PICKER = "RECURRENCEPicker";
+    private static final String RECURRENCE_PICKER = "recurrencePicker";
     private static final String LOG_TAG = FiltersFragment.class.getSimpleName();
 
     @BindView(R.id.btnSelectDaysOfTheWeek) Button btnSelectRecurrence;
     @BindView(R.id.txtStarTime) TextView txtStartTime;
     @BindView(R.id.txtEndTime) TextView txtEndTime;
+    @BindView(R.id.subjectSpinner)
+    Spinner subjectSpinner;
 
     private String rRule;
+    private FiltersViewModel viewModel;
 
     private EventRecurrence eventRecurrence = new EventRecurrence();
 
@@ -41,10 +50,49 @@ public class FiltersFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = super.onCreateView(inflater,container,savedInstanceState);
-
         ButterKnife.bind(this, view);
+
+        viewModel = (FiltersViewModel) super.viewModel;
+
+        Log.d(LOG_TAG, "Initialized " + viewModel.getSettingsManager().getPreferencesInitialized());
+        Log.d(LOG_TAG, "Subject Id from viewmodel: " + viewModel.subject.get());
+
+        setupSpinner();
         setupClickListeners();
+
         return view;
+    }
+
+    private void setupSpinner() {
+        subjectSpinner.setAdapter(
+                new SubjectAdapter(getContext(),
+                        R.layout.support_simple_spinner_dropdown_item,
+                        viewModel.subjects)
+        );
+
+        subjectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                viewModel.subject.set(((Subject) subjectSpinner.getSelectedItem()).getId());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                //do nothing.
+            }
+        });
+
+        subjectSpinner.setSelection(getSelectedItemPosition(viewModel.subject.get(), viewModel.subjects));
+    }
+
+    private int getSelectedItemPosition(Long selectedId, Subject[] subjects) {
+        for (int i = 0; i < subjects.length; i++) {
+            if (selectedId.equals(subjects[i].getId())) {
+                return i;
+            }
+        }
+
+        throw new IndexOutOfBoundsException();
     }
 
     @Override
@@ -60,14 +108,12 @@ public class FiltersFragment extends BaseFragment {
                 recurrenceSelect();
             }
         });
-
         txtStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startTimeSelect();
             }
         });
-
         txtEndTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,10 +127,10 @@ public class FiltersFragment extends BaseFragment {
                 .setOnTimeSetListener(new RadialTimePickerDialogFragment.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(RadialTimePickerDialogFragment dialog, int hourOfDay, int minute) {
-                        ((FiltersViewModel)viewModel).setStartTime(hourOfDay,minute);
+                        viewModel.setStartTime(hourOfDay, minute);
                     }
                 })
-                .setStartTime(10, 10)
+                .setStartTime(viewModel.getStartHour(), viewModel.getStartMinute())
                 .setDoneText(getString(R.string.lblOK))
                 .setCancelText(getString(R.string.lblCancel))
                 .setThemeDark();
@@ -97,10 +143,10 @@ public class FiltersFragment extends BaseFragment {
                 .setOnTimeSetListener(new RadialTimePickerDialogFragment.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(RadialTimePickerDialogFragment dialog, int hourOfDay, int minute) {
-                        ((FiltersViewModel)viewModel).setEndTime(hourOfDay,minute);
+                        viewModel.setEndTime(hourOfDay, minute);
                     }
                 })
-                .setStartTime(10, 10)
+                .setStartTime(viewModel.getEndHour(), viewModel.getEndMinute())
                 .setDoneText(getString(R.string.lblOK))
                 .setCancelText(getString(R.string.lblCancel))
                 .setThemeDark();
@@ -130,7 +176,7 @@ public class FiltersFragment extends BaseFragment {
                 }
 
                 eventRecurrence.parse(FiltersFragment.this.rRule);
-                ((FiltersViewModel) viewModel).setRecurrence(eventRecurrence);
+                viewModel.setRecurrence(eventRecurrence);
             }
         });
         rpd.show(fm, RECURRENCE_PICKER);
@@ -138,7 +184,8 @@ public class FiltersFragment extends BaseFragment {
 
     @Override
     public void onDestroyView() {
-        ((FiltersViewModel) viewModel).persistSettings();
+        Log.d(LOG_TAG, "onDestroy");
+        viewModel.persistSettings();
         super.onDestroyView();
     }
 }

@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 import com.manaschaudhari.android_mvvm.ViewModel;
 import com.rigel.comperio.R;
@@ -37,6 +38,9 @@ public class MainActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
+
+        Log.d(LOG_TAG, "saved subject: " + getSettingsManager().getSubject());
+        Log.d(LOG_TAG, "saved preferences initialized: " + getSettingsManager().getPreferencesInitialized());
 
         setupViewPager();
     }
