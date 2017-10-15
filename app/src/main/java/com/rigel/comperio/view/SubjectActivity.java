@@ -2,7 +2,6 @@ package com.rigel.comperio.view;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
@@ -11,7 +10,6 @@ import com.manaschaudhari.android_mvvm.ViewModel;
 import com.rigel.comperio.R;
 import com.rigel.comperio.adapters.SubjectAdapter;
 import com.rigel.comperio.model.Subject;
-import com.rigel.comperio.viewmodel.FiltersViewModel;
 import com.rigel.comperio.viewmodel.SubjectViewModel;
 
 import butterknife.BindView;

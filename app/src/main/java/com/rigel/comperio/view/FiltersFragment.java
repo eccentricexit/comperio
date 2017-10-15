@@ -1,6 +1,5 @@
 package com.rigel.comperio.view;
 
-import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.text.format.Time;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 import com.codetroopers.betterpickers.radialtimepicker.RadialTimePickerDialogFragment;
 import com.codetroopers.betterpickers.recurrencepicker.EventRecurrence;
 import com.codetroopers.betterpickers.recurrencepicker.RecurrencePickerDialogFragment;
-import com.manaschaudhari.android_mvvm.utils.BindingUtils;
 import com.rigel.comperio.R;
 import com.rigel.comperio.adapters.SubjectAdapter;
 import com.rigel.comperio.model.Subject;

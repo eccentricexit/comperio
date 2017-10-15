@@ -2,10 +2,8 @@ package com.rigel.comperio.viewmodel;
 
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.manaschaudhari.android_mvvm.ViewModel;
-import com.rigel.comperio.MessageHelper;
 import com.rigel.comperio.Navigator;
 import com.rigel.comperio.SettingsManager;
 import com.rigel.comperio.model.Subject;

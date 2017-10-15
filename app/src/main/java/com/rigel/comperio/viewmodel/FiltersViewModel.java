@@ -2,7 +2,6 @@ package com.rigel.comperio.viewmodel;
 
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.codetroopers.betterpickers.recurrencepicker.EventRecurrence;
 import com.manaschaudhari.android_mvvm.ViewModel;

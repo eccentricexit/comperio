@@ -4,8 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.rigel.comperio.data.ComperioContract.*;
-import com.rigel.comperio.viewmodel.FavoritesViewModel;
+import com.rigel.comperio.data.ComperioContract.FavoriteEntry;
+import com.rigel.comperio.data.ComperioContract.ScheduleEntry;
 
 public class ComperioDbHelper extends SQLiteOpenHelper {
 
@@ -19,31 +19,27 @@ public class ComperioDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        final String SQL_CREATE_TEACHER_TABLE = "CREATE TABLE " + TeacherEntry.TABLE_NAME + " (" +
-                TeacherEntry._ID + " INTEGER PRIMARY KEY," +
-                TeacherEntry.COLUMN_NAME + " TEXT NOT NULL, " +
-                TeacherEntry.COLUMN_PHONE + " INTEGER NOT NULL, " +
-                TeacherEntry.COLUMN_RATING + " REAL NOT NULL, " +
-                TeacherEntry.COLUMN_STORY + " TEXT NOT NULL, " +
-                TeacherEntry.COLUMN_COORD_LAT + " REAL NOT NULL, " +
-                TeacherEntry.COLUMN_COORD_LONG + " REAL NOT NULL " +
-                " );";
-
-        final String SQL_CREATE_SUBJECT_TABLE = "CREATE TABLE " + SubjectEntry.TABLE_NAME + " (" +
-                SubjectEntry._ID + " INTEGER PRIMARY KEY," +
-                SubjectEntry.COLUMN_NAME + " TEXT NOT NULL " +
-                " );";
 
         final String SQL_CREATE_SCHEDULE_TABLE = "CREATE TABLE " + ScheduleEntry.TABLE_NAME + " (" +
                 ScheduleEntry._ID + " INTEGER PRIMARY KEY," +
-                ScheduleEntry.COLUMN_SUBJECT_KEY + " INTEGER NOT NULL, " +
-                ScheduleEntry.COLUMN_TEACHER_KEY + " INTEGER NOT NULL, " +
+
                 ScheduleEntry.COLUMN_HOUR_PRICE + " INTEGER NOT NULL, " +
-                ScheduleEntry.COLUM_START_HOUR + " INTEGER NOT NULL, " +
-                ScheduleEntry.COLUM_START_MINUTE + " INTEGER NOT NULL, " +
-                ScheduleEntry.COLUM_END_HOUR + " INTEGER NOT NULL, " +
-                ScheduleEntry.COLUM_END_MINUTE + " INTEGER NOT NULL, " +
-                ScheduleEntry.COLUMN_WEEK_DAYS + " TEXT NOT NULL " +
+                ScheduleEntry.COLUMN_START_HOUR + " INTEGER NOT NULL, " +
+                ScheduleEntry.COLUMN_START_MINUTE + " INTEGER NOT NULL, " +
+                ScheduleEntry.COLUMN_END_HOUR + " INTEGER NOT NULL, " +
+                ScheduleEntry.COLUMN_END_MINUTE + " INTEGER NOT NULL, " +
+                ScheduleEntry.COLUMN_WEEK_DAYS + " TEXT NOT NULL, " +
+                ScheduleEntry.COLUMN_SUBJECT_NAME + " TEXT NOT NULL, " +
+
+                ScheduleEntry.COLUMN_TEACHER_NAME + " TEXT NOT NULL, " +
+                ScheduleEntry.COLUMN_TEACHER_PHONE + " INTEGER NOT NULL, " +
+                ScheduleEntry.COLUMN_TEACHER_STORY + " TEXT NOT NULL, " +
+                ScheduleEntry.COLUMN_TEACHER_LAT + " REAL NOT NULL, " +
+                ScheduleEntry.COLUMN_TEACHER_LONG + " REAL NOT NULL, " +
+                ScheduleEntry.COLUMN_TEACHER_RATING + " REAL NOT NULL, " +
+                ScheduleEntry.COLUMN_TEACHER_IMAGE_URL + " TEXT NOT NULL, " +
+
+
                 " );";
 
         final String SQL_CREATE_FAVORITES_TABLE = "CREATE TABLE " + FavoriteEntry.TABLE_NAME + " (" +
@@ -51,8 +47,6 @@ public class ComperioDbHelper extends SQLiteOpenHelper {
                 FavoriteEntry.COLUMN_SCHEDULE_KEY + " INTEGER NOT NULL " +
                 " );";
 
-        sqLiteDatabase.execSQL(SQL_CREATE_SUBJECT_TABLE);
-        sqLiteDatabase.execSQL(SQL_CREATE_TEACHER_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_SCHEDULE_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_FAVORITES_TABLE);
     }
@@ -60,8 +54,6 @@ public class ComperioDbHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ScheduleEntry.TABLE_NAME);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + SubjectEntry.TABLE_NAME);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TeacherEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + FavoriteEntry.TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
