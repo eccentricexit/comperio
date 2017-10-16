@@ -37,7 +37,7 @@ public class ComperioDbHelper extends SQLiteOpenHelper {
                 ScheduleEntry.COLUMN_TEACHER_LAT + " REAL NOT NULL, " +
                 ScheduleEntry.COLUMN_TEACHER_LONG + " REAL NOT NULL, " +
                 ScheduleEntry.COLUMN_TEACHER_RATING + " REAL NOT NULL, " +
-                ScheduleEntry.COLUMN_TEACHER_IMAGE_URL + " TEXT NOT NULL, " +
+                ScheduleEntry.COLUMN_TEACHER_PIC_URL + " TEXT NOT NULL, " +
 
 
                 " );";

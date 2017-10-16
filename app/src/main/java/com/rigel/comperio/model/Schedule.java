@@ -14,6 +14,7 @@ public class Schedule {
     private String teacherPicUrl;
     private Integer teacherPhone;
     private Float teacherRating;
+    private String teacherStory;
 
     private Integer startHour;
     private Integer startMinute;
@@ -122,6 +123,14 @@ public class Schedule {
 
     public void setTeacherName(String teacherName) {
         this.teacherName = teacherName;
+    }
+
+    public String getTeacherStory() {
+        return teacherStory;
+    }
+
+    public void setTeacherStory(String teacherStory) {
+        this.teacherStory = teacherStory;
     }
 
     @Override
