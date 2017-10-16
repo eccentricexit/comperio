@@ -10,10 +10,12 @@ import com.rigel.comperio.SettingsManager;
 
 public class FreeTimeViewModel implements ViewModel {
 
+    private static final String LOG_TAG = FreeTimeViewModel.class.getSimpleName();
+
     public final ObservableField<Integer> startHour = new ObservableField<>(0);
     public final ObservableField<Integer> startMinute = new ObservableField<>(0);
     public final ObservableField<Integer> endHour = new ObservableField<>(0);
-    public final ObservableField<Integer> endMinutes = new ObservableField<>(0);
+    public final ObservableField<Integer> endMinute = new ObservableField<>(0);
     public final ObservableField<EventRecurrence> recurrence = new ObservableField<>(new EventRecurrence());
 
     @NonNull
@@ -28,7 +30,7 @@ public class FreeTimeViewModel implements ViewModel {
         startHour.set(settingsManager.getStartHour());
         startMinute.set(settingsManager.getStartMinute());
         endHour.set(settingsManager.getEndHour());
-        endMinutes.set(settingsManager.getEndMinute());
+        endMinute.set(settingsManager.getEndMinute());
     }
 
     public void nextOnClick(){
@@ -40,8 +42,8 @@ public class FreeTimeViewModel implements ViewModel {
         settingsManager.saveStartHour(startHour.get());
         settingsManager.saveStartMinute(startMinute.get());
         settingsManager.saveEndHour(endHour.get());
-        settingsManager.saveEndMinute(endMinutes.get());
-        settingsManager.saveRecurrence("" + recurrence.get().byweeknoCount);
+        settingsManager.saveEndMinute(endMinute.get());
+        settingsManager.setPreferencesInitialized(true);
     }
 
     public void setStartTime(int hour, int minute) {
@@ -51,7 +53,7 @@ public class FreeTimeViewModel implements ViewModel {
 
     public void setEndTime(int hour, int minute) {
         this.endHour.set(hour);
-        this.endMinutes.set(minute);
+        this.endMinute.set(minute);
     }
 
     public String getStartTime() {
@@ -59,7 +61,7 @@ public class FreeTimeViewModel implements ViewModel {
     }
 
     public String getEndTime() {
-        return endHour.get() + ":" + endMinutes.get();
+        return endHour.get() + ":" + endMinute.get();
     }
 
     public void setRecurrence(EventRecurrence recurrence) {

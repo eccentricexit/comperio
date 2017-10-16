@@ -16,7 +16,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="39dp"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
@@ -28,11 +28,11 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent">
 
-            <EditText
-                android:layout_width="match_parent"
+            <Spinner
+                android:id="@+id/subjectSpinner"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/lblSubject"
-                android:text="@={vm.subject}" />
+                android:drawSelectorOnTop="true" />
 
             <TextView
                 android:layout_width="match_parent"

@@ -30,8 +30,8 @@ public abstract class BaseActivity extends MvvmActivity {
         return new SettingsManager() {
 
             @Override
-            public void saveSubject(String subject) {
-                getEditor().putString(getString(R.string.pref_subject), subject).commit();
+            public void saveSubject(Long subject) {
+                getEditor().putLong(getString(R.string.pref_subject), subject).commit();
             }
 
             @Override
@@ -70,8 +70,8 @@ public abstract class BaseActivity extends MvvmActivity {
             }
 
             @Override
-            public String getSubject() {
-                return getSharedPreferences().getString(getString(R.string.pref_subject), null);
+            public Long getSubject() {
+                return getSharedPreferences().getLong(getString(R.string.pref_subject), 0);
             }
 
             @Override
@@ -89,7 +89,7 @@ public abstract class BaseActivity extends MvvmActivity {
 
             @Override
             public Boolean getUseMetricSystem() {
-                return getSharedPreferences().getBoolean(getString(R.string.pref_metric), true);
+                return getSharedPreferences().getBoolean(getString(R.string.pref_metric), false);
             }
 
             @Override
@@ -102,22 +102,35 @@ public abstract class BaseActivity extends MvvmActivity {
             @Override
             public Integer getStartMinute() {
                 return getSharedPreferences().getInt(
-                        getString(R.string.pref_startHour), getResources().getInteger(R.integer.default_StartMinute)
+                        getString(R.string.pref_startMinute), getResources().getInteger(R.integer.default_StartMinute)
                 );
             }
 
             @Override
             public Integer getEndHour() {
                 return getSharedPreferences().getInt(
-                        getString(R.string.pref_startHour), getResources().getInteger(R.integer.default_EndHour)
+                        getString(R.string.pref_endHour), getResources().getInteger(R.integer.default_EndHour)
                 );
             }
 
             @Override
             public Integer getEndMinute() {
                 return getSharedPreferences().getInt(
-                        getString(R.string.pref_startHour), getResources().getInteger(R.integer.default_EndMinute)
+                        getString(R.string.pref_startMinute), getResources().getInteger(R.integer.default_EndMinute)
                 );
+            }
+
+            @Override
+            public Boolean getPreferencesInitialized() {
+                return getSharedPreferences().getBoolean(
+                        getString(R.string.pref_initialized),
+                        false
+                );
+            }
+
+            @Override
+            public void setPreferencesInitialized(boolean initialized) {
+                getEditor().putBoolean(getString(R.string.pref_initialized), initialized).commit();
             }
 
             private SharedPreferences.Editor getEditor() {

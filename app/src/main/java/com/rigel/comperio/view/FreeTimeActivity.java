@@ -65,14 +65,12 @@ public class FreeTimeActivity extends BaseActivity {
                 recurrenceSelect();
             }
         });
-
         txtStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startTimeSelect();
             }
         });
-
         txtEndTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,7 +87,7 @@ public class FreeTimeActivity extends BaseActivity {
                         viewModel.setStartTime(hourOfDay, minute);
                     }
                 })
-                .setStartTime(10, 10)
+                .setStartTime(viewModel.startHour.get(), viewModel.startMinute.get())
                 .setDoneText(getString(R.string.lblOK))
                 .setCancelText(getString(R.string.lblCancel))
                 .setThemeDark();
@@ -105,7 +103,7 @@ public class FreeTimeActivity extends BaseActivity {
                         viewModel.setEndTime(hourOfDay, minute);
                     }
                 })
-                .setStartTime(10, 10)
+                .setStartTime(viewModel.endHour.get(), viewModel.endMinute.get())
                 .setDoneText(getString(R.string.lblOK))
                 .setCancelText(getString(R.string.lblCancel))
                 .setThemeDark();

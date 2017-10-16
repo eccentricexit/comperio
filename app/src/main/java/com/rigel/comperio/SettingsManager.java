@@ -2,7 +2,7 @@ package com.rigel.comperio;
 
 public interface SettingsManager {
 
-    void saveSubject(String subject);
+    void saveSubject(Long subject);
 
     void saveRecurrence(String rRule);
 
@@ -18,7 +18,7 @@ public interface SettingsManager {
 
     void saveEndMinute(Integer endMinute);
 
-    String getSubject();
+    Long getSubject();
 
     String getRecurrence();
 
@@ -33,4 +33,10 @@ public interface SettingsManager {
     Integer getEndHour();
 
     Integer getEndMinute();
+
+    Boolean getPreferencesInitialized();
+
+    void setPreferencesInitialized(boolean initialized);
+
+
 }
