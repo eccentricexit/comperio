@@ -44,7 +44,7 @@ public class MainActivity extends BaseActivity {
     @NonNull
     @Override
     protected ViewModel createViewModel() {
-        return new MainViewModel(getNavigator());
+        return new MainViewModel(this);
     }
 
     @Override

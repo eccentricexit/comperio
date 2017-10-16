@@ -20,9 +20,6 @@ public class FavoritesViewModel implements ViewModel{
     static {
         List<Schedule> items = new ArrayList<>();
 
-        items.add(new Schedule());
-        items.add(new Schedule());
-
         itemsSource = BehaviorSubject.createDefault(items);
     }
 
