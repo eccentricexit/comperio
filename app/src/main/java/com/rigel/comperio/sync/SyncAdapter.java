@@ -16,7 +16,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.rigel.comperio.R;
 import com.rigel.comperio.data.ComperioContract;
-import com.rigel.comperio.data.ComperioContract.*;
+import com.rigel.comperio.data.ComperioContract.ScheduleEntry;
 import com.rigel.comperio.model.Schedule;
 
 import org.json.JSONException;
