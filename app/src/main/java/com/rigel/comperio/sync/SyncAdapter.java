@@ -162,7 +162,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
     }
 
     private String getJsonResponseFor(URL url) {
-
+        // TODO: Swap for retrofit. See erik caffrey's example
         try {
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
