@@ -1,154 +1,29 @@
 package com.rigel.comperio.view;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
-import android.widget.Toast;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
-import com.manaschaudhari.android_mvvm.MvvmActivity;
-import com.rigel.comperio.MessageHelper;
 import com.rigel.comperio.Navigator;
 import com.rigel.comperio.R;
-import com.rigel.comperio.SettingsManager;
 import com.rigel.comperio.model.Schedule;
 
-import org.parceler.Parcels;
+import java.util.Observer;
 
-public abstract class BaseActivity extends MvvmActivity {
+public abstract class BaseActivity extends AppCompatActivity
+        implements Observer,
+        BottomNavigationView.OnNavigationItemSelectedListener {
 
-    protected MessageHelper getMessageHelper() {
-        return new MessageHelper() {
-            @Override
-            public void requestSubjectSelection() {
-                Toast.makeText(BaseActivity.this, getString(R.string.lblSelectSubject), Toast.LENGTH_SHORT).show();
-            }
-        };
-    }
+    Navigator navigator;
 
-    protected SettingsManager getSettingsManager() {
-        return new SettingsManager() {
-
-            @Override
-            public void saveSubject(Long subject) {
-                getEditor().putLong(getString(R.string.pref_subject), subject).commit();
-            }
-
-            @Override
-            public void saveRecurrence(String rRule) {
-                getEditor().putString(getString(R.string.pref_recurrence), rRule).commit();
-            }
-
-            @Override
-            public void saveDistance(Integer distance) {
-                getEditor().putInt(getString(R.string.pref_distance), distance).commit();
-            }
-
-            @Override
-            public void saveUseMetricSystem(Boolean metricSystem) {
-                getEditor().putBoolean(getString(R.string.pref_metric), metricSystem).commit();
-            }
-
-            @Override
-            public void saveStartHour(Integer startHour) {
-                getEditor().putInt(getString(R.string.pref_startHour), startHour).commit();
-            }
-
-            @Override
-            public void saveStartMinute(Integer startMinute) {
-                getEditor().putInt(getString(R.string.pref_startMinute), startMinute).commit();
-            }
-
-            @Override
-            public void saveEndHour(Integer endHour) {
-                getEditor().putInt(getString(R.string.pref_endHour), endHour).commit();
-            }
-
-            @Override
-            public void saveEndMinute(Integer endMinute) {
-                getEditor().putInt(getString(R.string.pref_endMinute), endMinute).commit();
-            }
-
-            @Override
-            public Long getSubject() {
-                return getSharedPreferences().getLong(getString(R.string.pref_subject), 0);
-            }
-
-            @Override
-            public String getRecurrence() {
-                return getSharedPreferences().getString(getString(R.string.pref_recurrence), null);
-            }
-
-            @Override
-            public Integer getDistance() {
-                return getSharedPreferences().getInt(
-                        getString(R.string.pref_distance), getResources().getInteger(R.integer.default_distance)
-                );
-
-            }
-
-            @Override
-            public Boolean getUseMetricSystem() {
-                return getSharedPreferences().getBoolean(getString(R.string.pref_metric), false);
-            }
-
-            @Override
-            public Integer getStartHour() {
-                return getSharedPreferences().getInt(
-                        getString(R.string.pref_startHour), getResources().getInteger(R.integer.default_StartHour)
-                );
-            }
-
-            @Override
-            public Integer getStartMinute() {
-                return getSharedPreferences().getInt(
-                        getString(R.string.pref_startMinute), getResources().getInteger(R.integer.default_StartMinute)
-                );
-            }
-
-            @Override
-            public Integer getEndHour() {
-                return getSharedPreferences().getInt(
-                        getString(R.string.pref_endHour), getResources().getInteger(R.integer.default_EndHour)
-                );
-            }
-
-            @Override
-            public Integer getEndMinute() {
-                return getSharedPreferences().getInt(
-                        getString(R.string.pref_startMinute), getResources().getInteger(R.integer.default_EndMinute)
-                );
-            }
-
-            @Override
-            public Boolean getPreferencesInitialized() {
-                return getSharedPreferences().getBoolean(
-                        getString(R.string.pref_initialized),
-                        false
-                );
-            }
-
-            @Override
-            public void setPreferencesInitialized(boolean initialized) {
-                getEditor().putBoolean(getString(R.string.pref_initialized), initialized).commit();
-            }
-
-            private SharedPreferences.Editor getEditor() {
-                SharedPreferences sharedPref = getSharedPreferences();
-                return sharedPref.edit();
-            }
-
-            private SharedPreferences getSharedPreferences() {
-                return getPreferences(Context.MODE_PRIVATE);
-            }
-
-        };
-    }
-
-    @NonNull
     protected Navigator getNavigator() {
-        return new Navigator() {
+        if(navigator != null){
+            return navigator;
+        }
 
+        navigator = new Navigator() {
             @Override
             public void navigateToFreeTimeActivity() {
                 navigate(FreeTimeActivity.class);
@@ -156,18 +31,22 @@ public abstract class BaseActivity extends MvvmActivity {
 
             @Override
             public void navigateToMainActivity() {
-                navigate(MainActivity.class);
+                navigate(HomeActivity.class);
             }
 
             @Override
-            public void navigateToScheduleDetailsActivity(Schedule schedule) {
-                Intent i = new Intent(BaseActivity.this, ScheduleDetailActivity.class);
-                i.putExtra(
-                        BaseActivity.this.getString(R.string.EXTRA_SCHEDULE_ID),
-                        Parcels.wrap(schedule)
-                );
+            public void navigateToFavoritesActivity() {
+                navigate(FavoritesActivity.class);
+            }
 
-                startActivity(i);
+            @Override
+            public void navigateToFiltersActivity() {
+                navigate(FiltersActivity.class);
+            }
+
+            @Override
+            public void navigateToDetailsActivity(Schedule schedule) {
+                navigate(ScheduleDetailActivity.class);
             }
 
             private void navigate(Class<?> destination) {
@@ -175,7 +54,23 @@ public abstract class BaseActivity extends MvvmActivity {
                 startActivity(intent);
             }
         };
+
+        return navigator;
     }
 
-
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.navigation_home:
+                getNavigator().navigateToMainActivity();
+                return true;
+            case R.id.navigation_favorites:
+                getNavigator().navigateToFavoritesActivity();
+                return true;
+            case R.id.navigation_filters:
+                getNavigator().navigateToFiltersActivity();
+                return true;
+        }
+        throw new UnsupportedOperationException();
+    }
 }

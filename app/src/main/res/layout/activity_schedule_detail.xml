@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="vm"
-            type="com.rigel.comperio.viewmodel.ScheduleDetailsViewModel" />
+            name="scheduleDetailViewModel"
+            type="com.rigel.comperio.viewmodel.ScheduleDetailViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -43,7 +43,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{vm.schedule.distance}"
+            android:text="REPLACE"
             android:textSize="18sp" />
         
         <LinearLayout
@@ -54,13 +54,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{vm.schedule.hourPrice}"
+                android:text="REPLACE"
                 android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{vm.schedule.rating}"
+                android:text="REPLACE"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -68,7 +68,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{vm.schedule.teacherStory}"
+            android:text="REPLACE"
             android:textSize="18sp"/>
 
         <Button

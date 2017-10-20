@@ -1,44 +1,52 @@
 package com.rigel.comperio.viewmodel;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
+import android.view.View;
+import android.widget.Toast;
 
-import com.manaschaudhari.android_mvvm.ViewModel;
+import com.google.gson.annotations.SerializedName;
+import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.Navigator;
 import com.rigel.comperio.model.Schedule;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
-import io.reactivex.Observable;
+
+import io.reactivex.Observer;
 import io.reactivex.functions.Function;
 import io.reactivex.subjects.BehaviorSubject;
 
-public class HomeViewModel implements ViewModel {
+public class HomeViewModel extends Observable implements Serializable {
 
-    private static final Observable<List<Schedule>> itemsSource;
+    private List<Schedule> schedules;
+    private Context context;
 
-    static {
-        List<Schedule> items = new ArrayList<>();
+    public HomeViewModel(Context context) {
+        this.context = context;
+        this.schedules = new ArrayList<>();
 
-        itemsSource = BehaviorSubject.createDefault(items);
     }
 
-    public final Observable<List<ScheduleViewModel>> itemVms;
-
-    public HomeViewModel(@NonNull final Navigator navigator) {
-        this.itemVms = itemsSource.map(new Function<List<Schedule>, List<ScheduleViewModel>>() {
-            @Override
-            public List<ScheduleViewModel> apply(List<Schedule> items) throws Exception {
-                List<ScheduleViewModel> vms = new ArrayList<>();
-                for (Schedule item : items) {
-                    vms.add(new ScheduleViewModel(item, navigator));
-                }
-                return vms;
-            }
-        });
+    public void refreshItems() {
+        schedules.addAll(DevUtils.getFakeHomeSchedules());
+        setChanged();
+        notifyObservers();
     }
 
-    public void updateItems() {
+    public List<Schedule> getSchedules(){
+        return this.schedules;
+    }
+
+    public void onClickFabLoad(View view) {
+        Toast.makeText(context, "TESSST", Toast.LENGTH_SHORT).show();
+    }
+
+
+    public void reset() {
 
     }
 }

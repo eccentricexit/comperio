@@ -5,10 +5,11 @@
     <data>
 
         <variable
-            name="vm"
-            type="com.rigel.comperio.viewmodel.ScheduleViewModel" />
+            name="scheduleViewModel"
+            type="com.rigel.comperio.viewmodel.ItemScheduleViewModel" />
     </data>
     <LinearLayout
+        android:id="@+id/item_schedule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/ampm_text_color"

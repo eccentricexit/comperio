@@ -1,11 +1,10 @@
 package com.rigel.comperio.viewmodel;
 
-import com.manaschaudhari.android_mvvm.ViewModel;
 import com.rigel.comperio.Navigator;
 import com.rigel.comperio.model.Schedule;
 
 
-public class ScheduleViewModel implements ViewModel {
+public class ScheduleViewModel {
 
     public Schedule schedule;
     public Navigator navigator;
@@ -16,6 +15,6 @@ public class ScheduleViewModel implements ViewModel {
     }
 
     public void onClick(){
-        navigator.navigateToScheduleDetailsActivity(schedule);
+        navigator.navigateToDetailsActivity(schedule);
     }
 }
