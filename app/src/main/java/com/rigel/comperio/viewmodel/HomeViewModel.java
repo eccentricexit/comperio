@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-public class HomeViewModel extends Observable implements Serializable {
+public class HomeViewModel extends Observable {
 
     private List<Schedule> schedules;
 

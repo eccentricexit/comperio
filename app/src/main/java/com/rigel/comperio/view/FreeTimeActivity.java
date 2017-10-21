@@ -1,13 +1,14 @@
 package com.rigel.comperio.view;
 
+import android.content.Context;
+
 import java.util.Observable;
 
 
 public class FreeTimeActivity extends BaseActivity {
 
-
     @Override
-    public void update(Observable observable, Object o) {
-
+    protected Context getContext() {
+        return getContext();
     }
 }

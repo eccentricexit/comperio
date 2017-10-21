@@ -1,14 +1,14 @@
 package com.rigel.comperio.viewmodel;
 
+import android.databinding.BaseObservable;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 
 import com.codetroopers.betterpickers.recurrencepicker.EventRecurrence;
-import com.manaschaudhari.android_mvvm.ViewModel;
 import com.rigel.comperio.Navigator;
 import com.rigel.comperio.SettingsManager;
 
-public class FreeTimeViewModel implements ViewModel {
+public class FreeTimeViewModel extends BaseObservable {
 
     private static final String LOG_TAG = FreeTimeViewModel.class.getSimpleName();
 
