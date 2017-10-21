@@ -1,28 +1,19 @@
 package com.rigel.comperio.viewmodel;
 
 import com.rigel.comperio.DevUtils;
+import com.rigel.comperio.Navigator;
 import com.rigel.comperio.model.Schedule;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
-public class HomeViewModel extends Observable {
+public class HomeViewModel extends SchedulesViewModel {
 
-    private List<Schedule> schedules;
-
-    public HomeViewModel() {
-        this.schedules = new ArrayList<>();
+    public HomeViewModel(Navigator navigator) {
+        super(navigator);
     }
 
-    public void refreshItems() {
-        schedules.addAll(DevUtils.getFakeHomeSchedules());
-        setChanged();
-        notifyObservers();
-    }
-
-    public List<Schedule> getSchedules(){
-        return this.schedules;
+    @Override
+    protected List<Schedule> fetchSchedules() {
+        return DevUtils.getFakeHomeSchedules();
     }
 }

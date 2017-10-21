@@ -2,13 +2,10 @@ package com.rigel.comperio.viewmodel;
 
 import android.databinding.BaseObservable;
 import android.databinding.BindingAdapter;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.rigel.comperio.Navigator;
 import com.rigel.comperio.model.Schedule;
-
-import java.util.Observable;
 
 
 public class ScheduleViewModel extends BaseObservable {
@@ -57,6 +54,15 @@ public class ScheduleViewModel extends BaseObservable {
     }
 
     public String getDistance(){
-        return "3.5km";
+        return "calculate distance";
     }
+
+    public String getSubjectName(){return schedule.subjectName;}
+
+    public String getTeacherStory(){return schedule.teacherStory;}
+
+    public String getStartTime(){return ""+schedule.startHour+":"+schedule.startMinute;}
+
+    public String getEndTime(){return ""+schedule.endHour+":"+schedule.endMinute;}
+
 }

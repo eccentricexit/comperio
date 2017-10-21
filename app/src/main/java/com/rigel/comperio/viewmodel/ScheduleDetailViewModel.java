@@ -1,9 +1,6 @@
 package com.rigel.comperio.viewmodel;
 
-import android.databinding.BaseObservable;
-import android.databinding.BindingAdapter;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.rigel.comperio.Navigator;
 import com.rigel.comperio.model.Schedule;

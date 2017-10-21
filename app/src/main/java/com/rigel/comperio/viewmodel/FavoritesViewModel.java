@@ -1,27 +1,20 @@
 package com.rigel.comperio.viewmodel;
 
 import com.rigel.comperio.DevUtils;
+import com.rigel.comperio.Navigator;
 import com.rigel.comperio.model.Schedule;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-public class FavoritesViewModel extends java.util.Observable implements Serializable {
+public class FavoritesViewModel extends SchedulesViewModel {
 
-    private List<Schedule> schedules;
 
-    public FavoritesViewModel() {
-        this.schedules = new ArrayList<>();
+    public FavoritesViewModel(Navigator navigator) {
+        super(navigator);
     }
 
-    public void refreshItems() {
-        schedules.addAll(DevUtils.getFakeFavoritesSchedules());
-        setChanged();
-        notifyObservers();
-    }
-
-    public List<Schedule> getSchedules(){
-        return this.schedules;
+    @Override
+    protected List<Schedule> fetchSchedules() {
+        return DevUtils.getFakeFavoritesSchedules();
     }
 }

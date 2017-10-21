@@ -3,7 +3,6 @@ package com.rigel.comperio;
 import com.rigel.comperio.model.Schedule;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class DevUtils {
@@ -15,7 +14,7 @@ public class DevUtils {
         return fakeHomeSchedules;
     }
 
-    public static Collection<? extends Schedule> getFakeFavoritesSchedules() {
+    public static List<Schedule> getFakeFavoritesSchedules() {
         List<Schedule> fakeHomeSchedules = new ArrayList<>();
 
         // TODO: Add fake items
