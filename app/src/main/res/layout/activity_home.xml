@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="mainViewModel"
+            name="homeViewModel"
             type="com.rigel.comperio.viewmodel.HomeViewModel"/>
     </data>
 
@@ -31,18 +31,10 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimaryDark" />
+                android:background="@color/colorPrimaryDark"
+                tools:listitem="@layout/item_schedule"/>
 
         </android.support.v4.widget.SwipeRefreshLayout>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            android:onClick="@{mainViewModel::onClickFabLoad}"
-            android:src="@drawable/bp_material_key_background"/>
 
     </LinearLayout>
 

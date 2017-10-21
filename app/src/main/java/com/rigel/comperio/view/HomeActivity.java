@@ -1,14 +1,10 @@
 package com.rigel.comperio.view;
 
-import android.content.Intent;
+import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MenuItem;
 
 import com.rigel.comperio.R;
 import com.rigel.comperio.adapters.ScheduleAdapter;
@@ -16,8 +12,9 @@ import com.rigel.comperio.databinding.ActivityHomeBinding;
 import com.rigel.comperio.viewmodel.HomeViewModel;
 
 import java.util.Observable;
+import java.util.Observer;
 
-public class HomeActivity extends BaseActivity {
+public class HomeActivity extends BottomNavigationActivity implements Observer {
 
     private ActivityHomeBinding homeActivityBinding;
     private HomeViewModel homeViewModel;
@@ -28,16 +25,17 @@ public class HomeActivity extends BaseActivity {
         initDataBinding();
         setupListScheduleView(homeActivityBinding.recyclerHome);
         setupObserver(homeViewModel);
+        homeViewModel.refreshItems();
     }
 
     private void initDataBinding() {
         homeActivityBinding = DataBindingUtil.setContentView(this, R.layout.activity_home);
-        homeViewModel = new HomeViewModel(this);
-        homeActivityBinding.setMainViewModel(homeViewModel);
+        homeViewModel = new HomeViewModel();
+        homeActivityBinding.setHomeViewModel(homeViewModel);
     }
 
     private void setupListScheduleView(RecyclerView listSchedule) {
-        ScheduleAdapter adapter = new ScheduleAdapter();
+        ScheduleAdapter adapter = new ScheduleAdapter(getNavigator());
         listSchedule.setAdapter(adapter);
         listSchedule.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -46,21 +44,17 @@ public class HomeActivity extends BaseActivity {
         observable.addObserver(this);
     }
 
-    @Override protected void onDestroy() {
-        super.onDestroy();
-        homeViewModel.reset();
-    }
-
-    private void startActivityActionView() {
-//        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(ScheduleFactory.PROJECT_URL)));
-    }
-
     @Override public void update(Observable observable, Object data) {
         if (observable instanceof HomeViewModel) {
-            ScheduleAdapter peopleAdapter = (ScheduleAdapter) homeActivityBinding.recyclerHome.getAdapter();
+            ScheduleAdapter scheduleAdapter = (ScheduleAdapter) homeActivityBinding.recyclerHome.getAdapter();
             HomeViewModel peopleViewModel = (HomeViewModel) observable;
-            peopleAdapter.setScheduleList(peopleViewModel.getSchedules());
+            scheduleAdapter.setScheduleList(peopleViewModel.getSchedules());
         }
+    }
+
+    @Override
+    protected Context getContext() {
+        return getContext();
     }
 }
 

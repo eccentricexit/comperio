@@ -1,6 +1,5 @@
 package com.rigel.comperio.viewmodel;
 
-import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.BindingAdapter;
 import android.view.View;
@@ -8,16 +7,28 @@ import android.widget.ImageView;
 
 import com.rigel.comperio.Navigator;
 import com.rigel.comperio.model.Schedule;
-import com.rigel.comperio.view.ScheduleDetailActivity;
 
 public class ItemScheduleViewModel extends BaseObservable {
 
     private Schedule schedule;
-    private Context context; // TODO: swap for Navigator
+    private Navigator navigator;
 
-    public ItemScheduleViewModel(Schedule schedule, Context navigator) {
+    public ItemScheduleViewModel(Schedule schedule, Navigator navigator) {
         this.schedule = schedule;
-        this.context = context;
+        this.navigator = navigator;
+    }
+
+    @BindingAdapter("imageUrl") public static void setImageUrl(ImageView imageView, String url) {
+        // TODO: add picasso loading
+    }
+
+    public void onItemClick(View view) {
+        navigator.navigateToDetailsActivity(schedule);
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+        notifyChange();
     }
 
     public String getTeacherName() {
@@ -32,16 +43,15 @@ public class ItemScheduleViewModel extends BaseObservable {
         return schedule.teacherPicUrl;
     }
 
-    @BindingAdapter("imageUrl") public static void setImageUrl(ImageView imageView, String url) {
-        // TODO: add picasso loading
+    public String getTeacherRating(){return schedule.teacherRating.toString();}
+
+    public String getHourPrice(){
+        return schedule.hourPrice.toString();
     }
 
-    public void onItemClick(View view) {
-        // TODO: add navigation
+    public String getDistance(){
+        return "3.5km";
     }
 
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
-        notifyChange();
-    }
+
 }

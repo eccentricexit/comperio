@@ -1,6 +1,5 @@
 package com.rigel.comperio.adapters;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,10 +16,12 @@ import java.util.List;
 
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ScheduleAdapterViewHolder> {
 
-    private List<Schedule> peopleList;
+    private List<Schedule> schedules;
+    private Navigator navigator;
 
-    public ScheduleAdapter() {
-        this.peopleList = Collections.emptyList();
+    public ScheduleAdapter(Navigator navigator) {
+        this.schedules = Collections.emptyList();
+        this.navigator = navigator;
     }
 
     @Override public ScheduleAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -30,36 +31,41 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
         return new ScheduleAdapterViewHolder(itemScheduleBinding);
     }
 
-    @Override public void onBindViewHolder(ScheduleAdapterViewHolder holder, int position) {
-        holder.bindSchedule(peopleList.get(position));
+    @Override
+    public void onBindViewHolder(ScheduleAdapterViewHolder holder, int position) {
+        holder.bindSchedule(schedules.get(position));
+        holder.setNavigator(navigator);
     }
 
     @Override public int getItemCount() {
-        return peopleList.size();
+        return schedules.size();
     }
 
-    public void setScheduleList(List<Schedule> peopleList) {
-        this.peopleList = peopleList;
+    public void setScheduleList(List<Schedule> schedules) {
+        this.schedules = schedules;
         notifyDataSetChanged();
     }
 
     public static class ScheduleAdapterViewHolder extends RecyclerView.ViewHolder {
         ItemScheduleBinding itemScheduleBinding;
-        Context context;
+        private Navigator navigator;
 
         public ScheduleAdapterViewHolder(ItemScheduleBinding itemScheduleBinding) {
             super(itemScheduleBinding.itemSchedule);
             this.itemScheduleBinding = itemScheduleBinding;
-            this.context = context;
         }
 
         void bindSchedule(Schedule people) {
-            if (itemScheduleBinding.getScheduleViewModel() == null) {
-                itemScheduleBinding.setScheduleViewModel(
-                        new ItemScheduleViewModel(people,context));
+            if (itemScheduleBinding.getItemScheduleViewModel() == null) {
+                itemScheduleBinding.setItemScheduleViewModel(
+                        new ItemScheduleViewModel(people,navigator));
             } else {
-                itemScheduleBinding.getScheduleViewModel().setSchedule(people);
+                itemScheduleBinding.getItemScheduleViewModel().setSchedule(people);
             }
+        }
+
+        public void setNavigator(Navigator navigator) {
+            this.navigator = navigator;
         }
     }
 }

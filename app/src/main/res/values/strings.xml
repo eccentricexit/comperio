@@ -40,5 +40,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_favorites">FavoritesActivity</string>
     <string name="title_activity_filters">FiltersActivity</string>
+    <string name="EXTRA_SCHEDULE">EXTRA_SCHEDULE</string>
 
 </resources>

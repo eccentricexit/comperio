@@ -1,22 +1,15 @@
 package com.rigel.comperio.view;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 
 import com.rigel.comperio.Navigator;
-import com.rigel.comperio.R;
 import com.rigel.comperio.model.Schedule;
 
-import java.util.Observer;
+public abstract class BaseActivity extends AppCompatActivity  {
 
-public abstract class BaseActivity extends AppCompatActivity
-        implements Observer,
-        BottomNavigationView.OnNavigationItemSelectedListener {
-
-    Navigator navigator;
+    private Navigator navigator;
 
     protected Navigator getNavigator() {
         if(navigator != null){
@@ -46,7 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity
 
             @Override
             public void navigateToDetailsActivity(Schedule schedule) {
-                navigate(ScheduleDetailActivity.class);
+                ScheduleDetailActivity.launch(getContext(),schedule);
             }
 
             private void navigate(Class<?> destination) {
@@ -58,19 +51,5 @@ public abstract class BaseActivity extends AppCompatActivity
         return navigator;
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.navigation_home:
-                getNavigator().navigateToMainActivity();
-                return true;
-            case R.id.navigation_favorites:
-                getNavigator().navigateToFavoritesActivity();
-                return true;
-            case R.id.navigation_filters:
-                getNavigator().navigateToFiltersActivity();
-                return true;
-        }
-        throw new UnsupportedOperationException();
-    }
+    protected abstract Context getContext();
 }
