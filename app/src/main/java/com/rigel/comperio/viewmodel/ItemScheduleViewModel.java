@@ -9,6 +9,7 @@ import com.rigel.comperio.model.Schedule;
 public class ItemScheduleViewModel extends BaseObservable {
 
     public Schedule schedule;
+
     private Navigator navigator;
 
     public ItemScheduleViewModel(Schedule schedule, Navigator navigator) {

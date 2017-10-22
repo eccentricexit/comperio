@@ -28,13 +28,12 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
         ItemScheduleBinding itemScheduleBinding =
                 DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_schedule,
                         parent, false);
-        return new ScheduleAdapterViewHolder(itemScheduleBinding);
+        return new ScheduleAdapterViewHolder(itemScheduleBinding,navigator);
     }
 
     @Override
     public void onBindViewHolder(ScheduleAdapterViewHolder holder, int position) {
         holder.bindSchedule(schedules.get(position));
-        holder.setNavigator(navigator);
     }
 
     @Override public int getItemCount() {
@@ -48,11 +47,12 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
 
     public static class ScheduleAdapterViewHolder extends RecyclerView.ViewHolder {
         ItemScheduleBinding itemScheduleBinding;
-        private Navigator navigator;
+        Navigator navigator;
 
-        public ScheduleAdapterViewHolder(ItemScheduleBinding itemScheduleBinding) {
+        public ScheduleAdapterViewHolder(ItemScheduleBinding itemScheduleBinding,Navigator navigator) {
             super(itemScheduleBinding.itemSchedule);
             this.itemScheduleBinding = itemScheduleBinding;
+            this.navigator = navigator;
         }
 
         void bindSchedule(Schedule schedule) {
@@ -62,10 +62,6 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
             } else {
                 itemScheduleBinding.getItemScheduleViewModel().schedule = schedule;
             }
-        }
-
-        public void setNavigator(Navigator navigator) {
-            this.navigator = navigator;
         }
     }
 }

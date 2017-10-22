@@ -42,5 +42,9 @@
     <string name="title_activity_filters">FiltersActivity</string>
     <string name="EXTRA_SCHEDULE">EXTRA_SCHEDULE</string>
     <string name="SHARED_PREF_KEY">shared_preferences_key</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_main">MainActivity</string>
 
 </resources>
