@@ -11,7 +11,36 @@ public class DevUtils {
     public static List<Schedule> getFakeHomeSchedules() {
         List<Schedule> fakeHomeSchedules = new ArrayList<>();
 
-        // TODO: Add fake items
+        Schedule schedule1 = new Schedule(
+                "English",23.5f,"Su,Mo,Tue",new Float[]{0f,0f},"Celina Mars",
+                "https://randomuser.me/api/portraits/women/20.jpg","1234314919",4.5f,
+                "Ever since I learned how to lorem ipsum I coudn't stop anymore.",8,0,23,30);
+
+        Schedule schedule2 = new Schedule(
+                "English",20.5f,"Su,Mo,Tue",new Float[]{0f,0f},"Jessica McDonnald",
+                "https://randomuser.me/api/portraits/women/22.jpg","1234314919",4.0f,
+                "Ever since I learned how to lorem ipsum I coudn't stop anymore.",8,0,23,30);
+
+        Schedule schedule3 = new Schedule(
+                "English",43.5f,"Su,Mo,Tue",new Float[]{0f,0f},"Vlad Tron",
+                "https://randomuser.me/api/portraits/men/22.jpg","1234314919",4.3f,
+                "Ever since I learned how to lorem ipsum I coudn't stop anymore.",8,0,23,30);
+
+        Schedule schedule4 = new Schedule(
+                "English",26.5f,"Su,Mo,Tue",new Float[]{0f,0f},"Nathan Cypher",
+                "https://randomuser.me/api/portraits/men/21.jpg","1234314919",4.2f,
+                "Ever since I learned how to lorem ipsum I coudn't stop anymore.",8,0,23,30);
+
+        Schedule schedule5 = new Schedule(
+                "English",43.5f,"Su,Mo,Tue",new Float[]{0f,0f},"Alice Cypher",
+                "https://randomuser.me/api/portraits/women/24.jpg","1234314919",4.5f,
+                "Ever since I learned how to lorem ipsum I coudn't stop anymore.",8,0,23,30);
+
+        fakeHomeSchedules.add(schedule1);
+        fakeHomeSchedules.add(schedule2);
+        fakeHomeSchedules.add(schedule3);
+        fakeHomeSchedules.add(schedule4);
+        fakeHomeSchedules.add(schedule5);
 
         return fakeHomeSchedules;
     }
@@ -19,7 +48,18 @@ public class DevUtils {
     public static List<Schedule> getFakeFavoritesSchedules() {
         List<Schedule> fakeHomeSchedules = new ArrayList<>();
 
-        // TODO: Add fake items
+        Schedule schedule1 = new Schedule(
+                "English",23.5f,"Su,Mo,Tue",new Float[]{0f,0f},"Buterin Poon",
+                "https://randomuser.me/api/portraits/men/20.jpg","1234314919",4.5f,
+                "Ever since I learned how to lorem ipsum I coudn't stop anymore.",8,0,23,30);
+
+        Schedule schedule2 = new Schedule(
+                "English",20.5f,"Su,Mo,Tue",new Float[]{0f,0f},"James Larimer",
+                "https://randomuser.me/api/portraits/women/22.jpg","1234314919",4.0f,
+                "Ever since I learned how to lorem ipsum I coudn't stop anymore.",8,0,23,30);
+
+        fakeHomeSchedules.add(schedule1);
+        fakeHomeSchedules.add(schedule2);
 
         return fakeHomeSchedules;
     }
