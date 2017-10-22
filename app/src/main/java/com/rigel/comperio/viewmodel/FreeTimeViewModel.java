@@ -2,7 +2,6 @@ package com.rigel.comperio.viewmodel;
 
 import android.view.View;
 
-import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.Navigator;
 import com.rigel.comperio.SettingsManager;
 import com.rigel.comperio.model.Filter;
@@ -29,7 +28,7 @@ public class FreeTimeViewModel extends BaseViewModel {
         filter.initialized = true;
 
         settingsManager.saveFilter(filter);
-        navigator.navigateToMainActivity();
+        navigator.navigateToHomeActivity();
     }
 
 }
