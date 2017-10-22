@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class Filter implements Serializable {
 
     @SerializedName("subject") public String subject;
-    @SerializedName("maxDistance") public Integer maxDistance;
+    @SerializedName("maxDistance") public int maxDistance;
     @SerializedName("userLoc") public Float[] userLoc;
 
     @SerializedName("startHour") public Integer startHour;
@@ -18,8 +18,8 @@ public class Filter implements Serializable {
 
     @SerializedName("weekDaysAvailable") public String weekDaysAvailable;
 
-    @SerializedName("initialized") public Boolean initialized;
-    @SerializedName("useMetricSystem") public Boolean useMetricSystem;
+    @SerializedName("initialized") public boolean initialized;
+    @SerializedName("useMetricSystem") public boolean useMetricSystem;
 
     public Filter(){
         maxDistance = 2000;
