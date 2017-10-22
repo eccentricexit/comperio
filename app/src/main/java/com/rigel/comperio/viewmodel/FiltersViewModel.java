@@ -30,9 +30,6 @@ public class FiltersViewModel extends BaseViewModel{
     }
 
     public void onPersistClick(View view) {
-        logger.log("onPersist clicked.");
-        logger.toast("saving filter");
-        logger.log("filter contents:"+ DevUtils.toJson(filter));
         settingsManager.saveFilter(filter);
     }
 
