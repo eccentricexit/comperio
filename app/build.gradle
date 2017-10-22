@@ -25,26 +25,29 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+    compile supportDependencies.appCompat
+    compile supportDependencies.design
+    compile supportDependencies.recyclerView
+    compile supportDependencies.cardView
+    compile supportDependencies.vectorDrawable
+    compile supportDependencies.constraintLayout
 
+    compile retrofitDependencies.retrofit
+    compile retrofitDependencies.gson
+    compile retrofitDependencies.rxAdapterJava
 
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:support-v13:25.3.1'
+    compile rxDependencies.rxAndroid
+    compile rxDependencies.rxJava
+
+    compile circleImageView
+    compile picasso
+    compile betterPickers
+    compile timber
+
+    testCompile testingDependencies.junit
+    testCompile testingDependencies.mockito
+    testCompile testingDependencies.robolectric
+
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:support-vector-drawable:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-
-    compile 'com.manaschaudhari.android-mvvm:android-mvvm:0.2.1'
-    compile 'com.code-troopers.betterpickers:library:3.1.0'
-    compile 'com.jakewharton:butterknife:8.8.1'
-    compile 'org.parceler:parceler-api:1.1.9'
-    compile 'com.google.code.gson:gson:2.8.2'
-
-    testCompile 'junit:junit:4.12'
-
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    annotationProcessor 'org.parceler:parceler:1.1.9'
 }

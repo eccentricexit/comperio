@@ -5,18 +5,31 @@
 
     <data>
         <variable
-            name="vm"
+            name="filtersViewModel"
             type="com.rigel.comperio.viewmodel.FiltersViewModel" />
     </data>
+<LinearLayout
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.rigel.comperio.view.FiltersActivity">
+
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.rigel.comperio.view.MainActivity">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="39dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
@@ -28,28 +41,28 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent">
 
-            <Spinner
-                android:id="@+id/subjectSpinner"
-                android:layout_width="wrap_content"
+            <EditText
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawSelectorOnTop="true" />
+                android:hint="@string/lblSubject"
+                android:text="@={filtersViewModel.filter.subject}" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{vm.distanceLabel}" />
+                android:text="@{filtersViewModel.formattedDistance}" />
 
             <SeekBar
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="50000"
-                android:progress="@={vm.distance}" />
+                android:progress="@={filtersViewModel.filter.maxDistance}" />
 
 
             <Switch
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="@={vm.useMetricSystem}"
+                android:checked="@={filtersViewModel.filter.useMetricSystem}"
                 android:text="@string/lblUseMetricSystem" />
 
             <Button
@@ -69,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:clickable="true"
-                    android:text="@{vm.startTime}"
+                    android:text="@{filtersViewModel.formattedStartTime}"
                     android:textSize="20sp"
                     tools:text="1:00" />
 
@@ -79,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:clickable="true"
-                    android:text="@{vm.endTime}"
+                    android:text="@{filtersViewModel.formattedEndTime}"
                     android:textSize="20sp"
                     tools:text="23:30" />
 
@@ -88,10 +101,22 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="@{(v) -> vm.persistSettings()}"
+                android:onClick="@{filtersViewModel::onPersistClick}"
                 android:text="@string/lblOK" />
 
         </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
+
+    </FrameLayout>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/navigation" />
+
+</LinearLayout>
 </layout>

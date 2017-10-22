@@ -1,47 +1,36 @@
 package com.rigel.comperio.view;
 
+import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 
-import com.manaschaudhari.android_mvvm.adapters.ViewModelBinder;
-import com.manaschaudhari.android_mvvm.utils.BindingUtils;
-import com.manaschaudhari.android_mvvm.utils.Preconditions;
 import com.rigel.comperio.R;
+import com.rigel.comperio.databinding.ActivityScheduleDetailBinding;
 import com.rigel.comperio.model.Schedule;
-import com.rigel.comperio.viewmodel.ScheduleDetailsViewModel;
+import com.rigel.comperio.viewmodel.ScheduleDetailViewModel;
 
-import org.parceler.Parcels;
 
-public class ScheduleDetailActivity extends AppCompatActivity {
+public class ScheduleDetailActivity extends BaseActivity {
 
-    private ViewDataBinding binding;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_schedule_detail);
-
-        String extraId = this.getResources().getString(R.string.EXTRA_SCHEDULE_ID);
-        Schedule schedule = Parcels.unwrap(getIntent().getParcelableExtra(extraId));
-
-        getDefaultBinder().bind(binding, new ScheduleDetailsViewModel(schedule));
-    }
+    private ActivityScheduleDetailBinding scheduleDetailActivityBinding;
+    private ScheduleDetailViewModel scheduleDetailViewModel;
 
     @Override
-    protected void onDestroy() {
-        getDefaultBinder().bind(binding, null);
-        binding.executePendingBindings();
-        super.onDestroy();
+    protected void initDataBinding() {
+        scheduleDetailActivityBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_schedule_detail);
+
+        Schedule schedule = (Schedule) getIntent().getSerializableExtra(getString(R.string.EXTRA_SCHEDULE));
+        scheduleDetailViewModel = new ScheduleDetailViewModel(getNavigator(),getSettingsManager(),schedule);
+
+        scheduleDetailActivityBinding.setScheduleDetailViewModel(scheduleDetailViewModel);
     }
 
-    @NonNull
-    private ViewModelBinder getDefaultBinder() {
-        ViewModelBinder defaultBinder = BindingUtils.getDefaultBinder();
-        Preconditions.checkNotNull(defaultBinder, "Default Binder");
-        return defaultBinder;
+    public static Intent launch(Context context, Schedule schedule) {
+        Intent intent = new Intent(context, ScheduleDetailActivity.class);
+        intent.putExtra(context.getString(R.string.EXTRA_SCHEDULE),schedule);
+        return intent;
     }
 
 }
