@@ -14,7 +14,7 @@ public class Schedule implements Serializable{
 
        @SerializedName("teacherName") public String teacherName;
        @SerializedName("teacherPicUrl") public String teacherPicUrl;
-       @SerializedName("teacherPhone") public Integer teacherPhone;
+       @SerializedName("teacherPhone") public String teacherPhone;
        @SerializedName("teacherRating") public Float teacherRating;
        @SerializedName("teacherStory") public String teacherStory;
 
@@ -24,7 +24,7 @@ public class Schedule implements Serializable{
        @SerializedName("endMinute") public Integer endMinute;
 
     public Schedule(String subjectName, Float hourPrice, String weekDaysAvailable, Float[] loc,
-                    String teacherName, String teacherPicUrl, Integer teacherPhone, Float teacherRating,
+                    String teacherName, String teacherPicUrl, String teacherPhone, Float teacherRating,
                     String teacherStory, Integer startHour, Integer startMinute, Integer endHour,
                     Integer endMinute) {
 
