@@ -43,7 +43,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
 
             @Override
-            public void navigateToMainActivity() {
+            public void navigateToHomeActivity() {
                 navigate(HomeActivity.class);
             }
 
