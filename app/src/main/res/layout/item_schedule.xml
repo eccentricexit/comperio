@@ -37,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginStart="5dp"
-                    android:text="@{itemScheduleViewModel.teacherName}"
+                    android:text="@{itemScheduleViewModel.schedule.teacherName}"
                     android:textSize="20sp"
                     tools:text="John Doe" />
 
@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginStart="5dp"
-                    android:text="@{itemScheduleViewModel.teacherRating}"
+                    android:text="@{itemScheduleViewModel.schedule.teacherRating.toString()}"
                     android:textSize="20sp"
                     tools:text="3.5" />
             </LinearLayout>
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
-                android:text="@{itemScheduleViewModel.hourPrice}"
+                android:text="@{itemScheduleViewModel.schedule.hourPrice.toString()}"
                 android:textSize="20sp"
                 tools:text="U$40.00/hour" />
 
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
-                android:text="@{itemScheduleViewModel.distance}"
+                android:text="@{itemScheduleViewModel.formattedDistance}"
                 android:textSize="20sp"
                 tools:text="4km" />
 

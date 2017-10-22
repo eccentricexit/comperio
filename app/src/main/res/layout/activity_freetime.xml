@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="vm"
+            name="freeTimeViewModel"
             type="com.rigel.comperio.viewmodel.FreeTimeViewModel" />
     </data>
 
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:clickable="true"
-            android:text="@{vm.startTime}"
+            android:text="@{freeTimeViewModel.formattedStartTime}"
             android:textSize="20sp"
             tools:text="00:00" />
 
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:clickable="true"
-            android:text="@{vm.endTime}"
+            android:text="@{freeTimeViewModel.formattedEndTime}"
             android:textSize="20sp"
             tools:text="23:00" />
     </LinearLayout>
@@ -87,7 +87,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:onClick="@{(v) -> vm.nextOnClick()}"
+        android:onClick="@{freeTimeViewModel::nextOnClick}"
         android:text="@string/lblNext"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

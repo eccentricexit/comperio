@@ -20,10 +20,10 @@
         <activity android:name=".view.SubjectActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".view.FreeTimeActivity" />
         <activity android:name=".view.ScheduleDetailActivity" />
         <activity android:name=".view.HomeActivity" android:label="@string/title_activity_home" />
@@ -37,7 +37,7 @@
             android:exported="false"
             android:syncable="true" />
 
-        <service android:name=".sync.ComperioAuthService">
+        <service android:name=".sync.ComperioAuthService" android:exported="false">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>
@@ -48,7 +48,7 @@
         </service>
         <service
             android:name=".sync.SyncService"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />
             </intent-filter>

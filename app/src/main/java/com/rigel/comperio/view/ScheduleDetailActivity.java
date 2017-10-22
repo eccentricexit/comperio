@@ -14,14 +14,16 @@ import com.rigel.comperio.viewmodel.ScheduleDetailViewModel;
 public class ScheduleDetailActivity extends BaseActivity {
 
     private ActivityScheduleDetailBinding scheduleDetailActivityBinding;
+    private ScheduleDetailViewModel scheduleDetailViewModel;
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    @Override
+    protected void initDataBinding() {
         scheduleDetailActivityBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_schedule_detail);
 
         Schedule schedule = (Schedule) getIntent().getSerializableExtra(getString(R.string.EXTRA_SCHEDULE));
-        ScheduleDetailViewModel scheduleDetailViewModel = new ScheduleDetailViewModel(schedule,getNavigator());
+        scheduleDetailViewModel = new ScheduleDetailViewModel(getNavigator(),getSettingsManager(),schedule);
+
         scheduleDetailActivityBinding.setScheduleDetailViewModel(scheduleDetailViewModel);
     }
 
@@ -31,8 +33,4 @@ public class ScheduleDetailActivity extends BaseActivity {
         return intent;
     }
 
-    @Override
-    protected Context getContext() {
-        return getContext();
-    }
 }

@@ -1,27 +1,13 @@
 package com.rigel.comperio.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Subject {
-    long id;
-    String name;
+    @SerializedName("_id") public long _id;
+    @SerializedName("name") public String name;
 
-    public Subject(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public Subject(int _id, String name) {
+        this._id = _id;
         this.name = name;
     }
 }

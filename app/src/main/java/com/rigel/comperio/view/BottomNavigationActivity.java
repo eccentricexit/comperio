@@ -6,8 +6,8 @@ import android.view.MenuItem;
 
 import com.rigel.comperio.R;
 
-public abstract class BottomNavigationActivity extends BaseActivity implements
-        BottomNavigationView.OnNavigationItemSelectedListener{
+public abstract class BottomNavigationActivity extends BaseActivity
+        implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -24,4 +24,5 @@ public abstract class BottomNavigationActivity extends BaseActivity implements
         }
         throw new UnsupportedOperationException();
     }
+
 }

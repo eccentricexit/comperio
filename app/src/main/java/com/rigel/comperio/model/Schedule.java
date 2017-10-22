@@ -5,7 +5,8 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class Schedule implements Serializable{
-       @SerializedName("id") public String _id;
+
+       @SerializedName("_id") public String _id;
        @SerializedName("subjectName") public String subjectName;
        @SerializedName("hourPrice") public Float hourPrice;
        @SerializedName("weekDaysAvailable") public String weekDaysAvailable;
@@ -42,15 +43,4 @@ public class Schedule implements Serializable{
         this.endMinute = endMinute;
     }
 
-
-
-    @Override
-    public String toString() {
-        return "ClassPojo [startMinute = " + startMinute + ", hourPrice = " + hourPrice +
-                ", subjectName = " + subjectName + ", teacherPicUrl = " + teacherPicUrl +
-                ", _id = " + _id + ", weekDaysAvailable = " + weekDaysAvailable + ", endMinute = " +
-                endMinute + ", loc = " + loc + ", startHour = " + startHour + ", teacherPhone = " +
-                teacherPhone + ", teacherRating = " + teacherRating + ", endHour = " + endHour +
-                ", teacherName = " + teacherName + "]";
-    }
 }

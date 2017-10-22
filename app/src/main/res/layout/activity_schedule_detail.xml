@@ -36,13 +36,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:text="@{scheduleDetailViewModel.teacherName}"
+            android:text="@{scheduleDetailViewModel.schedule.teacherName}"
             android:textSize="26sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="REPLACE"
+            android:text="@{scheduleDetailViewModel.schedule.subjectName}"
             android:textSize="18sp" />
         
         <LinearLayout
@@ -53,13 +53,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="REPLACE"
+                android:text="@{scheduleDetailViewModel.schedule.teacherRating.toString()}"
                 android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="REPLACE"
+                android:text="@{scheduleDetailViewModel.schedule.hourPrice.toString()}"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -67,7 +67,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="REPLACE"
+            android:text="@{scheduleDetailViewModel.schedule.teacherStory}"
             android:textSize="18sp"/>
 
         <Button

@@ -1,24 +1,28 @@
 package com.rigel.comperio.viewmodel;
 
+import android.view.View;
+
+import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.Navigator;
 import com.rigel.comperio.SettingsManager;
+import com.rigel.comperio.model.Filter;
+import com.rigel.comperio.model.Subject;
 
 
-public class SubjectViewModel extends NavigatorViewModel {
+public class SubjectViewModel extends BaseViewModel {
 
-    private SettingsManager settingsManager;
+    public Filter filter;
+    public Subject[]  subjects;
 
     public SubjectViewModel(Navigator navigator, SettingsManager settingsManager) {
-        super(navigator);
-        this.settingsManager = settingsManager;
+        super(navigator, settingsManager);
+        filter = settingsManager.loadFilter();
+        subjects = DevUtils.getFakeSubjects();
     }
 
-    public void nextOnClick() {
-        saveToSharedPreferences();
+    public void nextOnClick(View view) {
+        settingsManager.saveFilter(filter);
         navigator.navigateToFreeTimeActivity();
     }
 
-    private void saveToSharedPreferences() {
-        settingsManager.saveSubject(0l);
-    }
 }

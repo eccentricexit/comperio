@@ -55,12 +55,12 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
             this.itemScheduleBinding = itemScheduleBinding;
         }
 
-        void bindSchedule(Schedule people) {
+        void bindSchedule(Schedule schedule) {
             if (itemScheduleBinding.getItemScheduleViewModel() == null) {
                 itemScheduleBinding.setItemScheduleViewModel(
-                        new ItemScheduleViewModel(people,navigator));
+                        new ItemScheduleViewModel(schedule,navigator));
             } else {
-                itemScheduleBinding.getItemScheduleViewModel().setSchedule(people);
+                itemScheduleBinding.getItemScheduleViewModel().schedule = schedule;
             }
         }
 

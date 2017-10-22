@@ -1,120 +1,39 @@
 package com.rigel.comperio.viewmodel;
 
-import android.databinding.ObservableField;
-import android.support.annotation.NonNull;
+import android.view.View;
 
-import com.codetroopers.betterpickers.recurrencepicker.EventRecurrence;
-import com.manaschaudhari.android_mvvm.ViewModel;
+import com.google.gson.Gson;
+import com.rigel.comperio.DevUtils;
+import com.rigel.comperio.Navigator;
 import com.rigel.comperio.SettingsManager;
-import com.rigel.comperio.model.Subject;
+import com.rigel.comperio.model.Filter;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
+public class FiltersViewModel extends BaseViewModel{
 
-public class FiltersViewModel implements ViewModel {
+    public Filter filter;
 
-    private static final String LOG_TAG = FiltersViewModel.class.getSimpleName();
-
-    public final ObservableField<Long> subject = new ObservableField<>();
-    public final ObservableField<Integer> distance = new ObservableField<>(0); //in meters
-    public final ObservableField<Boolean> useMetricSystem = new ObservableField<>(true);
-    public final ObservableField<EventRecurrence> recurrence = new ObservableField<>(new EventRecurrence());
-
-    public final ObservableField<Integer> startHour = new ObservableField<>(0);
-    public final ObservableField<Integer> startMinute = new ObservableField<>(0);
-    public final ObservableField<Integer> endHour = new ObservableField<>(0);
-    public final ObservableField<Integer> endMinute = new ObservableField<>(0);
-
-    @NonNull
-    private final SettingsManager settingsManager;
-    public Subject[] subjects;
-
-    public FiltersViewModel(@NonNull SettingsManager settingsManager) {
-        this.settingsManager = settingsManager;
-        this.subjects = new Subject[]{
-                new Subject(0, "Spanish"),
-                new Subject(1, "German"),
-                new Subject(2, "French"),
-                new Subject(3, "English"),
-                new Subject(4, "Kotlin")
-        };
-
-        subject.set(settingsManager.getSubject());
-        startHour.set(settingsManager.getStartHour());
-        startMinute.set(settingsManager.getStartMinute());
-        endHour.set(settingsManager.getEndHour());
-        endMinute.set(settingsManager.getEndMinute());
-        distance.set(settingsManager.getDistance());
-        useMetricSystem.set(settingsManager.getUseMetricSystem());
+    public FiltersViewModel(Navigator navigator, SettingsManager settingsManager) {
+        super(navigator, settingsManager);
+        filter = settingsManager.loadFilter();
     }
 
-    public void setStartTime(int hour, int minute) {
-        this.startHour.set(hour);
-        this.startMinute.set(minute);
+    public String getFormattedDistance(){
+        return filter.maxDistance+"m";
     }
 
-    public void setEndTime(int hour, int minute) {
-        this.endHour.set(hour);
-        this.endMinute.set(minute);
+    public String getFormattedStartTime(){
+        return filter.startHour+":"+filter.startMinute;
     }
 
-    public String getStartTime(){
-        return startHour.get() + ":" + startMinute.get();
+    public String getFormattedEndTime(){
+        return filter.endHour+":"+filter.endMinute;
     }
 
-    public String getEndTime(){
-        return endHour.get() + ":" + endMinute.get();
+    public void onPersistClick(View view) {
+        logger.log("onPersist clicked.");
+        logger.toast("saving filter");
+        logger.log("filter contents:"+ DevUtils.toJson(filter));
+        settingsManager.saveFilter(filter);
     }
 
-    public void setRecurrence(EventRecurrence recurrence) {
-        this.recurrence.set(recurrence);
-    }
-
-    public String getDistanceLabel(){
-        int distanceInMeters = distance.get();
-        float distanceInKiloMeters = distanceInMeters/1000f;
-        float distance = useMetricSystem.get()?distanceInKiloMeters:distanceInKiloMeters*0.6213712f;
-
-        DecimalFormat df = new DecimalFormat("##.##");
-        df.setRoundingMode(RoundingMode.DOWN);
-
-        String truncatedDistance = df.format(distance);
-
-        return "Distance: "+truncatedDistance+(useMetricSystem.get()?"km":"miles");
-    }
-
-    public void persistSettings() {
-
-        settingsManager.saveSubject(subject.get());
-        settingsManager.saveRecurrence(recurrence.get().toString());
-        settingsManager.saveDistance(distance.get());
-        settingsManager.saveUseMetricSystem(useMetricSystem.get());
-
-        settingsManager.saveStartHour(startHour.get());
-        settingsManager.saveStartMinute(startMinute.get());
-        settingsManager.saveEndHour(endHour.get());
-        settingsManager.saveEndMinute(endMinute.get());
-
-    }
-
-    public Integer getStartHour() {
-        return startHour.get();
-    }
-
-    public Integer getStartMinute() {
-        return startMinute.get();
-    }
-
-    public Integer getEndHour() {
-        return endHour.get();
-    }
-
-    public Integer getEndMinute() {
-        return endMinute.get();
-    }
-
-    @NonNull
-    public SettingsManager getSettingsManager() {
-        return settingsManager;
-    }
 }

@@ -42,6 +42,7 @@ dependencies {
     compile circleImageView
     compile picasso
     compile betterPickers
+    compile timber
 
     testCompile testingDependencies.junit
     testCompile testingDependencies.mockito
