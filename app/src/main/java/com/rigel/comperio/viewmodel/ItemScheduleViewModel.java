@@ -21,9 +21,8 @@ public class ItemScheduleViewModel extends BaseObservable {
         navigator.navigateToDetailsActivity(schedule);
     }
 
-
     public String getFormattedDistance(){
-        return 9999+"m";
+        return 999 + "m";
     }
 
 }

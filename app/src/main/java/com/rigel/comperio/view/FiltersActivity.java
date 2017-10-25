@@ -18,7 +18,8 @@ public class FiltersActivity extends BaseActivity {
         ActivityFiltersBinding activityFiltersBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_filters);
 
-        FiltersViewModel filtersViewModel = new FiltersViewModel(getNavigator(), getSettingsManager());
+        FiltersViewModel filtersViewModel = new FiltersViewModel(getNavigator(),
+                getSettingsManager(), getLogger());
 
         activityFiltersBinding.setFiltersViewModel(filtersViewModel);
     }

@@ -14,8 +14,8 @@ public class SubjectViewModel extends BaseViewModel {
     public Filter filter;
     public Subject[]  subjects;
 
-    public SubjectViewModel(Navigator navigator, SettingsManager settingsManager) {
-        super(navigator, settingsManager);
+    public SubjectViewModel(Navigator navigator, SettingsManager settingsManager, DevUtils.Logger logger) {
+        super(navigator, settingsManager, logger);
         filter = settingsManager.loadFilter();
         subjects = DevUtils.getFakeSubjects();
     }

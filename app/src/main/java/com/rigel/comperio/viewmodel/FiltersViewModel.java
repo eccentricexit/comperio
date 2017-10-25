@@ -12,10 +12,16 @@ public class FiltersViewModel extends BaseViewModel{
 
     public Filter filter;
 
-    public FiltersViewModel(Navigator navigator, SettingsManager settingsManager) {
-        super(navigator, settingsManager);
+    public FiltersViewModel(Navigator navigator, SettingsManager settingsManager, DevUtils.Logger logger) {
+        super(navigator, settingsManager, logger);
         filter = settingsManager.loadFilter();
     }
+
+
+//    public FiltersViewModel(Navigator navigator, SettingsManager settingsManager) {
+//        super(navigator, settingsManager);
+//        filter = settingsManager.loadFilter();
+//    }
 
     public String getFormattedDistance(){
         return filter.maxDistance+"m";

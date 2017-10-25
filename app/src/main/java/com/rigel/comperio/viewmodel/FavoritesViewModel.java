@@ -12,8 +12,9 @@ public class FavoritesViewModel extends BaseViewModel {
 
     List<Schedule> schedules;
 
-    public FavoritesViewModel(Navigator navigator, SettingsManager settingsManager) {
-        super(navigator, settingsManager);
+    public FavoritesViewModel(Navigator navigator, SettingsManager settingsManager,
+                              DevUtils.Logger logger) {
+        super(navigator, settingsManager, logger);
         schedules = new ArrayList<>();
     }
 

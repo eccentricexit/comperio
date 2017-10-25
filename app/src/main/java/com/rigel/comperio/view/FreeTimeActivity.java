@@ -16,7 +16,9 @@ public class FreeTimeActivity extends BaseActivity {
     protected void initDataBinding() {
         ActivityFreetimeBinding activityFreeTimeBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_freetime);
-        FreeTimeViewModel filtersViewModel = new FreeTimeViewModel(getNavigator(), getSettingsManager());
+        FreeTimeViewModel filtersViewModel = new FreeTimeViewModel(getNavigator(),
+                getSettingsManager(), getLogger());
+
         activityFreeTimeBinding.setFreeTimeViewModel(filtersViewModel);
     }
 

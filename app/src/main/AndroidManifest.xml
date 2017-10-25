@@ -17,16 +17,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.SubjectActivity">
+        <activity android:name=".view.SubjectActivity" />
+        <activity android:name=".view.FreeTimeActivity" />
+        <activity android:name=".view.ScheduleDetailActivity" />
+        <activity
+            android:name=".view.MainActivity"
+            android:label="@string/title_activity_home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".view.FreeTimeActivity" />
-        <activity android:name=".view.ScheduleDetailActivity" />
-        <activity android:name=".view.HomeActivity" android:label="@string/title_activity_home" />
         <activity android:name=".view.FavoritesActivity" android:label="@string/title_activity_favorites" />
         <activity android:name=".view.FiltersActivity" android:label="@string/title_activity_filters"/>
 

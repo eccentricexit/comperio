@@ -34,7 +34,7 @@ public class FavoritesActivity extends BottomNavigationActivity implements Obser
     protected void initDataBinding() {
         favoritesActivityBinding = DataBindingUtil.setContentView(this, R.layout.activity_favorites);
 
-        favoritesViewModel = new FavoritesViewModel(getNavigator(),getSettingsManager());
+        favoritesViewModel = new FavoritesViewModel(getNavigator(), getSettingsManager(), getLogger());
         favoritesActivityBinding.setFavoritesViewModel(favoritesViewModel);
     }
 

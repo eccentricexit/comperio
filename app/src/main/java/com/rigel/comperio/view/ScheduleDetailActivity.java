@@ -16,21 +16,22 @@ public class ScheduleDetailActivity extends BaseActivity {
     private ActivityScheduleDetailBinding scheduleDetailActivityBinding;
     private ScheduleDetailViewModel scheduleDetailViewModel;
 
+    public static Intent launch(Context context, Schedule schedule) {
+        Intent intent = new Intent(context, ScheduleDetailActivity.class);
+        intent.putExtra(context.getString(R.string.EXTRA_SCHEDULE), schedule);
+        return intent;
+    }
+
     @Override
     protected void initDataBinding() {
         scheduleDetailActivityBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_schedule_detail);
 
         Schedule schedule = (Schedule) getIntent().getSerializableExtra(getString(R.string.EXTRA_SCHEDULE));
-        scheduleDetailViewModel = new ScheduleDetailViewModel(getNavigator(),getSettingsManager(),schedule);
+        scheduleDetailViewModel = new ScheduleDetailViewModel(getNavigator(), getSettingsManager(),
+                schedule, getLogger());
 
         scheduleDetailActivityBinding.setScheduleDetailViewModel(scheduleDetailViewModel);
-    }
-
-    public static Intent launch(Context context, Schedule schedule) {
-        Intent intent = new Intent(context, ScheduleDetailActivity.class);
-        intent.putExtra(context.getString(R.string.EXTRA_SCHEDULE),schedule);
-        return intent;
     }
 
 }

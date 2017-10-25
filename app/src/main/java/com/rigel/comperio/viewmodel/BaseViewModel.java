@@ -11,12 +11,9 @@ public class BaseViewModel  extends Observable {
     protected SettingsManager settingsManager;
     protected DevUtils.Logger logger;
 
-    public BaseViewModel(Navigator navigator, SettingsManager settingsManager) {
+    public BaseViewModel(Navigator navigator, SettingsManager settingsManager, DevUtils.Logger logger) {
         this.navigator = navigator;
         this.settingsManager = settingsManager;
-    }
-
-    protected void setLogger(DevUtils.Logger logger){
         this.logger = logger;
     }
 

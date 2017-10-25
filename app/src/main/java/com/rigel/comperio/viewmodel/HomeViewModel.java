@@ -12,10 +12,11 @@ public class HomeViewModel extends BaseViewModel {
 
     List<Schedule> schedules;
 
-    public HomeViewModel(Navigator navigator, SettingsManager settingsManager) {
-        super(navigator, settingsManager);
+    public HomeViewModel(Navigator navigator, SettingsManager settingsManager, DevUtils.Logger logger) {
+        super(navigator, settingsManager, logger);
         schedules = new ArrayList<>();
     }
+
 
     public void refreshItems() {
         schedules.addAll(DevUtils.getFakeHomeSchedules());

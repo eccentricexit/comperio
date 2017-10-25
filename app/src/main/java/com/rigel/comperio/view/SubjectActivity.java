@@ -19,7 +19,8 @@ public class SubjectActivity extends BaseActivity  {
         ActivitySubjectBinding subjectActivityBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_subject);
 
-        SubjectViewModel subjectViewModel = new SubjectViewModel(getNavigator(), getSettingsManager());
+        SubjectViewModel subjectViewModel = new SubjectViewModel(getNavigator(),
+                getSettingsManager(), getLogger());
         subjectActivityBinding.setSubjectViewModel(subjectViewModel);
 
         SubjectAdapter adapter = new SubjectAdapter(
