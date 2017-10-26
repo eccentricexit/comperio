@@ -5,8 +5,12 @@
 
     <data>
         <variable
-            name="vm"
+            name="subjectViewModel"
             type="com.rigel.comperio.viewmodel.SubjectViewModel" />
+
+        <variable
+            name="spinnerAdapter"
+            type="android.widget.ArrayAdapter" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -26,8 +30,9 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Spinner
+        <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/subjectSpinner"
+            app:adapter="@{spinnerAdapter}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
@@ -46,7 +51,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="42dp"
-            android:onClick="@{(v) -> vm.nextOnClick()}"
+            android:onClick="@{subjectViewModel::nextOnClick}"
             android:text="@string/lblNext"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

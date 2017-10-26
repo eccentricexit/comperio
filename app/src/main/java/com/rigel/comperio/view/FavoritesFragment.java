@@ -1,69 +1,88 @@
 package com.rigel.comperio.view;
 
-import android.content.SharedPreferences;
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.manaschaudhari.android_mvvm.utils.BindingUtils;
+import com.rigel.comperio.DevUtils;
+import com.rigel.comperio.Navigator;
 import com.rigel.comperio.R;
-import com.rigel.comperio.adapters.ScheduleRecyclerViewAdapter;
+import com.rigel.comperio.SettingsManager;
+import com.rigel.comperio.adapters.ScheduleAdapter;
+import com.rigel.comperio.databinding.FragmentFavoritesBinding;
+import com.rigel.comperio.databinding.FragmentFavoritesBinding;
+import com.rigel.comperio.viewmodel.FavoritesViewModel;
 import com.rigel.comperio.viewmodel.FavoritesViewModel;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import java.util.Observable;
+import java.util.Observer;
 
-public class FavoritesFragment extends BaseFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-    @BindView(R.id.recycler_favorites) RecyclerView recyclerView;
-    @BindView(R.id.swipe_refresh_favorites)
-    SwipeRefreshLayout swipeRefreshLayout;
+public class FavoritesFragment extends Fragment implements Observer{
+
+    Navigator navigator;
+    DevUtils.Logger logger;
+    SettingsManager settingsManager;
+
+    FragmentFavoritesBinding fragmentFavoritesBinding;
+    FavoritesViewModel favoritesViewModel;
 
     public FavoritesFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = super.onCreateView(inflater,container,savedInstanceState);
+        fragmentFavoritesBinding = FragmentFavoritesBinding.inflate(inflater,container,false);
 
-        ButterKnife.bind(this, view);
+        favoritesViewModel = new FavoritesViewModel(navigator,settingsManager,logger);
+        favoritesViewModel.addObserver(this);
+        fragmentFavoritesBinding.setFavoritesViewModel(favoritesViewModel);
 
-        return view;
+        fragmentFavoritesBinding.recyclerFavorites.setLayoutManager(new LinearLayoutManager(getActivity()));
+        fragmentFavoritesBinding.recyclerFavorites.setAdapter(new ScheduleAdapter(navigator));
+
+        favoritesViewModel.refreshItems();
+
+        return fragmentFavoritesBinding.getRoot();
     }
 
     @Override
-    protected int getLayout() {
-        return R.layout.fragment_favorites;
+    public void update(Observable observable, Object o) {
+        if (!(observable instanceof FavoritesViewModel)) {
+            return;
+        }
+
+        ScheduleAdapter scheduleAdapter = (ScheduleAdapter) fragmentFavoritesBinding.recyclerFavorites.getAdapter();
+        FavoritesViewModel favoritesViewModel = (FavoritesViewModel) observable;
+        scheduleAdapter.setScheduleList(favoritesViewModel.getSchedules());
+
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public static FavoritesFragment newInstance(Navigator navigator, SettingsManager settingsManager,
+                                           DevUtils.Logger logger) {
+        FavoritesFragment favoritesFragment = new FavoritesFragment();
 
-        //TODO: check MvvmActivity to fix null defaultBinder warning
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new ScheduleRecyclerViewAdapter(
-                ((FavoritesViewModel)viewModel).itemVms, ViewProviders.getItemListing(),
-                BindingUtils.getDefaultBinder())
-        );
+        favoritesFragment.setNavigator(navigator);
+        favoritesFragment.setSettingsManager(settingsManager);
+        favoritesFragment.setLogger(logger);
+
+        return favoritesFragment;
     }
 
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-        refreshRecycler();
+    public void setNavigator(Navigator navigator) {
+        this.navigator = navigator;
     }
 
-    private void refreshRecycler() {
-        swipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                swipeRefreshLayout.setRefreshing(true);
-            }
-        });
+    public void setSettingsManager(SettingsManager settingsManager) {
+        this.settingsManager = settingsManager;
+    }
+
+    public void setLogger(DevUtils.Logger logger) {
+        this.logger = logger;
     }
 }

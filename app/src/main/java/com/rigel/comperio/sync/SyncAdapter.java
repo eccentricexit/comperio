@@ -16,7 +16,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.rigel.comperio.R;
 import com.rigel.comperio.data.ComperioContract;
-import com.rigel.comperio.data.ComperioContract.*;
+import com.rigel.comperio.data.ComperioContract.ScheduleEntry;
 import com.rigel.comperio.model.Schedule;
 
 import org.json.JSONException;
@@ -39,7 +39,6 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
     public SyncAdapter(Context context) {
         super(context, true);
-        ContentResolver mContentResolver = context.getContentResolver();
     }
 
     public static void initializeSyncAdapter(Context context) {
@@ -127,20 +126,20 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         for (Schedule schedule : schedules) {
             ContentValues values = new ContentValues();
 
-            values.put(ScheduleEntry.COLUMN_SUBJECT_NAME, schedule.getSubjectName());
-            values.put(ScheduleEntry.COLUMN_TEACHER_NAME, schedule.getTeacherName());
-            values.put(ScheduleEntry.COLUMN_TEACHER_STORY, schedule.getTeacherStory());
-            values.put(ScheduleEntry.COLUMN_TEACHER_PIC_URL, schedule.getTeacherPicUrl());
-            values.put(ScheduleEntry.COLUMN_TEACHER_LAT, schedule.getLoc()[1]);
-            values.put(ScheduleEntry.COLUMN_TEACHER_LONG, schedule.getLoc()[0]);
-            values.put(ScheduleEntry.COLUMN_TEACHER_PHONE, schedule.getTeacherPhone());
-            values.put(ScheduleEntry.COLUMN_TEACHER_RATING, schedule.getTeacherRating());
-            values.put(ScheduleEntry.COLUMN_WEEK_DAYS, schedule.getWeekDaysAvailable());
-            values.put(ScheduleEntry.COLUMN_HOUR_PRICE, schedule.getHourPrice());
-            values.put(ScheduleEntry.COLUMN_START_HOUR, schedule.getStartHour());
-            values.put(ScheduleEntry.COLUMN_START_MINUTE, schedule.getStartMinute());
-            values.put(ScheduleEntry.COLUMN_END_HOUR, schedule.getEndHour());
-            values.put(ScheduleEntry.COLUMN_END_MINUTE, schedule.getEndMinute());
+            values.put(ScheduleEntry.COLUMN_SUBJECT_NAME, schedule.subjectName);
+            values.put(ScheduleEntry.COLUMN_TEACHER_NAME, schedule.teacherName);
+            values.put(ScheduleEntry.COLUMN_TEACHER_STORY, schedule.teacherStory);
+            values.put(ScheduleEntry.COLUMN_TEACHER_PIC_URL, schedule.teacherPicUrl);
+            values.put(ScheduleEntry.COLUMN_TEACHER_LAT, schedule.loc[1]);
+            values.put(ScheduleEntry.COLUMN_TEACHER_LONG, schedule.loc[0]);
+            values.put(ScheduleEntry.COLUMN_TEACHER_PHONE, schedule.teacherPhone);
+            values.put(ScheduleEntry.COLUMN_TEACHER_RATING, schedule.teacherRating);
+            values.put(ScheduleEntry.COLUMN_WEEK_DAYS, schedule.weekDaysAvailable);
+            values.put(ScheduleEntry.COLUMN_HOUR_PRICE, schedule.hourPrice);
+            values.put(ScheduleEntry.COLUMN_START_HOUR, schedule.startHour);
+            values.put(ScheduleEntry.COLUMN_START_MINUTE, schedule.startMinute);
+            values.put(ScheduleEntry.COLUMN_END_HOUR, schedule.endHour);
+            values.put(ScheduleEntry.COLUMN_END_MINUTE, schedule.endMinute);
 
             contentValuesVector.add(values);
         }

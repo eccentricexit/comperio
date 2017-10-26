@@ -1,17 +1,12 @@
 package com.rigel.comperio.viewmodel;
 
-import android.support.annotation.NonNull;
-
-import com.manaschaudhari.android_mvvm.ViewModel;
+import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.Navigator;
+import com.rigel.comperio.SettingsManager;
 
+public class MainViewModel extends BaseViewModel {
 
-public class MainViewModel implements ViewModel {
-
-    @NonNull
-    private final Navigator navigator;
-
-    public MainViewModel(Navigator navigator){
-        this.navigator = navigator;
+    public MainViewModel(Navigator navigator, SettingsManager settingsManager, DevUtils.Logger logger) {
+        super(navigator, settingsManager, logger);
     }
 }

@@ -1,69 +1,35 @@
 package com.rigel.comperio.view;
 
+import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Spinner;
+import android.support.annotation.Nullable;
+import android.widget.ArrayAdapter;
 
-import com.manaschaudhari.android_mvvm.ViewModel;
+import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.R;
 import com.rigel.comperio.adapters.SubjectAdapter;
-import com.rigel.comperio.model.Subject;
+import com.rigel.comperio.databinding.ActivitySubjectBinding;
 import com.rigel.comperio.viewmodel.SubjectViewModel;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-
-public class SubjectActivity extends BaseActivity {
-
-    private static final String LOG_TAG = SubjectActivity.class.getSimpleName();
-    @BindView(R.id.subjectSpinner)
-    Spinner subjectSpinner;
-
-    private SubjectViewModel viewModel;
+public class SubjectActivity extends BaseActivity  {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
+    protected void initDataBinding() {
+        ActivitySubjectBinding subjectActivityBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_subject);
 
-        if (getSettingsManager().getPreferencesInitialized()) {
-            getNavigator().navigateToMainActivity();
-        }
+        SubjectViewModel subjectViewModel = new SubjectViewModel(getNavigator(),
+                getSettingsManager(), getLogger());
+        subjectActivityBinding.setSubjectViewModel(subjectViewModel);
 
-        setupSpinner();
-    }
-
-    private void setupSpinner() {
-        subjectSpinner.setAdapter(
-                new SubjectAdapter(this, R.layout.support_simple_spinner_dropdown_item, viewModel.subjects)
+        SubjectAdapter adapter = new SubjectAdapter(
+                this,
+                android.R.layout.simple_spinner_item,
+                subjectActivityBinding.getSubjectViewModel().subjects
         );
 
-        subjectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Long id = ((Subject) subjectSpinner.getSelectedItem()).getId();
-                viewModel.subject.set(id);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                //do nothing.
-            }
-        });
+        subjectActivityBinding.setSpinnerAdapter(adapter);
     }
 
-    @NonNull
-    @Override
-    protected ViewModel createViewModel() {
-        viewModel = new SubjectViewModel(getNavigator(), getSettingsManager());
-        return viewModel;
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_subject;
-    }
 }

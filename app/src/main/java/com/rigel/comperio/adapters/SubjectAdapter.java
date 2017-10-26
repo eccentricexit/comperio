@@ -10,9 +10,7 @@ import com.rigel.comperio.model.Subject;
 
 public class SubjectAdapter extends ArrayAdapter<Subject> {
 
-
     private Context context;
-
     private Subject[] values;
 
     public SubjectAdapter(Context context, int textViewResourceId,
@@ -38,7 +36,7 @@ public class SubjectAdapter extends ArrayAdapter<Subject> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         TextView label = new TextView(context);
-        label.setText(values[position].getName());
+        label.setText(values[position].name);
 
         return label;
     }
@@ -47,7 +45,7 @@ public class SubjectAdapter extends ArrayAdapter<Subject> {
     public View getDropDownView(int position, View convertView,
                                 ViewGroup parent) {
         TextView label = new TextView(context);
-        label.setText(values[position].getName());
+        label.setText(values[position].name);
 
         return label;
     }

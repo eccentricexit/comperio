@@ -1,98 +1,83 @@
 package com.rigel.comperio.view;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.manaschaudhari.android_mvvm.utils.BindingUtils;
+import com.rigel.comperio.DevUtils;
+import com.rigel.comperio.Navigator;
 import com.rigel.comperio.R;
-import com.rigel.comperio.adapters.ScheduleRecyclerViewAdapter;
+import com.rigel.comperio.SettingsManager;
+import com.rigel.comperio.adapters.ScheduleAdapter;
+import com.rigel.comperio.databinding.FragmentHomeBinding;
 import com.rigel.comperio.viewmodel.HomeViewModel;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import java.util.Observable;
+import java.util.Observer;
 
-public class HomeFragment extends BaseFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class HomeFragment extends Fragment implements Observer {
 
-    @BindView(R.id.recycler_home) RecyclerView recyclerView;
-    @BindView(R.id.swipe_refresh_home)
-    SwipeRefreshLayout swipeRefreshLayout;
+    Navigator navigator;
+    DevUtils.Logger logger;
+    SettingsManager settingsManager;
 
-    public HomeFragment() { }
+    FragmentHomeBinding fragmentHomeBinding;
+    HomeViewModel homeViewModel;
+
+    public HomeFragment() {  }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = super.onCreateView(inflater,container,savedInstanceState);
-        ButterKnife.bind(this, view);
+        fragmentHomeBinding = FragmentHomeBinding.inflate(inflater,container,false);
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                updateItems();
-            }
-        });
+        homeViewModel = new HomeViewModel(navigator,settingsManager,logger);
+        homeViewModel.addObserver(this);
+        fragmentHomeBinding.setHomeViewModel(homeViewModel);
 
-        return view;
+        fragmentHomeBinding.recyclerHome.setLayoutManager(new LinearLayoutManager(getActivity()));
+        fragmentHomeBinding.recyclerHome.setAdapter(new ScheduleAdapter(navigator));
+
+        homeViewModel.refreshItems();
+
+        return fragmentHomeBinding.getRoot();
     }
 
     @Override
-    protected int getLayout() {
-        return R.layout.fragment_home;
+    public void update(Observable observable, Object o) {
+        if (!(observable instanceof HomeViewModel)) {
+            return;
+        }
+
+        ScheduleAdapter scheduleAdapter = (ScheduleAdapter) fragmentHomeBinding.recyclerHome.getAdapter();
+        HomeViewModel homeViewModel = (HomeViewModel) observable;
+        scheduleAdapter.setScheduleList(homeViewModel.getSchedules());
+
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public static HomeFragment newInstance(Navigator navigator, SettingsManager settingsManager,
+                                           DevUtils.Logger logger) {
+        HomeFragment homeFragment = new HomeFragment();
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        homeFragment.setNavigator(navigator);
+        homeFragment.setSettingsManager(settingsManager);
+        homeFragment.setLogger(logger);
 
-        //TODO: check MvvmActivity to fix null defaultBinder warning
-        recyclerView.setAdapter(new ScheduleRecyclerViewAdapter(
-                ((HomeViewModel)viewModel).itemVms, ViewProviders.getItemListing(),
-                BindingUtils.getDefaultBinder())
-        );
+        return homeFragment;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+    public void setNavigator(Navigator navigator) {
+        this.navigator = navigator;
     }
 
-    @Override
-    public void onPause() {
-        getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
-        super.onPause();
+    public void setSettingsManager(SettingsManager settingsManager) {
+        this.settingsManager = settingsManager;
     }
 
-    public SharedPreferences getSharedPreferences() {
-        return PreferenceManager.getDefaultSharedPreferences(getContext());
-    }
-
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-        refreshRecycler();
-    }
-
-    private void refreshRecycler() {
-        swipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                swipeRefreshLayout.setRefreshing(true);
-                updateItems();
-            }
-        });
-    }
-
-    private void updateItems() {
-        ((HomeViewModel) viewModel).updateItems();
+    public void setLogger(DevUtils.Logger logger) {
+        this.logger = logger;
     }
 }

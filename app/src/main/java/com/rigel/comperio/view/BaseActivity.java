@@ -3,134 +3,86 @@ package com.rigel.comperio.view;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.manaschaudhari.android_mvvm.MvvmActivity;
-import com.rigel.comperio.MessageHelper;
+import com.google.gson.Gson;
+import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.Navigator;
 import com.rigel.comperio.R;
 import com.rigel.comperio.SettingsManager;
+import com.rigel.comperio.model.Filter;
 import com.rigel.comperio.model.Schedule;
 
-import org.parceler.Parcels;
+import timber.log.Timber;
 
-public abstract class BaseActivity extends MvvmActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
-    protected MessageHelper getMessageHelper() {
-        return new MessageHelper() {
+    private Navigator navigator;
+    private SettingsManager settingsManager;
+    private DevUtils.Logger logger;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initDataBinding();
+    }
+
+    protected Navigator getNavigator() {
+
+        if(navigator != null){
+            return navigator;
+        }
+
+        navigator = new Navigator() {
             @Override
-            public void requestSubjectSelection() {
-                Toast.makeText(BaseActivity.this, getString(R.string.lblSelectSubject), Toast.LENGTH_SHORT).show();
+            public void navigateToFreeTimeActivity() {
+                navigate(FreeTimeActivity.class);
+            }
+
+            @Override
+            public void navigateToHomeActivity() {
+                navigate(MainActivity.class);
+            }
+
+            @Override
+            public void navigateToDetailsActivity(Schedule schedule) {
+                ScheduleDetailActivity.launch(BaseActivity.this,schedule);
+            }
+
+            private void navigate(Class<?> destination) {
+                Intent intent = new Intent(BaseActivity.this, destination);
+                startActivity(intent);
             }
         };
+
+        return navigator;
     }
 
     protected SettingsManager getSettingsManager() {
-        return new SettingsManager() {
+        if(settingsManager!=null){
+            return settingsManager;
+        }
+
+        settingsManager = new SettingsManager() {
+
 
             @Override
-            public void saveSubject(Long subject) {
-                getEditor().putLong(getString(R.string.pref_subject), subject).commit();
+            public Filter loadFilter() {
+
+                Gson gson = new Gson();
+                String json = getSharedPreferences().getString(getString(R.string.SHARED_PREF_KEY),"");
+                Filter filter = !json.equals("")?gson.fromJson(json, Filter.class):new Filter();
+                return filter;
             }
 
             @Override
-            public void saveRecurrence(String rRule) {
-                getEditor().putString(getString(R.string.pref_recurrence), rRule).commit();
-            }
-
-            @Override
-            public void saveDistance(Integer distance) {
-                getEditor().putInt(getString(R.string.pref_distance), distance).commit();
-            }
-
-            @Override
-            public void saveUseMetricSystem(Boolean metricSystem) {
-                getEditor().putBoolean(getString(R.string.pref_metric), metricSystem).commit();
-            }
-
-            @Override
-            public void saveStartHour(Integer startHour) {
-                getEditor().putInt(getString(R.string.pref_startHour), startHour).commit();
-            }
-
-            @Override
-            public void saveStartMinute(Integer startMinute) {
-                getEditor().putInt(getString(R.string.pref_startMinute), startMinute).commit();
-            }
-
-            @Override
-            public void saveEndHour(Integer endHour) {
-                getEditor().putInt(getString(R.string.pref_endHour), endHour).commit();
-            }
-
-            @Override
-            public void saveEndMinute(Integer endMinute) {
-                getEditor().putInt(getString(R.string.pref_endMinute), endMinute).commit();
-            }
-
-            @Override
-            public Long getSubject() {
-                return getSharedPreferences().getLong(getString(R.string.pref_subject), 0);
-            }
-
-            @Override
-            public String getRecurrence() {
-                return getSharedPreferences().getString(getString(R.string.pref_recurrence), null);
-            }
-
-            @Override
-            public Integer getDistance() {
-                return getSharedPreferences().getInt(
-                        getString(R.string.pref_distance), getResources().getInteger(R.integer.default_distance)
-                );
-
-            }
-
-            @Override
-            public Boolean getUseMetricSystem() {
-                return getSharedPreferences().getBoolean(getString(R.string.pref_metric), false);
-            }
-
-            @Override
-            public Integer getStartHour() {
-                return getSharedPreferences().getInt(
-                        getString(R.string.pref_startHour), getResources().getInteger(R.integer.default_StartHour)
-                );
-            }
-
-            @Override
-            public Integer getStartMinute() {
-                return getSharedPreferences().getInt(
-                        getString(R.string.pref_startMinute), getResources().getInteger(R.integer.default_StartMinute)
-                );
-            }
-
-            @Override
-            public Integer getEndHour() {
-                return getSharedPreferences().getInt(
-                        getString(R.string.pref_endHour), getResources().getInteger(R.integer.default_EndHour)
-                );
-            }
-
-            @Override
-            public Integer getEndMinute() {
-                return getSharedPreferences().getInt(
-                        getString(R.string.pref_startMinute), getResources().getInteger(R.integer.default_EndMinute)
-                );
-            }
-
-            @Override
-            public Boolean getPreferencesInitialized() {
-                return getSharedPreferences().getBoolean(
-                        getString(R.string.pref_initialized),
-                        false
-                );
-            }
-
-            @Override
-            public void setPreferencesInitialized(boolean initialized) {
-                getEditor().putBoolean(getString(R.string.pref_initialized), initialized).commit();
+            public void saveFilter(Filter filter) {
+                String json = new Gson().toJson(filter);
+                getEditor().putString(getString(R.string.SHARED_PREF_KEY), json);
+                getEditor().commit();
             }
 
             private SharedPreferences.Editor getEditor() {
@@ -143,39 +95,29 @@ public abstract class BaseActivity extends MvvmActivity {
             }
 
         };
+
+        return settingsManager;
     }
 
-    @NonNull
-    protected Navigator getNavigator() {
-        return new Navigator() {
+    protected DevUtils.Logger getLogger(){
+        if(logger!=null){
+            return logger;
+        }
 
+        logger = new DevUtils.Logger() {
             @Override
-            public void navigateToFreeTimeActivity() {
-                navigate(FreeTimeActivity.class);
+            public void log(String logMessage) {
+                Timber.d(logMessage);
             }
 
             @Override
-            public void navigateToMainActivity() {
-                navigate(MainActivity.class);
-            }
-
-            @Override
-            public void navigateToScheduleDetailsActivity(Schedule schedule) {
-                Intent i = new Intent(BaseActivity.this, ScheduleDetailActivity.class);
-                i.putExtra(
-                        BaseActivity.this.getString(R.string.EXTRA_SCHEDULE_ID),
-                        Parcels.wrap(schedule)
-                );
-
-                startActivity(i);
-            }
-
-            private void navigate(Class<?> destination) {
-                Intent intent = new Intent(BaseActivity.this, destination);
-                startActivity(intent);
+            public void toast(String message) {
+                Toast.makeText(BaseActivity.this, message, Toast.LENGTH_SHORT).show();
             }
         };
+
+        return logger;
     }
 
-
+    protected abstract void initDataBinding();
 }
