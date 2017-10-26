@@ -27,13 +27,13 @@ public abstract class BottomNavigationActivity extends BaseActivity{
 
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-                        selectedFragment = HomeFragment.newInstance();
+                        selectedFragment = HomeFragment.newInstance(getNavigator(),getSettingsManager(),getLogger());
                         break;
                     case R.id.navigation_favorites:
-                        selectedFragment = FavoritesFragment.newInstance();
+                        selectedFragment = FavoritesFragment.newInstance(getNavigator(),getSettingsManager(),getLogger());
                         break;
                     case R.id.navigation_filters:
-                        selectedFragment = FiltersFragment.newInstance();
+                        selectedFragment = FiltersFragment.newInstance(getNavigator(),getSettingsManager(),getLogger());
                         break;
                 }
 
@@ -49,9 +49,8 @@ public abstract class BottomNavigationActivity extends BaseActivity{
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        FragmentTransaction transaction = getSupportFragmentManager().
-                beginTransaction();
-        transaction.replace(R.id.frame_layout, HomeFragment.newInstance());
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_layout, HomeFragment.newInstance(getNavigator(),getSettingsManager(),getLogger()));
         transaction.commit();
 
         navigation.getMenu().getItem(2).setChecked(true);

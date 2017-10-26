@@ -48,16 +48,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
 
             @Override
-            public void navigateToFavoritesActivity() {
-                navigate(FavoritesActivity.class);
-            }
-
-            @Override
-            public void navigateToFiltersActivity() {
-                navigate(FiltersActivity.class);
-            }
-
-            @Override
             public void navigateToDetailsActivity(Schedule schedule) {
                 ScheduleDetailActivity.launch(BaseActivity.this,schedule);
             }
