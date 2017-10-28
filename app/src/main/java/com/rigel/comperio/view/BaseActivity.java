@@ -49,7 +49,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
             @Override
             public void navigateToDetailsActivity(Schedule schedule) {
-                ScheduleDetailActivity.launch(BaseActivity.this,schedule);
+                Intent intent = new Intent(BaseActivity.this, ScheduleDetailActivity.class);
+                intent.putExtra(BaseActivity.this.getString(R.string.EXTRA_SCHEDULE), schedule);
+                startActivity(intent);
             }
 
             private void navigate(Class<?> destination) {
