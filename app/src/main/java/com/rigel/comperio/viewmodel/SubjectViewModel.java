@@ -18,9 +18,13 @@ public class SubjectViewModel extends BaseViewModel {
         super(navigator, settingsManager, logger);
         filter = settingsManager.loadFilter();
         subjects = DevUtils.getFakeSubjects();
+        if(filter.initialized){
+            navigator.navigateToHomeActivity();
+        }
     }
 
     public void nextOnClick(View view) {
+        filter.initialized = true;
         settingsManager.saveFilter(filter);
         navigator.navigateToFreeTimeActivity();
     }
