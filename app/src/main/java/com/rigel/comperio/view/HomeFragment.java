@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment implements Observer {
         fragmentHomeBinding.setHomeViewModel(homeViewModel);
 
         fragmentHomeBinding.recyclerHome.setLayoutManager(new LinearLayoutManager(getActivity()));
-        fragmentHomeBinding.recyclerHome.setAdapter(new ScheduleAdapter(navigator));
+        fragmentHomeBinding.recyclerHome.setAdapter(new ScheduleAdapter(navigator,logger));
 
         homeViewModel.refreshItems();
 

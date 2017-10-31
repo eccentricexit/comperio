@@ -44,7 +44,7 @@ public class FavoritesFragment extends Fragment implements Observer{
         fragmentFavoritesBinding.setFavoritesViewModel(favoritesViewModel);
 
         fragmentFavoritesBinding.recyclerFavorites.setLayoutManager(new LinearLayoutManager(getActivity()));
-        fragmentFavoritesBinding.recyclerFavorites.setAdapter(new ScheduleAdapter(navigator));
+        fragmentFavoritesBinding.recyclerFavorites.setAdapter(new ScheduleAdapter(navigator,logger));
 
         favoritesViewModel.refreshItems();
 
