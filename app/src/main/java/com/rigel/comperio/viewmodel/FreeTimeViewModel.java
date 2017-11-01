@@ -4,17 +4,17 @@ import android.view.View;
 
 import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.Navigator;
-import com.rigel.comperio.SettingsManager;
+import com.rigel.comperio.PersistenceManager;
 import com.rigel.comperio.model.Filter;
 
 public class FreeTimeViewModel extends BaseViewModel {
 
     public Filter filter;
 
-    public FreeTimeViewModel(Navigator navigator, SettingsManager settingsManager,
+    public FreeTimeViewModel(Navigator navigator, PersistenceManager persistenceManager,
                              DevUtils.Logger logger) {
-        super(navigator, settingsManager, logger);
-        filter = settingsManager.loadFilter();
+        super(navigator, persistenceManager, logger);
+        filter = persistenceManager.loadFilter();
     }
 
     public String getFormattedStartTime(){
@@ -29,7 +29,7 @@ public class FreeTimeViewModel extends BaseViewModel {
     public void nextOnClick(View view){
         filter.initialized = true;
 
-        settingsManager.saveFilter(filter);
+        persistenceManager.saveFilter(filter);
         navigator.navigateToHomeActivity();
     }
 

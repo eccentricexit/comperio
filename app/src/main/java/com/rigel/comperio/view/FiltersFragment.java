@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.Navigator;
-import com.rigel.comperio.SettingsManager;
+import com.rigel.comperio.PersistenceManager;
 import com.rigel.comperio.databinding.FragmentFiltersBinding;
 import com.rigel.comperio.viewmodel.FiltersViewModel;
 
@@ -16,7 +16,7 @@ public class FiltersFragment extends Fragment {
 
     Navigator navigator;
     DevUtils.Logger logger;
-    SettingsManager settingsManager;
+    PersistenceManager persistenceManager;
 
     FragmentFiltersBinding fragmentFiltersBinding;
     FiltersViewModel filtersViewModel;
@@ -28,20 +28,20 @@ public class FiltersFragment extends Fragment {
                              Bundle savedInstanceState) {
         fragmentFiltersBinding = FragmentFiltersBinding.inflate(inflater,container,false);
 
-        filtersViewModel = new FiltersViewModel(navigator,settingsManager,logger);
+        filtersViewModel = new FiltersViewModel(navigator, persistenceManager,logger);
         fragmentFiltersBinding.setFiltersViewModel(filtersViewModel);
 
         return fragmentFiltersBinding.getRoot();
     }
 
     public static FiltersFragment newInstance(Navigator navigator,
-                                              SettingsManager settingsManager,
+                                              PersistenceManager persistenceManager,
                                               DevUtils.Logger logger) {
 
         FiltersFragment favoritesFragment = new FiltersFragment();
 
         favoritesFragment.setNavigator(navigator);
-        favoritesFragment.setSettingsManager(settingsManager);
+        favoritesFragment.setPersistenceManager(persistenceManager);
         favoritesFragment.setLogger(logger);
 
         return favoritesFragment;
@@ -51,8 +51,8 @@ public class FiltersFragment extends Fragment {
         this.navigator = navigator;
     }
 
-    public void setSettingsManager(SettingsManager settingsManager) {
-        this.settingsManager = settingsManager;
+    public void setPersistenceManager(PersistenceManager persistenceManager) {
+        this.persistenceManager = persistenceManager;
     }
 
     public void setLogger(DevUtils.Logger logger) {

@@ -9,8 +9,7 @@ import android.view.ViewGroup;
 
 import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.Navigator;
-import com.rigel.comperio.R;
-import com.rigel.comperio.SettingsManager;
+import com.rigel.comperio.PersistenceManager;
 import com.rigel.comperio.adapters.ScheduleAdapter;
 import com.rigel.comperio.databinding.FragmentHomeBinding;
 import com.rigel.comperio.viewmodel.HomeViewModel;
@@ -22,7 +21,7 @@ public class HomeFragment extends Fragment implements Observer {
 
     Navigator navigator;
     DevUtils.Logger logger;
-    SettingsManager settingsManager;
+    PersistenceManager persistenceManager;
 
     FragmentHomeBinding fragmentHomeBinding;
     HomeViewModel homeViewModel;
@@ -34,7 +33,7 @@ public class HomeFragment extends Fragment implements Observer {
                              Bundle savedInstanceState) {
         fragmentHomeBinding = FragmentHomeBinding.inflate(inflater,container,false);
 
-        homeViewModel = new HomeViewModel(navigator,settingsManager,logger);
+        homeViewModel = new HomeViewModel(navigator, persistenceManager,logger);
         homeViewModel.addObserver(this);
         fragmentHomeBinding.setHomeViewModel(homeViewModel);
 
@@ -58,12 +57,12 @@ public class HomeFragment extends Fragment implements Observer {
 
     }
 
-    public static HomeFragment newInstance(Navigator navigator, SettingsManager settingsManager,
+    public static HomeFragment newInstance(Navigator navigator, PersistenceManager persistenceManager,
                                            DevUtils.Logger logger) {
         HomeFragment homeFragment = new HomeFragment();
 
         homeFragment.setNavigator(navigator);
-        homeFragment.setSettingsManager(settingsManager);
+        homeFragment.setPersistenceManager(persistenceManager);
         homeFragment.setLogger(logger);
 
         return homeFragment;
@@ -73,8 +72,8 @@ public class HomeFragment extends Fragment implements Observer {
         this.navigator = navigator;
     }
 
-    public void setSettingsManager(SettingsManager settingsManager) {
-        this.settingsManager = settingsManager;
+    public void setPersistenceManager(PersistenceManager persistenceManager) {
+        this.persistenceManager = persistenceManager;
     }
 
     public void setLogger(DevUtils.Logger logger) {

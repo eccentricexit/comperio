@@ -1,10 +1,6 @@
 package com.rigel.comperio.view;
 
-import android.content.Context;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.rigel.comperio.R;
 import com.rigel.comperio.databinding.ActivityScheduleDetailBinding;
@@ -23,7 +19,7 @@ public class ScheduleDetailActivity extends BaseActivity {
                 DataBindingUtil.setContentView(this, R.layout.activity_schedule_detail);
 
         Schedule schedule = (Schedule) getIntent().getSerializableExtra(getString(R.string.EXTRA_SCHEDULE));
-        scheduleDetailViewModel = new ScheduleDetailViewModel(getNavigator(), getSettingsManager(),
+        scheduleDetailViewModel = new ScheduleDetailViewModel(getNavigator(), getPersistenceManager(),
                 schedule, getLogger());
 
         scheduleDetailActivityBinding.setScheduleDetailViewModel(scheduleDetailViewModel);
