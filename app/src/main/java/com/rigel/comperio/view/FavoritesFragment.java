@@ -1,7 +1,5 @@
 package com.rigel.comperio.view;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,12 +9,9 @@ import android.view.ViewGroup;
 
 import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.Navigator;
-import com.rigel.comperio.R;
-import com.rigel.comperio.SettingsManager;
+import com.rigel.comperio.PersistenceManager;
 import com.rigel.comperio.adapters.ScheduleAdapter;
 import com.rigel.comperio.databinding.FragmentFavoritesBinding;
-import com.rigel.comperio.databinding.FragmentFavoritesBinding;
-import com.rigel.comperio.viewmodel.FavoritesViewModel;
 import com.rigel.comperio.viewmodel.FavoritesViewModel;
 
 import java.util.Observable;
@@ -27,7 +22,7 @@ public class FavoritesFragment extends Fragment implements Observer{
 
     Navigator navigator;
     DevUtils.Logger logger;
-    SettingsManager settingsManager;
+    PersistenceManager persistenceManager;
 
     FragmentFavoritesBinding fragmentFavoritesBinding;
     FavoritesViewModel favoritesViewModel;
@@ -39,7 +34,7 @@ public class FavoritesFragment extends Fragment implements Observer{
                              Bundle savedInstanceState) {
         fragmentFavoritesBinding = FragmentFavoritesBinding.inflate(inflater,container,false);
 
-        favoritesViewModel = new FavoritesViewModel(navigator,settingsManager,logger);
+        favoritesViewModel = new FavoritesViewModel(navigator, persistenceManager,logger);
         favoritesViewModel.addObserver(this);
         fragmentFavoritesBinding.setFavoritesViewModel(favoritesViewModel);
 
@@ -63,12 +58,12 @@ public class FavoritesFragment extends Fragment implements Observer{
 
     }
 
-    public static FavoritesFragment newInstance(Navigator navigator, SettingsManager settingsManager,
+    public static FavoritesFragment newInstance(Navigator navigator, PersistenceManager persistenceManager,
                                            DevUtils.Logger logger) {
         FavoritesFragment favoritesFragment = new FavoritesFragment();
 
         favoritesFragment.setNavigator(navigator);
-        favoritesFragment.setSettingsManager(settingsManager);
+        favoritesFragment.setPersistenceManager(persistenceManager);
         favoritesFragment.setLogger(logger);
 
         return favoritesFragment;
@@ -78,8 +73,8 @@ public class FavoritesFragment extends Fragment implements Observer{
         this.navigator = navigator;
     }
 
-    public void setSettingsManager(SettingsManager settingsManager) {
-        this.settingsManager = settingsManager;
+    public void setPersistenceManager(PersistenceManager persistenceManager) {
+        this.persistenceManager = persistenceManager;
     }
 
     public void setLogger(DevUtils.Logger logger) {

@@ -12,22 +12,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.rigel.comperio.ComperioApplication;
 import com.rigel.comperio.R;
 import com.rigel.comperio.data.ComperioContract;
 import com.rigel.comperio.data.ComperioContract.ScheduleEntry;
 import com.rigel.comperio.model.Schedule;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Type;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 import java.util.Vector;
@@ -36,9 +27,15 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
     private static final String LOG_TAG = SyncAdapter.class.getSimpleName();
 
+    private Context context;
+
+    public interface SyncManager{
+        void initializeSyncAdapter();
+    }
 
     public SyncAdapter(Context context) {
         super(context, true);
+        this.context = context;
     }
 
     public static void initializeSyncAdapter(Context context) {
@@ -76,7 +73,6 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
         bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
 
-
         ContentResolver.requestSync(getSyncAccount(context),
                 context.getString(R.string.content_authority), bundle);
     }
@@ -90,21 +86,26 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
         Log.d(LOG_TAG, "Attempting sync...");
 
-        URL schedulesUrl = ComperioContract.buildUrlFor(ComperioContract.PATH_SCHEDULE);
-
-
-        String schedulesJson = getJsonResponseFor(schedulesUrl);
-
-        syncComperio(schedulesJson, ScheduleEntry.CONTENT_URI);
-
+        syncComperio(ScheduleEntry.CONTENT_URI);
     }
 
-    private void syncComperio(String json, Uri uri) {
-        if (json == null) {
-            Log.e(LOG_TAG, "Error: Could not sync, topRatedJson == null");
+    private void syncComperio(Uri uri) {
+
+        ComperioService comperioService = ComperioApplication.get(context).getComperioService();
+        List<Schedule> schedules = null;
+        try {
+            schedules = comperioService.listSchedules().execute().body();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (schedules == null || schedules.isEmpty()) {
+            Log.e(LOG_TAG, "No data returned. schedules == null || schedules.isEmpty().");
             return;
         }
-        List<Schedule> schedules = getMoviesFromJSON(json);
+
+        Log.e(LOG_TAG, "Fetched "+schedules.size()+" schedules.");
+
         Vector<ContentValues> cVVector = getContentVVectorFor(schedules);
 
         if (cVVector.size() > 0) {
@@ -117,7 +118,6 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         }
 
         Log.d(LOG_TAG, "Synced " + uri.getLastPathSegment() + ". " + cVVector.size() + " added");
-
     }
 
     private Vector<ContentValues> getContentVVectorFor(List<Schedule> schedules) {
@@ -145,54 +145,5 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         }
         return contentValuesVector;
     }
-
-    private List<Schedule> getMoviesFromJSON(String json) {
-
-        Type listType = new TypeToken<List<Schedule>>() {
-        }.getType();
-        JSONObject jsonObject;
-        try {
-            jsonObject = new JSONObject(json);
-            return new Gson().fromJson(jsonObject.get("results").toString(), listType);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    private String getJsonResponseFor(URL url) {
-        // TODO: Swap for retrofit. See erik caffrey's example
-        try {
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
-            urlConnection.setRequestMethod("GET");
-            urlConnection.connect();
-
-            InputStream inputStream = urlConnection.getInputStream();
-            StringBuilder buffer = new StringBuilder();
-
-            if (inputStream == null)
-                return null;
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-
-            String line; //for debugging purposes
-            while ((line = reader.readLine()) != null)
-                buffer.append(line).append("\n");
-
-
-            if (buffer.length() == 0)
-                return null;
-
-            return buffer.toString();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
 
 }

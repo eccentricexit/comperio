@@ -1,10 +1,6 @@
 package com.rigel.comperio.view;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
 import com.rigel.comperio.R;
 import com.rigel.comperio.databinding.ActivityFreetimeBinding;
@@ -18,7 +14,7 @@ public class FreeTimeActivity extends BaseActivity {
         ActivityFreetimeBinding activityFreeTimeBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_freetime);
         FreeTimeViewModel filtersViewModel = new FreeTimeViewModel(getNavigator(),
-                getSettingsManager(), getLogger());
+                getPersistenceManager(), getLogger());
 
         activityFreeTimeBinding.setFreeTimeViewModel(filtersViewModel);
     }

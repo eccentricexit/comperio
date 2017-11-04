@@ -2,19 +2,18 @@ package com.rigel.comperio.viewmodel;
 
 import android.view.View;
 
-import com.google.gson.Gson;
 import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.Navigator;
-import com.rigel.comperio.SettingsManager;
+import com.rigel.comperio.PersistenceManager;
 import com.rigel.comperio.model.Filter;
 
 public class FiltersViewModel extends BaseViewModel{
 
     public Filter filter;
 
-    public FiltersViewModel(Navigator navigator, SettingsManager settingsManager, DevUtils.Logger logger) {
-        super(navigator, settingsManager, logger);
-        filter = settingsManager.loadFilter();
+    public FiltersViewModel(Navigator navigator, PersistenceManager persistenceManager, DevUtils.Logger logger) {
+        super(navigator, persistenceManager, logger);
+        filter = persistenceManager.loadFilter();
     }
 
     public String getFormattedDistance(){
@@ -30,7 +29,7 @@ public class FiltersViewModel extends BaseViewModel{
     }
 
     public void onPersistClick(View view) {
-        settingsManager.saveFilter(filter);
+        persistenceManager.saveFilter(filter);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.rigel.comperio.view;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,7 +12,7 @@ import com.google.gson.Gson;
 import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.Navigator;
 import com.rigel.comperio.R;
-import com.rigel.comperio.SettingsManager;
+import com.rigel.comperio.PersistenceManager;
 import com.rigel.comperio.model.Filter;
 import com.rigel.comperio.model.Schedule;
 
@@ -20,7 +21,7 @@ import timber.log.Timber;
 public abstract class BaseActivity extends AppCompatActivity {
 
     private Navigator navigator;
-    private SettingsManager settingsManager;
+    private PersistenceManager persistenceManager;
     private DevUtils.Logger logger;
 
     @Override
@@ -62,12 +63,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         return navigator;
     }
 
-    protected SettingsManager getSettingsManager() {
-        if(settingsManager!=null){
-            return settingsManager;
+    protected PersistenceManager getPersistenceManager() {
+        if(persistenceManager !=null){
+            return persistenceManager;
         }
 
-        settingsManager = new SettingsManager() {
+        persistenceManager = new PersistenceManager() {
 
             @Override
             public Filter loadFilter() {
@@ -88,6 +89,11 @@ public abstract class BaseActivity extends AppCompatActivity {
                 getEditor().putString(getString(R.string.FILTER_KEY), json).commit();
             }
 
+            @Override
+            public ContentResolver getContentResolver() {
+                return getContentResolver();
+            }
+
             private SharedPreferences.Editor getEditor() {
                 SharedPreferences sharedPref = getComperioPreferences();
                 return sharedPref.edit();
@@ -99,7 +105,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
         };
 
-        return settingsManager;
+        return persistenceManager;
     }
 
     protected DevUtils.Logger getLogger(){
