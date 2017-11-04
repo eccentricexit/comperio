@@ -3,9 +3,14 @@ package com.rigel.comperio;
 import android.app.Application;
 import android.content.Context;
 
+import com.rigel.comperio.sync.ComperioFactory;
+import com.rigel.comperio.sync.ComperioService;
+
 import timber.log.Timber;
 
 public class ComperioApplication extends Application {
+
+    ComperioService comperioService;
 
     @Override
     public void onCreate() {
@@ -13,7 +18,15 @@ public class ComperioApplication extends Application {
         Timber.plant(new Timber.DebugTree());
     }
 
-    private static ComperioApplication get(Context context) {
+    public ComperioService getComperioService(){
+        if(comperioService==null){
+            comperioService = ComperioFactory.create();
+        }
+
+        return comperioService;
+    }
+
+    public static ComperioApplication get(Context context) {
         return (ComperioApplication) context.getApplicationContext();
     }
 }

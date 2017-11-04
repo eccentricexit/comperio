@@ -1,6 +1,7 @@
 package com.rigel.comperio.view;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -33,16 +34,20 @@ public class HomeFragment extends Fragment implements Observer {
                              Bundle savedInstanceState) {
         fragmentHomeBinding = FragmentHomeBinding.inflate(inflater,container,false);
 
-        homeViewModel = new HomeViewModel(navigator, persistenceManager,logger);
+        homeViewModel = new HomeViewModel(navigator, persistenceManager,logger,getLoaderManager(),getContext());
         homeViewModel.addObserver(this);
         fragmentHomeBinding.setHomeViewModel(homeViewModel);
 
         fragmentHomeBinding.recyclerHome.setLayoutManager(new LinearLayoutManager(getActivity()));
         fragmentHomeBinding.recyclerHome.setAdapter(new ScheduleAdapter(navigator,logger));
 
-        homeViewModel.refreshItems();
-
         return fragmentHomeBinding.getRoot();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        homeViewModel.initViewModel();
     }
 
     @Override
@@ -54,7 +59,6 @@ public class HomeFragment extends Fragment implements Observer {
         ScheduleAdapter scheduleAdapter = (ScheduleAdapter) fragmentHomeBinding.recyclerHome.getAdapter();
         HomeViewModel homeViewModel = (HomeViewModel) observable;
         scheduleAdapter.setScheduleList(homeViewModel.getSchedules());
-
     }
 
     public static HomeFragment newInstance(Navigator navigator, PersistenceManager persistenceManager,
