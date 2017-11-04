@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.rigel.comperio.sync.ComperioFactory;
 import com.rigel.comperio.sync.ComperioService;
+import com.rigel.comperio.sync.SyncAdapter;
 
 import timber.log.Timber;
 
@@ -16,6 +17,7 @@ public class ComperioApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Timber.plant(new Timber.DebugTree());
+        SyncAdapter.initializeSyncAdapter(this);
     }
 
     public ComperioService getComperioService(){

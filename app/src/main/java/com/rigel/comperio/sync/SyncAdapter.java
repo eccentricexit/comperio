@@ -29,10 +29,6 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
     private Context context;
 
-    public interface SyncManager{
-        void initializeSyncAdapter();
-    }
-
     public SyncAdapter(Context context) {
         super(context, true);
         this.context = context;

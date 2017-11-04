@@ -7,6 +7,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
+import com.rigel.comperio.data.ComperioContract.ScheduleEntry;
+import com.rigel.comperio.data.ComperioContract.FavoriteEntry;
+
 public class ComperioProvider extends ContentProvider {
 
     static final int SCHEDULE = 100;
@@ -51,7 +54,9 @@ public class ComperioProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
                         String sortOrder) {
+
         Cursor retCursor;
+
         switch (sUriMatcher.match(uri)) {
             case SCHEDULE: {
                 retCursor = mOpenHelper.getReadableDatabase().query(
@@ -66,15 +71,14 @@ public class ComperioProvider extends ContentProvider {
                 break;
             }
             case FAVORITE: {
-                retCursor = mOpenHelper.getReadableDatabase().query(
-                        ComperioContract.FavoriteEntry.TABLE_NAME,
-                        projection,
-                        selection,
-                        selectionArgs,
-                        null,
-                        null,
-                        sortOrder
-                );
+                String rawQuery = "SELECT * FROM "+
+                        ScheduleEntry.TABLE_NAME+" INNER JOIN " +
+                        FavoriteEntry.TABLE_NAME+" ON "+
+                            ScheduleEntry.TABLE_NAME+"."+ ScheduleEntry._ID+" = "+
+                            FavoriteEntry.TABLE_NAME+"."+ FavoriteEntry.COLUMN_SCHEDULE_KEY;
+
+
+                retCursor = mOpenHelper.getReadableDatabase().rawQuery(rawQuery,selectionArgs);
                 break;
             }
 

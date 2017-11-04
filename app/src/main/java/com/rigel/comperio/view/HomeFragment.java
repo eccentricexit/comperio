@@ -1,5 +1,6 @@
 package com.rigel.comperio.view;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,11 +19,7 @@ import com.rigel.comperio.viewmodel.HomeViewModel;
 import java.util.Observable;
 import java.util.Observer;
 
-public class HomeFragment extends Fragment implements Observer {
-
-    Navigator navigator;
-    DevUtils.Logger logger;
-    PersistenceManager persistenceManager;
+public class HomeFragment extends BaseFragment implements Observer {
 
     FragmentHomeBinding fragmentHomeBinding;
     HomeViewModel homeViewModel;
@@ -30,14 +27,19 @@ public class HomeFragment extends Fragment implements Observer {
     public HomeFragment() {  }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        homeViewModel = new HomeViewModel(navigator, persistenceManager,logger,
+                getLoaderManager(),getContext());
+        homeViewModel.addObserver(this);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         fragmentHomeBinding = FragmentHomeBinding.inflate(inflater,container,false);
 
-        homeViewModel = new HomeViewModel(navigator, persistenceManager,logger,getLoaderManager(),getContext());
-        homeViewModel.addObserver(this);
         fragmentHomeBinding.setHomeViewModel(homeViewModel);
-
         fragmentHomeBinding.recyclerHome.setLayoutManager(new LinearLayoutManager(getActivity()));
         fragmentHomeBinding.recyclerHome.setAdapter(new ScheduleAdapter(navigator,logger));
 
@@ -61,26 +63,8 @@ public class HomeFragment extends Fragment implements Observer {
         scheduleAdapter.setScheduleList(homeViewModel.getSchedules());
     }
 
-    public static HomeFragment newInstance(Navigator navigator, PersistenceManager persistenceManager,
-                                           DevUtils.Logger logger) {
-        HomeFragment homeFragment = new HomeFragment();
-
-        homeFragment.setNavigator(navigator);
-        homeFragment.setPersistenceManager(persistenceManager);
-        homeFragment.setLogger(logger);
-
-        return homeFragment;
+    public static HomeFragment newInstance() {
+        return new HomeFragment();
     }
 
-    public void setNavigator(Navigator navigator) {
-        this.navigator = navigator;
-    }
-
-    public void setPersistenceManager(PersistenceManager persistenceManager) {
-        this.persistenceManager = persistenceManager;
-    }
-
-    public void setLogger(DevUtils.Logger logger) {
-        this.logger = logger;
-    }
 }

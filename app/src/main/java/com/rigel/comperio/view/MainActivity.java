@@ -10,11 +10,7 @@ import com.rigel.comperio.databinding.ActivityMainBinding;
 import com.rigel.comperio.sync.SyncAdapter;
 import com.rigel.comperio.viewmodel.MainViewModel;
 
-public class MainActivity extends BottomNavigationActivity implements SyncAdapter.SyncManager{
-
-    private Navigator navigator;
-    private PersistenceManager persistenceManager;
-    private DevUtils.Logger logger;
+public class MainActivity extends BottomNavigationActivity {
 
     private MainViewModel mainViewModel;
 
@@ -23,14 +19,10 @@ public class MainActivity extends BottomNavigationActivity implements SyncAdapte
                 DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         mainViewModel = new MainViewModel(getNavigator(), getPersistenceManager(),
-                getLogger(),this);
+                getLogger());
 
         mainActivityBinding.setMainViewModel(mainViewModel);
     }
 
-    @Override
-    public void initializeSyncAdapter() {
-        SyncAdapter.initializeSyncAdapter(this);
-    }
 }
 

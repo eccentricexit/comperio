@@ -41,18 +41,8 @@ public class HomeViewModel extends BaseViewModel implements LoaderManager.Loader
     }
 
     public void refreshItems() {
-        /*schedules.clear();
-        schedules.addAll(DevUtils.getFakeHomeSchedules());*/
         setChanged();
         notifyObservers();
-    }
-
-    public void addToFavorites(Schedule schedule){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(ComperioContract.FavoriteEntry.COLUMN_SCHEDULE_KEY,schedule._id);
-
-        persistenceManager.getContentResolver()
-                .insert(ComperioContract.FavoriteEntry.CONTENT_URI,contentValues);
     }
 
     private void initializeLoader(){
