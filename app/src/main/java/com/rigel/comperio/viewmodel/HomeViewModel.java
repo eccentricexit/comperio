@@ -1,6 +1,5 @@
 package com.rigel.comperio.viewmodel;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;

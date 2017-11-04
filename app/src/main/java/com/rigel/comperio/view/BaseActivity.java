@@ -1,6 +1,5 @@
 package com.rigel.comperio.view;
 
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,8 +11,8 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.Navigator;
-import com.rigel.comperio.R;
 import com.rigel.comperio.PersistenceManager;
+import com.rigel.comperio.R;
 import com.rigel.comperio.data.ComperioContract;
 import com.rigel.comperio.model.Filter;
 import com.rigel.comperio.model.Schedule;

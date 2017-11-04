@@ -1,7 +1,5 @@
 package com.rigel.comperio;
 
-import android.content.ContentResolver;
-
 import com.rigel.comperio.model.Filter;
 import com.rigel.comperio.model.Schedule;
 

@@ -20,6 +20,7 @@ public class ItemScheduleViewModel extends BaseObservable {
     }
 
     public void onItemClick(View view) {
+
         navigator.navigateToDetailsActivity(schedule);
     }
 

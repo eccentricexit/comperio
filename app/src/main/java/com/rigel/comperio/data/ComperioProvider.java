@@ -7,8 +7,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
-import com.rigel.comperio.data.ComperioContract.ScheduleEntry;
 import com.rigel.comperio.data.ComperioContract.FavoriteEntry;
+import com.rigel.comperio.data.ComperioContract.ScheduleEntry;
 
 public class ComperioProvider extends ContentProvider {
 

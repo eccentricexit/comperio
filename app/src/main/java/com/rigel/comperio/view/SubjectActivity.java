@@ -1,12 +1,7 @@
 package com.rigel.comperio.view;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.widget.ArrayAdapter;
 
-import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.R;
 import com.rigel.comperio.adapters.SubjectAdapter;
 import com.rigel.comperio.databinding.ActivitySubjectBinding;

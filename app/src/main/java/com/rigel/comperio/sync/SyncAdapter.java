@@ -19,7 +19,6 @@ import com.rigel.comperio.data.ComperioContract.ScheduleEntry;
 import com.rigel.comperio.model.Schedule;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 import java.util.Vector;
 

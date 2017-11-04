@@ -2,15 +2,10 @@ package com.rigel.comperio.view;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.rigel.comperio.DevUtils;
-import com.rigel.comperio.Navigator;
-import com.rigel.comperio.PersistenceManager;
 import com.rigel.comperio.databinding.FragmentFiltersBinding;
 import com.rigel.comperio.viewmodel.FiltersViewModel;
 

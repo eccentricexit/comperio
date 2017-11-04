@@ -3,15 +3,11 @@ package com.rigel.comperio.view;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.rigel.comperio.DevUtils;
-import com.rigel.comperio.Navigator;
-import com.rigel.comperio.PersistenceManager;
 import com.rigel.comperio.adapters.ScheduleAdapter;
 import com.rigel.comperio.databinding.FragmentHomeBinding;
 import com.rigel.comperio.viewmodel.HomeViewModel;
