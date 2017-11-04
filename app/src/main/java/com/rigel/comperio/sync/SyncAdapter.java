@@ -99,7 +99,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
             return;
         }
 
-        Log.e(LOG_TAG, "Fetched "+schedules.size()+" schedules.");
+        Log.e(LOG_TAG, "Fetched " + schedules.size() + " schedules.");
 
         Vector<ContentValues> cVVector = getContentVVectorFor(schedules);
 

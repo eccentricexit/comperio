@@ -7,7 +7,7 @@ import com.rigel.comperio.adapters.SubjectAdapter;
 import com.rigel.comperio.databinding.ActivitySubjectBinding;
 import com.rigel.comperio.viewmodel.SubjectViewModel;
 
-public class SubjectActivity extends BaseActivity  {
+public class SubjectActivity extends BaseActivity {
 
     @Override
     protected void initDataBinding() {

@@ -6,7 +6,7 @@ import com.rigel.comperio.PersistenceManager;
 
 import java.util.Observable;
 
-public class BaseViewModel  extends Observable {
+public class BaseViewModel extends Observable {
     protected Navigator navigator;
     protected PersistenceManager persistenceManager;
     protected DevUtils.Logger logger;

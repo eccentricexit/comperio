@@ -16,7 +16,7 @@ import com.rigel.comperio.model.Schedule;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavoritesViewModel extends BaseViewModel implements LoaderManager.LoaderCallbacks<Cursor>{
+public class FavoritesViewModel extends BaseViewModel implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int SCHEDULES_LOADER = 1;
     private final Context context;
@@ -26,7 +26,7 @@ public class FavoritesViewModel extends BaseViewModel implements LoaderManager.L
 
 
     public FavoritesViewModel(Navigator navigator, PersistenceManager persistenceManager,
-                         DevUtils.Logger logger, LoaderManager loaderManager, Context context) {
+                              DevUtils.Logger logger, LoaderManager loaderManager, Context context) {
 
         super(navigator, persistenceManager, logger);
         this.loaderManager = loaderManager;
@@ -35,7 +35,7 @@ public class FavoritesViewModel extends BaseViewModel implements LoaderManager.L
         schedules = new ArrayList<>();
     }
 
-    public void initViewModel(){
+    public void initViewModel() {
         initializeLoader();
     }
 
@@ -44,11 +44,11 @@ public class FavoritesViewModel extends BaseViewModel implements LoaderManager.L
         notifyObservers();
     }
 
-    private void initializeLoader(){
+    private void initializeLoader() {
         loaderManager.initLoader(SCHEDULES_LOADER, null, this);
     }
 
-    public List<Schedule> getSchedules(){
+    public List<Schedule> getSchedules() {
         return this.schedules;
     }
 
@@ -67,7 +67,7 @@ public class FavoritesViewModel extends BaseViewModel implements LoaderManager.L
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         schedules = Schedule.schedulesFromCursor(data);
-        logger.toast("Total schedules fetched: "+schedules.size());
+        logger.toast("Total schedules fetched: " + schedules.size());
         refreshItems();
     }
 

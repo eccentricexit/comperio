@@ -9,7 +9,7 @@ public class ComperioFactory {
     private static final String PORT = "3000";
     private static final String API_VERSION = "v1";
 
-    private static final String BASE_URL = PROTOCOL + "://"+HOST + ":"+PORT+"/"+API_VERSION+"/";
+    private static final String BASE_URL = PROTOCOL + "://" + HOST + ":" + PORT + "/" + API_VERSION + "/";
 
     public static ComperioService create() {
         return new Retrofit.Builder()

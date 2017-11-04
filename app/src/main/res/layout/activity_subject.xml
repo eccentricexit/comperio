@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="subjectViewModel"
             type="com.rigel.comperio.viewmodel.SubjectViewModel" />

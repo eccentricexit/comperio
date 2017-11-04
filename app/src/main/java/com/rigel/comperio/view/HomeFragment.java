@@ -20,24 +20,25 @@ public class HomeFragment extends BaseFragment implements Observer {
     FragmentHomeBinding fragmentHomeBinding;
     HomeViewModel homeViewModel;
 
-    public HomeFragment() {  }
+    public HomeFragment() {
+    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        homeViewModel = new HomeViewModel(navigator, persistenceManager,logger,
-                getLoaderManager(),getContext());
+        homeViewModel = new HomeViewModel(navigator, persistenceManager, logger,
+                getLoaderManager(), getContext());
         homeViewModel.addObserver(this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        fragmentHomeBinding = FragmentHomeBinding.inflate(inflater,container,false);
+        fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false);
 
         fragmentHomeBinding.setHomeViewModel(homeViewModel);
         fragmentHomeBinding.recyclerHome.setLayoutManager(new LinearLayoutManager(getActivity()));
-        fragmentHomeBinding.recyclerHome.setAdapter(new ScheduleAdapter(navigator,logger));
+        fragmentHomeBinding.recyclerHome.setAdapter(new ScheduleAdapter(navigator, logger));
 
         return fragmentHomeBinding.getRoot();
     }

@@ -20,8 +20,8 @@ public class ComperioApplication extends Application {
         SyncAdapter.initializeSyncAdapter(this);
     }
 
-    public ComperioService getComperioService(){
-        if(comperioService==null){
+    public ComperioService getComperioService() {
+        if (comperioService == null) {
             comperioService = ComperioFactory.create();
         }
 

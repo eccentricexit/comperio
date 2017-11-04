@@ -35,7 +35,7 @@ public class HomeViewModel extends BaseViewModel implements LoaderManager.Loader
         schedules = new ArrayList<>();
     }
 
-    public void initViewModel(){
+    public void initViewModel() {
         initializeLoader();
     }
 
@@ -44,11 +44,11 @@ public class HomeViewModel extends BaseViewModel implements LoaderManager.Loader
         notifyObservers();
     }
 
-    private void initializeLoader(){
+    private void initializeLoader() {
         loaderManager.initLoader(SCHEDULES_LOADER, null, this);
     }
 
-    public List<Schedule> getSchedules(){
+    public List<Schedule> getSchedules() {
         return this.schedules;
     }
 
@@ -67,7 +67,7 @@ public class HomeViewModel extends BaseViewModel implements LoaderManager.Loader
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         schedules = Schedule.schedulesFromCursor(data);
-        logger.toast("Total schedules fetched: "+schedules.size());
+        logger.toast("Total schedules fetched: " + schedules.size());
         refreshItems();
     }
 

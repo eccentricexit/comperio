@@ -10,7 +10,7 @@ import android.view.MenuItem;
 
 import com.rigel.comperio.R;
 
-public abstract class BottomNavigationActivity extends BaseActivity{
+public abstract class BottomNavigationActivity extends BaseActivity {
 
     private static final String CURRENT_SCREEN_KEY = "current_screen_key";
     private static final int HOME_SCREEN = 0;
@@ -22,7 +22,7 @@ public abstract class BottomNavigationActivity extends BaseActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(savedInstanceState!=null) {
+        if (savedInstanceState != null) {
             currentScreen = savedInstanceState.getInt(CURRENT_SCREEN_KEY);
         }
 
@@ -38,42 +38,42 @@ public abstract class BottomNavigationActivity extends BaseActivity{
         navigation.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                switch (item.getItemId()) {
-                    case R.id.navigation_home:
-                        currentScreen = HOME_SCREEN;
-                        break;
-                    case R.id.navigation_favorites:
-                        currentScreen = FAVORITES_SCREEN;
-                        break;
-                    case R.id.navigation_filters:
-                        currentScreen = FILTERS_SCREEN;
-                        break;
-                }
+                        switch (item.getItemId()) {
+                            case R.id.navigation_home:
+                                currentScreen = HOME_SCREEN;
+                                break;
+                            case R.id.navigation_favorites:
+                                currentScreen = FAVORITES_SCREEN;
+                                break;
+                            case R.id.navigation_filters:
+                                currentScreen = FILTERS_SCREEN;
+                                break;
+                        }
 
-                showFragment(selectFragmentFor(currentScreen));
-                return true;
-            }
+                        showFragment(selectFragmentFor(currentScreen));
+                        return true;
+                    }
 
-        });
+                });
 
         navigation.getMenu().getItem(currentScreen).setChecked(true);
     }
 
     private Fragment selectFragmentFor(int currentScreen) {
-        switch (currentScreen){
-            case HOME_SCREEN:{
+        switch (currentScreen) {
+            case HOME_SCREEN: {
                 return HomeFragment.newInstance();
             }
-            case FAVORITES_SCREEN:{
+            case FAVORITES_SCREEN: {
                 return FavoritesFragment.newInstance();
             }
-            case FILTERS_SCREEN:{
+            case FILTERS_SCREEN: {
                 return FiltersFragment.newInstance();
             }
-            default:{
+            default: {
                 throw new UnsupportedOperationException();
             }
         }
@@ -87,7 +87,7 @@ public abstract class BottomNavigationActivity extends BaseActivity{
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putInt(CURRENT_SCREEN_KEY,currentScreen);
+        outState.putInt(CURRENT_SCREEN_KEY, currentScreen);
         super.onSaveInstanceState(outState);
     }
 

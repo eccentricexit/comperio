@@ -21,7 +21,6 @@ public class ComperioContract {
     public static final String PATH_FAVORITE = "favorites";
 
 
-
     public static URL buildUrlFor(String path) {
         Uri.Builder builderPopular = ComperioContract.getScheduleUriBuilder();
         builderPopular.appendPath(path);

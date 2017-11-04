@@ -16,12 +16,13 @@ import java.util.Observable;
 import java.util.Observer;
 
 
-public class FavoritesFragment extends BaseFragment implements Observer{
+public class FavoritesFragment extends BaseFragment implements Observer {
 
     FragmentFavoritesBinding fragmentFavoritesBinding;
     FavoritesViewModel favoritesViewModel;
 
-    public FavoritesFragment() {   }
+    public FavoritesFragment() {
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -32,8 +33,8 @@ public class FavoritesFragment extends BaseFragment implements Observer{
         logger = baseActivity.getLogger();
         persistenceManager = baseActivity.getPersistenceManager();
 
-        favoritesViewModel = new FavoritesViewModel(navigator, persistenceManager,logger,
-                getLoaderManager(),getContext());
+        favoritesViewModel = new FavoritesViewModel(navigator, persistenceManager, logger,
+                getLoaderManager(), getContext());
         favoritesViewModel.addObserver(this);
     }
 
@@ -50,11 +51,11 @@ public class FavoritesFragment extends BaseFragment implements Observer{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        fragmentFavoritesBinding = FragmentFavoritesBinding.inflate(inflater,container,false);
+        fragmentFavoritesBinding = FragmentFavoritesBinding.inflate(inflater, container, false);
 
         fragmentFavoritesBinding.setFavoritesViewModel(favoritesViewModel);
         fragmentFavoritesBinding.recyclerFavorites.setLayoutManager(new LinearLayoutManager(getActivity()));
-        fragmentFavoritesBinding.recyclerFavorites.setAdapter(new ScheduleAdapter(navigator,logger));
+        fragmentFavoritesBinding.recyclerFavorites.setAdapter(new ScheduleAdapter(navigator, logger));
 
         return fragmentFavoritesBinding.getRoot();
     }

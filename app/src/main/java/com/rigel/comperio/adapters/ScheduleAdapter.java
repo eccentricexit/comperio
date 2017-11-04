@@ -27,11 +27,13 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
         this.logger = logger;
     }
 
-    @Override public ScheduleAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @Override
+    public ScheduleAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ItemScheduleBinding itemScheduleBinding =
-                DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_schedule,
-                        parent, false);
-        return new ScheduleAdapterViewHolder(itemScheduleBinding,navigator,logger);
+                DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                        R.layout.item_schedule, parent, false);
+
+        return new ScheduleAdapterViewHolder(itemScheduleBinding, navigator, logger);
     }
 
     @Override
@@ -39,7 +41,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
         holder.bindSchedule(schedules.get(position));
     }
 
-    @Override public int getItemCount() {
+    @Override
+    public int getItemCount() {
         return schedules.size();
     }
 
@@ -53,17 +56,18 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
         Navigator navigator;
         DevUtils.Logger logger;
 
-        public ScheduleAdapterViewHolder(ItemScheduleBinding itemScheduleBinding, Navigator navigator, DevUtils.Logger logger) {
+        public ScheduleAdapterViewHolder(ItemScheduleBinding itemScheduleBinding,
+                                         Navigator navigator, DevUtils.Logger logger) {
             super(itemScheduleBinding.itemSchedule);
             this.itemScheduleBinding = itemScheduleBinding;
             this.navigator = navigator;
-            this.logger =logger;
+            this.logger = logger;
         }
 
         void bindSchedule(Schedule schedule) {
             if (itemScheduleBinding.getItemScheduleViewModel() == null) {
                 itemScheduleBinding.setItemScheduleViewModel(
-                        new ItemScheduleViewModel(schedule,navigator,logger));
+                        new ItemScheduleViewModel(schedule, navigator, logger));
             } else {
                 itemScheduleBinding.getItemScheduleViewModel().schedule = schedule;
             }

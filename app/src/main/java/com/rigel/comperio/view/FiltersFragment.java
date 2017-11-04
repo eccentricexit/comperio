@@ -14,7 +14,8 @@ public class FiltersFragment extends BaseFragment {
     FragmentFiltersBinding fragmentFiltersBinding;
     FiltersViewModel filtersViewModel;
 
-    public FiltersFragment() { }
+    public FiltersFragment() {
+    }
 
     public static FiltersFragment newInstance() {
         return new FiltersFragment();
@@ -23,13 +24,13 @@ public class FiltersFragment extends BaseFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        filtersViewModel = new FiltersViewModel(navigator, persistenceManager,logger);
+        filtersViewModel = new FiltersViewModel(navigator, persistenceManager, logger);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        fragmentFiltersBinding = FragmentFiltersBinding.inflate(inflater,container,false);
+        fragmentFiltersBinding = FragmentFiltersBinding.inflate(inflater, container, false);
         fragmentFiltersBinding.setFiltersViewModel(filtersViewModel);
 
         return fragmentFiltersBinding.getRoot();

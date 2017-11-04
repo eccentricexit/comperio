@@ -71,14 +71,14 @@ public class ComperioProvider extends ContentProvider {
                 break;
             }
             case FAVORITE: {
-                String rawQuery = "SELECT * FROM "+
-                        ScheduleEntry.TABLE_NAME+" INNER JOIN " +
-                        FavoriteEntry.TABLE_NAME+" ON "+
-                            ScheduleEntry.TABLE_NAME+"."+ ScheduleEntry._ID+" = "+
-                            FavoriteEntry.TABLE_NAME+"."+ FavoriteEntry.COLUMN_SCHEDULE_KEY;
+                String rawQuery = "SELECT * FROM " +
+                        ScheduleEntry.TABLE_NAME + " INNER JOIN " +
+                        FavoriteEntry.TABLE_NAME + " ON " +
+                        ScheduleEntry.TABLE_NAME + "." + ScheduleEntry._ID + " = " +
+                        FavoriteEntry.TABLE_NAME + "." + FavoriteEntry.COLUMN_SCHEDULE_KEY;
 
 
-                retCursor = mOpenHelper.getReadableDatabase().rawQuery(rawQuery,selectionArgs);
+                retCursor = mOpenHelper.getReadableDatabase().rawQuery(rawQuery, selectionArgs);
                 break;
             }
 
@@ -97,7 +97,8 @@ public class ComperioProvider extends ContentProvider {
 
         switch (match) {
             case SCHEDULE: {
-                long _id = db.insert(ComperioContract.ScheduleEntry.TABLE_NAME, null, values);
+                long _id = db.insert(ComperioContract.ScheduleEntry.TABLE_NAME,
+                        null, values);
                 if (_id > 0)
                     returnUri = ComperioContract.ScheduleEntry.buildScheduleUri(_id);
                 else
@@ -105,7 +106,8 @@ public class ComperioProvider extends ContentProvider {
                 break;
             }
             case FAVORITE: {
-                long _id = db.insert(ComperioContract.FavoriteEntry.TABLE_NAME, null, values);
+                long _id = db.insert(ComperioContract.FavoriteEntry.TABLE_NAME,
+                        null, values);
                 if (_id > 0)
                     returnUri = ComperioContract.FavoriteEntry.buildFavoriteUri(_id);
                 else
@@ -181,7 +183,8 @@ public class ComperioProvider extends ContentProvider {
                 int returnCount = 0;
                 try {
                     for (ContentValues value : values) {
-                        long _id = db.insert(ComperioContract.ScheduleEntry.TABLE_NAME, null, value);
+                        long _id = db.insert(ComperioContract.ScheduleEntry.TABLE_NAME,
+                                null, value);
                         if (_id != -1) {
                             returnCount++;
                         }
@@ -199,7 +202,8 @@ public class ComperioProvider extends ContentProvider {
                 int returnCount = 0;
                 try {
                     for (ContentValues value : values) {
-                        long _id = db.insert(ComperioContract.FavoriteEntry.TABLE_NAME, null, value);
+                        long _id = db.insert(ComperioContract.FavoriteEntry.TABLE_NAME,
+                                null, value);
                         if (_id != -1) {
                             returnCount++;
                         }
