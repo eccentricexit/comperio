@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ComperioFactory {
     private static final String PROTOCOL = "http";
-    private static final String HOST = "192.168.0.13";
+    private static final String HOST = "nextcloud.ti.eng.br";
     private static final String PORT = "3000";
     private static final String API_VERSION = "v1";
 

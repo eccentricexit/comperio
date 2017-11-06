@@ -28,4 +28,7 @@ public class ItemScheduleViewModel extends BaseObservable {
         return 999 + "m";
     }
 
+    public void swipeAction() {
+
+    }
 }
