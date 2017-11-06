@@ -1,6 +1,5 @@
 package com.rigel.comperio.viewmodel;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -36,30 +35,20 @@ public class HomeViewModel extends BaseViewModel implements LoaderManager.Loader
         schedules = new ArrayList<>();
     }
 
-    public void initViewModel(){
+    public void initViewModel() {
         initializeLoader();
     }
 
     public void refreshItems() {
-        /*schedules.clear();
-        schedules.addAll(DevUtils.getFakeHomeSchedules());*/
         setChanged();
         notifyObservers();
     }
 
-    public void addToFavorites(Schedule schedule){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(ComperioContract.FavoriteEntry.COLUMN_SCHEDULE_KEY,schedule._id);
-
-        persistenceManager.getContentResolver()
-                .insert(ComperioContract.FavoriteEntry.CONTENT_URI,contentValues);
-    }
-
-    private void initializeLoader(){
+    private void initializeLoader() {
         loaderManager.initLoader(SCHEDULES_LOADER, null, this);
     }
 
-    public List<Schedule> getSchedules(){
+    public List<Schedule> getSchedules() {
         return this.schedules;
     }
 
@@ -78,7 +67,6 @@ public class HomeViewModel extends BaseViewModel implements LoaderManager.Loader
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         schedules = Schedule.schedulesFromCursor(data);
-        logger.toast("Total schedules fetched: "+schedules.size());
         refreshItems();
     }
 
@@ -86,5 +74,9 @@ public class HomeViewModel extends BaseViewModel implements LoaderManager.Loader
     public void onLoaderReset(Loader<Cursor> loader) {
         schedules.clear();
         refreshItems();
+    }
+
+    public void swiped(ItemScheduleViewModel itemScheduleViewModel) {
+        logger.toast("Swiped "+itemScheduleViewModel.schedule.teacherName);
     }
 }

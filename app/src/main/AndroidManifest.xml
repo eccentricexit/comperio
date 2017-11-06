@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_SYNC_STATS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".ComperioApplication"
@@ -17,7 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.SubjectActivity" >
+        <activity android:name=".view.SubjectActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -25,8 +26,9 @@
         </activity>
         <activity android:name=".view.FreeTimeActivity" />
         <activity android:name=".view.ScheduleDetailActivity" />
-        <activity android:name=".view.MainActivity" android:label="@string/title_activity_home">
-        </activity>
+        <activity
+            android:name=".view.MainActivity"
+            android:label="@string/title_activity_home"></activity>
 
         <provider
             android:name=".data.ComperioProvider"
@@ -35,7 +37,9 @@
             android:exported="false"
             android:syncable="true" />
 
-        <service android:name=".sync.ComperioAuthService" android:exported="false">
+        <service
+            android:name=".sync.ComperioAuthService"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>

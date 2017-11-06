@@ -17,16 +17,16 @@ public class FreeTimeViewModel extends BaseViewModel {
         filter = persistenceManager.loadFilter();
     }
 
-    public String getFormattedStartTime(){
-        return filter.startHour+":"+filter.startMinute;
+    public String getFormattedStartTime() {
+        return filter.startHour + ":" + filter.startMinute;
     }
 
-    public String getFormattedEndTime(){
-        return filter.endHour+":"+filter.endMinute;
+    public String getFormattedEndTime() {
+        return filter.endHour + ":" + filter.endMinute;
     }
 
 
-    public void nextOnClick(View view){
+    public void nextOnClick(View view) {
         filter.initialized = true;
 
         persistenceManager.saveFilter(filter);

@@ -7,7 +7,7 @@ import com.rigel.comperio.Navigator;
 import com.rigel.comperio.PersistenceManager;
 import com.rigel.comperio.model.Filter;
 
-public class FiltersViewModel extends BaseViewModel{
+public class FiltersViewModel extends BaseViewModel {
 
     public Filter filter;
 
@@ -16,16 +16,16 @@ public class FiltersViewModel extends BaseViewModel{
         filter = persistenceManager.loadFilter();
     }
 
-    public String getFormattedDistance(){
-        return filter.maxDistance+"m";
+    public String getFormattedDistance() {
+        return filter.maxDistance + "m";
     }
 
-    public String getFormattedStartTime(){
-        return filter.startHour+":"+filter.startMinute;
+    public String getFormattedStartTime() {
+        return filter.startHour + ":" + filter.startMinute;
     }
 
-    public String getFormattedEndTime(){
-        return filter.endHour+":"+filter.endMinute;
+    public String getFormattedEndTime() {
+        return filter.endHour + ":" + filter.endMinute;
     }
 
     public void onPersistClick(View view) {

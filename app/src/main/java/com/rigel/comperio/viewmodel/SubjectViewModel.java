@@ -12,13 +12,15 @@ import com.rigel.comperio.model.Subject;
 public class SubjectViewModel extends BaseViewModel {
 
     public Filter filter;
-    public Subject[]  subjects;
+    public Subject[] subjects;
 
-    public SubjectViewModel(Navigator navigator, PersistenceManager persistenceManager, DevUtils.Logger logger) {
+    public SubjectViewModel(Navigator navigator, PersistenceManager persistenceManager,
+                            DevUtils.Logger logger) {
         super(navigator, persistenceManager, logger);
+
         filter = persistenceManager.loadFilter();
         subjects = DevUtils.getFakeSubjects();
-        if(filter.initialized){
+        if (filter.initialized) {
             navigator.navigateToHomeActivity();
         }
     }

@@ -1,6 +1,6 @@
 package com.rigel.comperio.view;
 
-import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,8 +11,9 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.Navigator;
-import com.rigel.comperio.R;
 import com.rigel.comperio.PersistenceManager;
+import com.rigel.comperio.R;
+import com.rigel.comperio.data.ComperioContract;
 import com.rigel.comperio.model.Filter;
 import com.rigel.comperio.model.Schedule;
 
@@ -32,7 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected Navigator getNavigator() {
 
-        if(navigator != null){
+        if (navigator != null) {
             return navigator;
         }
 
@@ -64,7 +65,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected PersistenceManager getPersistenceManager() {
-        if(persistenceManager !=null){
+        if (persistenceManager != null) {
             return persistenceManager;
         }
 
@@ -74,11 +75,11 @@ public abstract class BaseActivity extends AppCompatActivity {
             public Filter loadFilter() {
                 Gson gson = new Gson();
                 String json = getComperioPreferences()
-                        .getString(getString(R.string.FILTER_KEY),"");
+                        .getString(getString(R.string.FILTER_KEY), "");
 
-                if(!json.equals("")){
+                if (!json.equals("")) {
                     return gson.fromJson(json, Filter.class);
-                }else{
+                } else {
                     return new Filter();
                 }
             }
@@ -90,8 +91,20 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
 
             @Override
-            public ContentResolver getContentResolver() {
-                return getContentResolver();
+            public void addToFavorites(Schedule schedule) {
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(ComperioContract.FavoriteEntry.COLUMN_SCHEDULE_KEY, schedule._id);
+
+                getContentResolver()
+                        .insert(ComperioContract.FavoriteEntry.CONTENT_URI, contentValues);
+            }
+
+            @Override
+            public void removeFromFavorites(Schedule schedule) {
+                getContentResolver().delete(
+                        ComperioContract.FavoriteEntry.CONTENT_URI,
+                        ComperioContract.FavoriteEntry.COLUMN_SCHEDULE_KEY + " = ?",
+                        new String[]{schedule._id});
             }
 
             private SharedPreferences.Editor getEditor() {
@@ -101,15 +114,15 @@ public abstract class BaseActivity extends AppCompatActivity {
 
             private SharedPreferences getComperioPreferences() {
                 String key = getString(R.string.SHARED_PREFERENCES_KEY);
-                return getSharedPreferences(key,0);
+                return getSharedPreferences(key, 0);
             }
         };
 
         return persistenceManager;
     }
 
-    protected DevUtils.Logger getLogger(){
-        if(logger!=null){
+    protected DevUtils.Logger getLogger() {
+        if (logger != null) {
             return logger;
         }
 

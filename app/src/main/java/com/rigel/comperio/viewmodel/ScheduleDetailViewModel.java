@@ -22,7 +22,7 @@ public class ScheduleDetailViewModel extends BaseViewModel {
         // TODO: lauch intent to add teacher to contacts
     }
 
-    protected Schedule getSchedule(){
+    protected Schedule getSchedule() {
         return this.schedule;
     }
 
@@ -31,7 +31,7 @@ public class ScheduleDetailViewModel extends BaseViewModel {
         notifyObservers();
     }
 
-    public String getFormattedDistance(){
+    public String getFormattedDistance() {
         return "2.3km";
     }
 

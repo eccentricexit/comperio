@@ -19,19 +19,15 @@ import com.rigel.comperio.data.ComperioContract.ScheduleEntry;
 import com.rigel.comperio.model.Schedule;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 import java.util.Vector;
 
 public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
+    // TODO: Swap default logger for timber
     private static final String LOG_TAG = SyncAdapter.class.getSimpleName();
 
     private Context context;
-
-    public interface SyncManager{
-        void initializeSyncAdapter();
-    }
 
     public SyncAdapter(Context context) {
         super(context, true);
@@ -104,7 +100,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
             return;
         }
 
-        Log.e(LOG_TAG, "Fetched "+schedules.size()+" schedules.");
+        Log.e(LOG_TAG, "Fetched " + schedules.size() + " schedules.");
 
         Vector<ContentValues> cVVector = getContentVVectorFor(schedules);
 
