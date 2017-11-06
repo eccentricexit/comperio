@@ -15,11 +15,12 @@ import com.rigel.comperio.viewmodel.ItemScheduleViewModel;
 import java.util.Collections;
 import java.util.List;
 
-public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ScheduleAdapterViewHolder> {
+public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder> {
 
     private List<Schedule> schedules;
     private Navigator navigator;
     private DevUtils.Logger logger;
+    private ThreadLocal scheduleLists;
 
     public ScheduleAdapter(Navigator navigator, DevUtils.Logger logger) {
         this.schedules = Collections.emptyList();
@@ -28,16 +29,16 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
     }
 
     @Override
-    public ScheduleAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ScheduleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ItemScheduleBinding itemScheduleBinding =
                 DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
                         R.layout.item_schedule, parent, false);
 
-        return new ScheduleAdapterViewHolder(itemScheduleBinding, navigator, logger);
+        return new ScheduleViewHolder(itemScheduleBinding, navigator, logger);
     }
 
     @Override
-    public void onBindViewHolder(ScheduleAdapterViewHolder holder, int position) {
+    public void onBindViewHolder(ScheduleViewHolder holder, int position) {
         holder.bindSchedule(schedules.get(position));
     }
 
@@ -51,13 +52,17 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
         notifyDataSetChanged();
     }
 
-    public static class ScheduleAdapterViewHolder extends RecyclerView.ViewHolder {
+    public List<Schedule> getScheduleList() {
+        return schedules;
+    }
+
+    public static class ScheduleViewHolder extends RecyclerView.ViewHolder {
         ItemScheduleBinding itemScheduleBinding;
         Navigator navigator;
         DevUtils.Logger logger;
 
-        public ScheduleAdapterViewHolder(ItemScheduleBinding itemScheduleBinding,
-                                         Navigator navigator, DevUtils.Logger logger) {
+        public ScheduleViewHolder(ItemScheduleBinding itemScheduleBinding,
+                                  Navigator navigator, DevUtils.Logger logger) {
             super(itemScheduleBinding.itemSchedule);
             this.itemScheduleBinding = itemScheduleBinding;
             this.navigator = navigator;
@@ -71,6 +76,9 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
             } else {
                 itemScheduleBinding.getItemScheduleViewModel().schedule = schedule;
             }
+        }
+        public ItemScheduleBinding getItemScheduleBinding(){
+            return itemScheduleBinding;
         }
     }
 }

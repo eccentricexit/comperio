@@ -20,12 +20,15 @@ public class ItemScheduleViewModel extends BaseObservable {
     }
 
     public void onItemClick(View view) {
-
         navigator.navigateToDetailsActivity(schedule);
     }
 
     public String getFormattedDistance() {
         return 999 + "m";
+    }
+
+    public String getFormattedHourPrice(){
+        return "$"+schedule.hourPrice+"/hour";
     }
 
     public void swipeAction() {

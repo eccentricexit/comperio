@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,8 +41,32 @@ public class HomeFragment extends BaseFragment implements Observer {
         fragmentHomeBinding.setHomeViewModel(homeViewModel);
         fragmentHomeBinding.recyclerHome.setLayoutManager(new LinearLayoutManager(getActivity()));
         fragmentHomeBinding.recyclerHome.setAdapter(new ScheduleAdapter(navigator, logger));
+        buildItemTouchHelper().attachToRecyclerView(fragmentHomeBinding.recyclerHome);
 
         return fragmentHomeBinding.getRoot();
+    }
+
+    private ItemTouchHelper buildItemTouchHelper() {
+        return new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
+                                  RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                homeViewModel.swiped(((ScheduleAdapter.ScheduleViewHolder)viewHolder)
+                        .getItemScheduleBinding().getItemScheduleViewModel());
+
+                ((ScheduleAdapter)fragmentHomeBinding.recyclerHome.getAdapter())
+                        .getScheduleList().remove(viewHolder.getAdapterPosition());
+
+                fragmentHomeBinding.recyclerHome.getAdapter()
+                        .notifyItemRemoved(viewHolder.getAdapterPosition());
+            }
+        });
     }
 
     @Override

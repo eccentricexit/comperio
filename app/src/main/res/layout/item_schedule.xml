@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
             name="itemScheduleViewModel"
@@ -12,6 +10,7 @@
         android:id="@+id/itemSchedule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{itemScheduleViewModel::onItemClick}"
         android:background="?android:attr/windowBackground">
 
         <LinearLayout
@@ -38,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:paddingBottom="4sp"
-                    android:text="person@sample.com"
+                    android:text="@{itemScheduleViewModel.schedule.teacherName}"
                     android:textColor="?android:attr/textColorPrimary"
                     android:textSize="16sp" />
 
@@ -48,7 +47,7 @@
                     android:layout_marginBottom="16dp"
                     android:lineSpacingExtra="4sp"
                     android:maxLines="2"
-                    android:text="Hi there, try this awesome new library for easily implementing a swipe to dismiss pattern in lists..."
+                    android:text="@{itemScheduleViewModel.formattedHourPrice}"
                     android:textColor="?android:attr/textColorSecondary"
                     android:textSize="14sp" />
             </LinearLayout>

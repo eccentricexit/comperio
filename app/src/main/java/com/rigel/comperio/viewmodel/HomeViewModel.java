@@ -67,7 +67,6 @@ public class HomeViewModel extends BaseViewModel implements LoaderManager.Loader
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         schedules = Schedule.schedulesFromCursor(data);
-        logger.toast("Total schedules fetched: " + schedules.size());
         refreshItems();
     }
 
@@ -75,5 +74,9 @@ public class HomeViewModel extends BaseViewModel implements LoaderManager.Loader
     public void onLoaderReset(Loader<Cursor> loader) {
         schedules.clear();
         refreshItems();
+    }
+
+    public void swiped(ItemScheduleViewModel itemScheduleViewModel) {
+        logger.toast("Swiped "+itemScheduleViewModel.schedule.teacherName);
     }
 }
