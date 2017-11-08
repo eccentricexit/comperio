@@ -35,8 +35,8 @@
     <string name="content_authority">com.rigel.comperio</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_home">Home</string>
-    <string name="title_favorites">Dashboard</string>
-    <string name="title_filters">Notifications</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="title_filters">Filters</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_favorites">FavoritesActivity</string>
     <string name="title_activity_filters">FiltersActivity</string>
@@ -645,5 +645,6 @@
     <string name="fa_train">&#xf238;</string>
     <string name="fa_subway">&#xf239;</string>
     <string name="fa_medium">&#xf23a;</string>
+    <string name="schedule_thumbnail">Schedule Thumbnail</string>
 
 </resources>

@@ -31,7 +31,4 @@ public class ItemScheduleViewModel extends BaseObservable {
         return "$"+schedule.hourPrice+"/hour";
     }
 
-    public void swipeAction() {
-
-    }
 }
