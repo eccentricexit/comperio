@@ -40,7 +40,8 @@ public class HomeFragment extends BaseFragment implements Observer {
 
         fragmentHomeBinding.setHomeViewModel(homeViewModel);
         fragmentHomeBinding.recyclerHome.setLayoutManager(new LinearLayoutManager(getActivity()));
-        fragmentHomeBinding.recyclerHome.setAdapter(new ScheduleAdapter(navigator, logger));
+        fragmentHomeBinding.recyclerHome.setAdapter(new ScheduleAdapter(getContext(),
+                navigator, logger));
         buildItemTouchHelper().attachToRecyclerView(fragmentHomeBinding.recyclerHome);
 
         return fragmentHomeBinding.getRoot();

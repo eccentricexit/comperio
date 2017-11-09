@@ -1,6 +1,9 @@
 package com.rigel.comperio.view;
 
+import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.provider.ContactsContract;
 
 import com.rigel.comperio.R;
 import com.rigel.comperio.databinding.ActivityScheduleDetailBinding;
@@ -10,6 +13,7 @@ import com.rigel.comperio.viewmodel.ScheduleDetailViewModel;
 
 public class ScheduleDetailActivity extends BaseActivity {
 
+    private static final int REQUEST_CODE = 0;
     private ActivityScheduleDetailBinding scheduleDetailActivityBinding;
     private ScheduleDetailViewModel scheduleDetailViewModel;
 
@@ -23,6 +27,18 @@ public class ScheduleDetailActivity extends BaseActivity {
                 schedule, getLogger());
 
         scheduleDetailActivityBinding.setScheduleDetailViewModel(scheduleDetailViewModel);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode!=REQUEST_CODE){
+            return;
+        }
+
+        showInterstitialAd();
+
     }
 
 }

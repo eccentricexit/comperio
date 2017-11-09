@@ -4,11 +4,17 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.gson.Gson;
+import com.rigel.comperio.BuildConfig;
+import com.rigel.comperio.ComperioApplication;
 import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.Navigator;
 import com.rigel.comperio.PersistenceManager;
@@ -21,6 +27,9 @@ import timber.log.Timber;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
+    private static final int REQUEST_CODE = 0;
+    private InterstitialAd mInterstitialAd;
+
     private Navigator navigator;
     private PersistenceManager persistenceManager;
     private DevUtils.Logger logger;
@@ -29,6 +38,28 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initDataBinding();
+        initAds();
+    }
+
+    private void initAds() {
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            }
+
+        });
+    }
+
+    protected void showInterstitialAd(){
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Timber.d("The interstitial wasn't loaded yet.");
+        }
     }
 
     protected Navigator getNavigator() {
@@ -53,6 +84,20 @@ public abstract class BaseActivity extends AppCompatActivity {
                 Intent intent = new Intent(BaseActivity.this, ScheduleDetailActivity.class);
                 intent.putExtra(BaseActivity.this.getString(R.string.EXTRA_SCHEDULE), schedule);
                 startActivity(intent);
+            }
+
+            @Override
+            public void navigateToAddContact(Schedule schedule) {
+                Intent intent = new Intent(Intent.ACTION_INSERT);
+                intent.setType(ContactsContract.Contacts.CONTENT_TYPE);
+
+                intent.putExtra(ContactsContract.Intents.Insert.NAME, schedule.teacherName);
+                intent.putExtra(ContactsContract.Intents.Insert.PHONE, schedule.teacherPhone);
+                intent.putExtra(ContactsContract.Intents.Insert.COMPANY, getString(R.string.app_name));
+                intent.putExtra(ContactsContract.Intents.Insert.JOB_TITLE,
+                        schedule.subjectName+" "+getString(R.string.teacher));
+
+                startActivityForResult(intent,REQUEST_CODE);
             }
 
             private void navigate(Class<?> destination) {

@@ -54,8 +54,10 @@ public class FavoritesFragment extends BaseFragment implements Observer {
         fragmentFavoritesBinding = FragmentFavoritesBinding.inflate(inflater, container, false);
 
         fragmentFavoritesBinding.setFavoritesViewModel(favoritesViewModel);
-        fragmentFavoritesBinding.recyclerFavorites.setLayoutManager(new LinearLayoutManager(getActivity()));
-        fragmentFavoritesBinding.recyclerFavorites.setAdapter(new ScheduleAdapter(navigator, logger));
+        fragmentFavoritesBinding.recyclerFavorites.setLayoutManager(
+                new LinearLayoutManager(getActivity()));
+        fragmentFavoritesBinding.recyclerFavorites.setAdapter(
+                new ScheduleAdapter(getContext(),navigator, logger));
 
         return fragmentFavoritesBinding.getRoot();
     }
