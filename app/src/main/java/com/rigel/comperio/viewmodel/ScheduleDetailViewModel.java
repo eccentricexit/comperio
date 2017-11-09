@@ -6,6 +6,7 @@ import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.Navigator;
 import com.rigel.comperio.PersistenceManager;
 import com.rigel.comperio.model.Schedule;
+import com.rigel.comperio.view.ScheduleDetailActivity;
 
 public class ScheduleDetailViewModel extends BaseViewModel {
 
@@ -19,7 +20,7 @@ public class ScheduleDetailViewModel extends BaseViewModel {
     }
 
     public void onLetsTalkClick(View view) {
-        // TODO: lauch intent to add teacher to contacts
+        navigator.navigateToAddContact(schedule);
     }
 
     protected Schedule getSchedule() {

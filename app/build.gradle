@@ -22,6 +22,22 @@ android {
     dataBinding {
         enabled = true
     }
+
+    flavorDimensions "tier"
+
+    productFlavors {
+        free {
+            applicationId "com.rigel.comperio"
+            versionCode 1
+            versionName "1.0"
+        }
+
+        paid {
+            applicationId "com.rigel.comperio"
+            versionCode 1
+            versionName "1.0"
+        }
+    }
 }
 
 dependencies {
@@ -47,6 +63,8 @@ dependencies {
     testCompile testingDependencies.junit
     testCompile testingDependencies.mockito
     testCompile testingDependencies.robolectric
+
+    freeCompile 'com.google.android.gms:play-services-ads:11.6.0'
 
     // TODO: Remove these (since they are added from dependencies.gradle
     compile 'com.android.support:design:25.3.1'

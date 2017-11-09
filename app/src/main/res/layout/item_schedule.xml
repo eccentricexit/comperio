@@ -125,7 +125,7 @@
                     android:layout_marginRight="16dp"
                     android:isIndicator="true"
                     android:numStars="5"
-                    android:rating="@{itemScheduleViewModel.schedule.teacherRating}"
+                    android:rating="@{safeUnbox(itemScheduleViewModel.schedule.teacherRating)}"
                     app:layout_constraintBottom_toBottomOf="@+id/textView6"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView6" />

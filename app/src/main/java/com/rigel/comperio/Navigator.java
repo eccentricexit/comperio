@@ -8,4 +8,6 @@ public interface Navigator {
     void navigateToHomeActivity();
 
     void navigateToDetailsActivity(Schedule schedule);
+
+    void navigateToAddContact(Schedule schedule);
 }
