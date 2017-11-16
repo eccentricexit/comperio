@@ -144,7 +144,7 @@
                 android:id="@+id/textView18"
                 android:text="@{scheduleDetailViewModel.schedule.teacherStory}"
                 android:layout_width="280dp"
-                android:layout_height="51dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="20dp"
