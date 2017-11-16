@@ -28,6 +28,7 @@ public class Schedule implements Serializable {
     @SerializedName("startMinute") public Integer startMinute;
     @SerializedName("endHour") public Integer endHour;
     @SerializedName("endMinute") public Integer endMinute;
+    @SerializedName("distance") public Float distance;
 
     public Schedule() {
         loc = new Float[2];

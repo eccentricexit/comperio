@@ -24,7 +24,7 @@ public class ItemScheduleViewModel extends BaseObservable {
     }
 
     public String getFormattedDistance() {
-        return 999 + "m";
+        return schedule.distance + "m";
     }
 
     public String getFormattedHourPrice(){

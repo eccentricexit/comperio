@@ -33,7 +33,11 @@ public class ScheduleDetailViewModel extends BaseViewModel {
     }
 
     public String getFormattedDistance() {
-        return "2.3km";
+        return schedule.distance+"m";
+    }
+
+    public String getFormattedHourPrice(){
+        return "$"+schedule.hourPrice+"/hour";
     }
 
 }

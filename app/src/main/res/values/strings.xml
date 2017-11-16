@@ -647,5 +647,6 @@
     <string name="fa_medium">&#xf23a;</string>
     <string name="schedule_thumbnail">Schedule Thumbnail</string>
     <string name="teacher">teacher</string>
+    <string name="lblLetTalk">Let\'s Talk!</string>
 
 </resources>
