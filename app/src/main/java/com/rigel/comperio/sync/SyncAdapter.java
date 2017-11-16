@@ -136,6 +136,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
             values.put(ScheduleEntry.COLUMN_START_MINUTE, schedule.startMinute);
             values.put(ScheduleEntry.COLUMN_END_HOUR, schedule.endHour);
             values.put(ScheduleEntry.COLUMN_END_MINUTE, schedule.endMinute);
+            values.put(ScheduleEntry.COLUMN_TEACHER_DISTANCE,schedule.distance);
 
             contentValuesVector.add(values);
         }
