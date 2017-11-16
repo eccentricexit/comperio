@@ -142,12 +142,11 @@
 
             <TextView
                 android:id="@+id/textView18"
-                android:text="@{scheduleDetailViewModel.schedule.teacherStory}"
-                android:layout_width="280dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="20dp"
+                android:text="@{scheduleDetailViewModel.schedule.teacherStory}"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
@@ -158,20 +157,23 @@
 
             <Button
                 android:id="@+id/button"
-                android:onClick="@{scheduleDetailViewModel::onLetsTalkClick}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginTop="24dp"
                 android:background="@color/accent"
+                android:onClick="@{scheduleDetailViewModel::onLetsTalkClick}"
                 android:paddingBottom="16dp"
                 android:paddingEnd="36dp"
                 android:paddingStart="36dp"
                 android:paddingTop="16dp"
                 android:text="@string/lblLetTalk"
                 android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/view4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                app:layout_constraintTop_toBottomOf="@+id/textView18"
+                app:layout_constraintVertical_bias="0" />
 
 
         </android.support.constraint.ConstraintLayout>
