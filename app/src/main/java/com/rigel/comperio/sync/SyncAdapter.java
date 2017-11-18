@@ -34,11 +34,6 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         this.context = context;
     }
 
-    public static void initializeSyncAdapter(Context context) {
-        getSyncAccount(context);
-        syncImmediately(context);
-    }
-
     private static Account getSyncAccount(Context context) {
 
         AccountManager accountManager =
@@ -64,7 +59,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         ContentResolver.setSyncAutomatically(newAccount, ComperioContract.CONTENT_AUTHORITY, true);
     }
 
-    private static void syncImmediately(Context context) {
+    public static void syncImmediately(Context context) {
         Bundle bundle = new Bundle();
         bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
         bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);

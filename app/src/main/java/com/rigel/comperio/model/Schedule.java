@@ -96,6 +96,8 @@ public class Schedule implements Serializable {
 
         }
 
+        cursor.close();
+
         return schedules;
     }
 }

@@ -77,6 +77,8 @@ public class HomeViewModel extends BaseViewModel implements LoaderManager.Loader
     }
 
     public void swiped(ItemScheduleViewModel itemScheduleViewModel) {
+        //TODO: fix this
         logger.toast("Swiped "+itemScheduleViewModel.schedule.teacherName);
+        persistenceManager.addToFavorites(itemScheduleViewModel.schedule);
     }
 }
