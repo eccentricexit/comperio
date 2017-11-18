@@ -41,6 +41,7 @@ android {
 }
 
 dependencies {
+
     compile supportDependencies.appCompat
     compile supportDependencies.design
     compile supportDependencies.recyclerView
@@ -66,6 +67,11 @@ dependencies {
 
     freeCompile 'com.google.android.gms:play-services-ads:11.6.0'
 
+    implementation 'com.google.firebase:firebase-messaging:11.6.0'
+
     // TODO: Remove these (since they are added from dependencies.gradle
     compile 'com.android.support:support-v4:25.3.1'
 }
+
+
+apply plugin: 'com.google.gms.google-services'

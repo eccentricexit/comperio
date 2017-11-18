@@ -1,9 +1,7 @@
 package com.rigel.comperio.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.provider.ContactsContract;
 
 import com.rigel.comperio.R;
 import com.rigel.comperio.databinding.ActivityScheduleDetailBinding;

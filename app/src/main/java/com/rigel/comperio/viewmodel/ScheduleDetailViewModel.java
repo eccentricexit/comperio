@@ -6,7 +6,6 @@ import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.Navigator;
 import com.rigel.comperio.PersistenceManager;
 import com.rigel.comperio.model.Schedule;
-import com.rigel.comperio.view.ScheduleDetailActivity;
 
 public class ScheduleDetailViewModel extends BaseViewModel {
 

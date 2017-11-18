@@ -5,9 +5,6 @@ import android.content.ContentUris;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 public class ComperioContract {
 
     public static final String CONTENT_AUTHORITY = "com.rigel.comperio";
@@ -20,20 +17,6 @@ public class ComperioContract {
     public static final String PATH_SCHEDULE = "schedules";
     public static final String PATH_FAVORITE = "favorites";
 
-
-    public static URL buildUrlFor(String path) {
-        Uri.Builder builderPopular = ComperioContract.getScheduleUriBuilder();
-        builderPopular.appendPath(path);
-
-        URL urlResult = null;
-        try {
-            urlResult = new URL(builderPopular.toString());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        return urlResult;
-    }
 
     private static Uri.Builder getScheduleUriBuilder() {
         return Uri.parse(COMPERIO_BASE_URL).buildUpon().appendPath(PATH_SCHEDULE);
@@ -58,9 +41,7 @@ public class ComperioContract {
         public static final String COLUMN_END_HOUR = "end_hour";
         public static final String COLUMN_END_MINUTE = "end_minute";
         public static final String COLUMN_WEEK_DAYS = "week_days";
-
         public static final String COLUMN_SUBJECT_NAME = "subject_name";
-
         public static final String COLUMN_TEACHER_NAME = "teacher_name";
         public static final String COLUMN_TEACHER_RATING = "teacher_rating";
         public static final String COLUMN_TEACHER_PHONE = "teacher_phone";
@@ -68,6 +49,7 @@ public class ComperioContract {
         public static final String COLUMN_TEACHER_LAT = "teacher_coord_lat";
         public static final String COLUMN_TEACHER_LONG = "teacher_coord_long";
         public static final String COLUMN_TEACHER_PIC_URL = "teacher_pic_url";
+        public static final String COLUMN_TEACHER_DISTANCE = "distance";
 
 
         public static Uri buildScheduleUri(long id) {

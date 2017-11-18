@@ -22,7 +22,6 @@ public class ComperioApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Timber.plant(new Timber.DebugTree());
-        SyncAdapter.initializeSyncAdapter(this);
         initAds();
     }
 

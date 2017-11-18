@@ -216,8 +216,10 @@ public class ComperioProvider extends ContentProvider {
                 return returnCount;
             }
 
-            default:
+            default: {
+                getContext().getContentResolver().notifyChange(uri, null);
                 return super.bulkInsert(uri, values);
+            }
         }
     }
 
