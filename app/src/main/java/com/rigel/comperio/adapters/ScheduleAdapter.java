@@ -43,9 +43,10 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
 
     @Override
     public void onBindViewHolder(ScheduleViewHolder holder, int position) {
-        holder.bindSchedule(schedules.get(position));
+        Schedule schedule = schedules.get(position);
+        holder.bindSchedule(schedule);
         Picasso.with(context)
-                .load(holder.itemScheduleBinding.getItemScheduleViewModel().schedule.teacherPicUrl)
+                .load(schedule.teacherPicUrl)
                 .into(holder.itemScheduleBinding.avatar);
     }
 
@@ -77,12 +78,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
         }
 
         void bindSchedule(Schedule schedule) {
-            if (itemScheduleBinding.getItemScheduleViewModel() == null) {
-                itemScheduleBinding.setItemScheduleViewModel(
-                        new ItemScheduleViewModel(schedule, navigator, logger));
-            } else {
-                itemScheduleBinding.getItemScheduleViewModel().schedule = schedule;
-            }
+            itemScheduleBinding.setItemScheduleViewModel(
+                    new ItemScheduleViewModel(schedule, navigator, logger));
         }
         public ItemScheduleBinding getItemScheduleBinding(){
             return itemScheduleBinding;
