@@ -12,10 +12,12 @@ import com.rigel.comperio.data.ComperioContract.ScheduleEntry;
 
 public class ComperioProvider extends ContentProvider {
 
-    static final int SCHEDULE = 100;
-    static final int FAVORITE = 200;
+    private static final int SCHEDULE = 100;
+    private static final int FAVORITE = 200;
+    private static final int FAVORITE_BY_ID = 201;
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
+
 
 
     private ComperioDbHelper mOpenHelper;
@@ -77,6 +79,17 @@ public class ComperioProvider extends ContentProvider {
                         ScheduleEntry.TABLE_NAME + "." + ScheduleEntry.COLUMN_SCHEDULE_ID + " = " +
                         FavoriteEntry.TABLE_NAME + "." + FavoriteEntry.COLUMN_SCHEDULE_KEY;
 
+                retCursor = mOpenHelper.getReadableDatabase().rawQuery(rawQuery, null);
+                break;
+            }
+
+            case FAVORITE_BY_ID:{
+                String rawQuery = "SELECT * FROM " +
+                        ScheduleEntry.TABLE_NAME + " INNER JOIN " +
+                        FavoriteEntry.TABLE_NAME + " ON " +
+                        ScheduleEntry.TABLE_NAME + "." + ScheduleEntry.COLUMN_SCHEDULE_ID + " = " +
+                        FavoriteEntry.TABLE_NAME + "." + FavoriteEntry.COLUMN_SCHEDULE_KEY +
+                        " WHERE "+FavoriteEntry.COLUMN_SCHEDULE_KEY+" = ?";
 
                 retCursor = mOpenHelper.getReadableDatabase().rawQuery(rawQuery, selectionArgs);
                 break;
@@ -100,7 +113,7 @@ public class ComperioProvider extends ContentProvider {
                 long _id = db.insert(ComperioContract.ScheduleEntry.TABLE_NAME,
                         null, values);
                 if (_id > 0)
-                    returnUri = ComperioContract.ScheduleEntry.buildScheduleUri(_id);
+                    returnUri = ComperioContract.ScheduleEntry.buildScheduleUriWith(_id);
                 else
                     throw new android.database.SQLException("Failed to insert row into " + uri);
                 break;
@@ -109,7 +122,7 @@ public class ComperioProvider extends ContentProvider {
                 long _id = db.insert(ComperioContract.FavoriteEntry.TABLE_NAME,
                         null, values);
                 if (_id > 0)
-                    returnUri = ComperioContract.FavoriteEntry.buildFavoriteUri(_id);
+                    returnUri = ComperioContract.FavoriteEntry.buildFavoriteUriWith(_id);
                 else
                     throw new android.database.SQLException("Failed to insert row into " + uri);
                 break;

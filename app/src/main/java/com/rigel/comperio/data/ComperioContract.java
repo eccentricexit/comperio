@@ -52,9 +52,10 @@ public class ComperioContract {
         public static final String COLUMN_TEACHER_DISTANCE = "distance";
 
 
-        public static Uri buildScheduleUri(long id) {
+        public static Uri buildScheduleUriWith(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
+
     }
 
     public static final class FavoriteEntry implements BaseColumns {
@@ -63,7 +64,7 @@ public class ComperioContract {
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_FAVORITE).build();
 
         public static final String CONTENT_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SCHEDULE;
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_FAVORITE;
 
 
         public static final String TABLE_NAME = "favorites";
@@ -71,10 +72,9 @@ public class ComperioContract {
         public static final String COLUMN_SCHEDULE_KEY = "schedule_id";
 
 
-        public static Uri buildFavoriteUri(long id) {
+        public static Uri buildFavoriteUriWith(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
     }
-
 
 }

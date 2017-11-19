@@ -23,7 +23,7 @@ public class ComperioDbHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_SCHEDULE_TABLE = "CREATE TABLE " + ScheduleEntry.TABLE_NAME + " (" +
                 ScheduleEntry._ID + " INTEGER PRIMARY KEY," +
 
-                ScheduleEntry.COLUMN_SCHEDULE_ID + " TEXT NOT NULL, " +
+                ScheduleEntry.COLUMN_SCHEDULE_ID + " TEXT UNIQUE NOT NULL, " +
                 ScheduleEntry.COLUMN_HOUR_PRICE + " INTEGER NOT NULL, " +
                 ScheduleEntry.COLUMN_START_HOUR + " INTEGER NOT NULL, " +
                 ScheduleEntry.COLUMN_START_MINUTE + " INTEGER NOT NULL, " +
@@ -41,12 +41,11 @@ public class ComperioDbHelper extends SQLiteOpenHelper {
                 ScheduleEntry.COLUMN_TEACHER_PIC_URL + " TEXT NOT NULL, " +
                 ScheduleEntry.COLUMN_TEACHER_DISTANCE + " REAL NOT NULL " +
 
-
                 " );";
 
         final String SQL_CREATE_FAVORITES_TABLE = "CREATE TABLE " + FavoriteEntry.TABLE_NAME + " (" +
                 FavoriteEntry._ID + " INTEGER PRIMARY KEY," +
-                FavoriteEntry.COLUMN_SCHEDULE_KEY + " TEXT NOT NULL " +
+                FavoriteEntry.COLUMN_SCHEDULE_KEY + " TEXT UNIQUE NOT NULL " +
                 " );";
 
         sqLiteDatabase.execSQL(SQL_CREATE_SCHEDULE_TABLE);
