@@ -70,7 +70,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
 
         public ScheduleViewHolder(ItemScheduleBinding itemScheduleBinding,
                                   Navigator navigator, DevUtils.Logger logger) {
-            super(itemScheduleBinding.itemSchedule);
+            super(itemScheduleBinding.itemScheduleLayout);
             this.itemScheduleBinding = itemScheduleBinding;
             this.navigator = navigator;
             this.logger = logger;
