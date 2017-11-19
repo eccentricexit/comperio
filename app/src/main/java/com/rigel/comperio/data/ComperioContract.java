@@ -34,7 +34,7 @@ public class ComperioContract {
 
         public static final String TABLE_NAME = "schedules";
 
-
+        public static final String COLUMN_SCHEDULE_ID = "schedule_id";
         public static final String COLUMN_HOUR_PRICE = "hour_price";
         public static final String COLUMN_START_HOUR = "start_hour";
         public static final String COLUMN_START_MINUTE = "start_minute";

@@ -117,6 +117,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         for (Schedule schedule : schedules) {
             ContentValues values = new ContentValues();
 
+            values.put(ScheduleEntry.COLUMN_SCHEDULE_ID, schedule._id);
             values.put(ScheduleEntry.COLUMN_SUBJECT_NAME, schedule.subjectName);
             values.put(ScheduleEntry.COLUMN_TEACHER_NAME, schedule.teacherName);
             values.put(ScheduleEntry.COLUMN_TEACHER_STORY, schedule.teacherStory);
