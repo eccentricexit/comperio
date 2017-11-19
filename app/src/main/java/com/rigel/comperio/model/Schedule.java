@@ -56,6 +56,10 @@ public class Schedule implements Serializable {
     }
 
     public static List<Schedule> schedulesFromCursor(Cursor cursor) {
+        if(cursor.getCount()==0){
+            return new ArrayList<>();
+        }
+
         List<Schedule> schedules = new ArrayList<>();
 
         while (cursor.moveToNext()) {

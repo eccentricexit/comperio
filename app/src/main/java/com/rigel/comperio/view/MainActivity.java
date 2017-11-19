@@ -1,8 +1,11 @@
 package com.rigel.comperio.view;
 
+import android.database.Cursor;
 import android.databinding.DataBindingUtil;
+import android.util.Log;
 
 import com.rigel.comperio.R;
+import com.rigel.comperio.data.ComperioContract;
 import com.rigel.comperio.databinding.ActivityMainBinding;
 import com.rigel.comperio.sync.SyncAdapter;
 import com.rigel.comperio.viewmodel.MainViewModel;
@@ -20,9 +23,17 @@ public class MainActivity extends BottomNavigationActivity {
 
         mainActivityBinding.setMainViewModel(mainViewModel);
 
-        if(!getPersistenceManager().loadFilter().initialized){
+        Cursor cursor = getContentResolver().query(ComperioContract.ScheduleEntry.CONTENT_URI,
+                null,
+                null,
+                null,
+                null);
+
+        if(cursor.getCount()<=0){
             SyncAdapter.syncImmediately(this);
         }
+
+        cursor.close();
 
     }
 
