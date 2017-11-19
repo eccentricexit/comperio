@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "649831792157",
+    "firebase_url": "https://comperio-494c9.firebaseio.com",
+    "project_id": "comperio-494c9",
+    "storage_bucket": "comperio-494c9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:649831792157:android:2705774c1ca369a2",
+        "android_client_info": {
+          "package_name": "com.rigel.comperio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "649831792157-d35lkljst89kvgamaoq69l61n3let4ra.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rigel.comperio",
+            "certificate_hash": "814a345d6fceaa4ee22223788dfe9575e41401ae"
+          }
+        },
+        {
+          "client_id": "649831792157-jnap8k1qso6m82r76ui3rbcp89kbfj82.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfL_bw3AHuWmEq4LpXwyN0sZXSwUujABQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "649831792157-jnap8k1qso6m82r76ui3rbcp89kbfj82.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

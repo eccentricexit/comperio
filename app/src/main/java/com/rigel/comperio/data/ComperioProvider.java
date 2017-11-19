@@ -74,7 +74,7 @@ public class ComperioProvider extends ContentProvider {
                 String rawQuery = "SELECT * FROM " +
                         ScheduleEntry.TABLE_NAME + " INNER JOIN " +
                         FavoriteEntry.TABLE_NAME + " ON " +
-                        ScheduleEntry.TABLE_NAME + "." + ScheduleEntry._ID + " = " +
+                        ScheduleEntry.TABLE_NAME + "." + ScheduleEntry.COLUMN_SCHEDULE_ID + " = " +
                         FavoriteEntry.TABLE_NAME + "." + FavoriteEntry.COLUMN_SCHEDULE_KEY;
 
 
@@ -216,8 +216,10 @@ public class ComperioProvider extends ContentProvider {
                 return returnCount;
             }
 
-            default:
+            default: {
+                getContext().getContentResolver().notifyChange(uri, null);
                 return super.bulkInsert(uri, values);
+            }
         }
     }
 

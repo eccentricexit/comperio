@@ -67,7 +67,6 @@ public class FavoritesViewModel extends BaseViewModel implements LoaderManager.L
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         schedules = Schedule.schedulesFromCursor(data);
-        logger.toast("Total schedules fetched: " + schedules.size());
         refreshItems();
     }
 
@@ -75,5 +74,11 @@ public class FavoritesViewModel extends BaseViewModel implements LoaderManager.L
     public void onLoaderReset(Loader<Cursor> loader) {
         schedules.clear();
         refreshItems();
+    }
+
+    public void swiped(ItemScheduleViewModel itemScheduleViewModel) {
+        //TODO: fix this
+        logger.toast("Swiped "+itemScheduleViewModel.schedule.teacherName);
+        persistenceManager.removeFromFavorites(itemScheduleViewModel.schedule);
     }
 }

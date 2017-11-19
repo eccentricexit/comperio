@@ -9,7 +9,7 @@
     </data>
 
     <FrameLayout
-        android:id="@+id/itemSchedule"
+        android:id="@+id/itemScheduleLayout"
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:background="?android:attr/windowBackground"

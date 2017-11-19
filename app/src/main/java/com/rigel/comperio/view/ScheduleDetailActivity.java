@@ -1,14 +1,13 @@
 package com.rigel.comperio.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.provider.ContactsContract;
 
 import com.rigel.comperio.R;
 import com.rigel.comperio.databinding.ActivityScheduleDetailBinding;
 import com.rigel.comperio.model.Schedule;
 import com.rigel.comperio.viewmodel.ScheduleDetailViewModel;
+import com.squareup.picasso.Picasso;
 
 
 public class ScheduleDetailActivity extends BaseActivity {
@@ -27,6 +26,10 @@ public class ScheduleDetailActivity extends BaseActivity {
                 schedule, getLogger());
 
         scheduleDetailActivityBinding.setScheduleDetailViewModel(scheduleDetailViewModel);
+
+        Picasso.with(this)
+                .load(scheduleDetailActivityBinding.getScheduleDetailViewModel().schedule.teacherPicUrl)
+                .into(scheduleDetailActivityBinding.imageView);
     }
 
     @Override
@@ -38,7 +41,6 @@ public class ScheduleDetailActivity extends BaseActivity {
         }
 
         showInterstitialAd();
-
     }
 
 }

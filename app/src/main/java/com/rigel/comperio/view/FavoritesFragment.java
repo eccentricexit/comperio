@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,31 +23,14 @@ public class FavoritesFragment extends BaseFragment implements Observer {
     FragmentFavoritesBinding fragmentFavoritesBinding;
     FavoritesViewModel favoritesViewModel;
 
-    public FavoritesFragment() {
-    }
+    public FavoritesFragment() {  }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
-        BaseActivity baseActivity = (BaseActivity) getActivity();
-        navigator = baseActivity.getNavigator();
-        logger = baseActivity.getLogger();
-        persistenceManager = baseActivity.getPersistenceManager();
-
-        favoritesViewModel = new FavoritesViewModel(navigator, persistenceManager, logger,
-                getLoaderManager(), getContext());
+        favoritesViewModel = new FavoritesViewModel(navigator, persistenceManager,
+                logger, getLoaderManager(), getContext());
         favoritesViewModel.addObserver(this);
-    }
-
-    public static FavoritesFragment newInstance() {
-        return new FavoritesFragment();
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        favoritesViewModel.initViewModel();
     }
 
     @Override
@@ -59,7 +44,15 @@ public class FavoritesFragment extends BaseFragment implements Observer {
         fragmentFavoritesBinding.recyclerFavorites.setAdapter(
                 new ScheduleAdapter(getContext(),navigator, logger));
 
+        buildItemTouchHelper().attachToRecyclerView(fragmentFavoritesBinding.recyclerFavorites);
+
         return fragmentFavoritesBinding.getRoot();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        favoritesViewModel.initViewModel();
     }
 
     @Override
@@ -72,6 +65,33 @@ public class FavoritesFragment extends BaseFragment implements Observer {
                 (ScheduleAdapter) fragmentFavoritesBinding.recyclerFavorites.getAdapter();
         FavoritesViewModel favoritesViewModel = (FavoritesViewModel) observable;
         scheduleAdapter.setScheduleList(favoritesViewModel.getSchedules());
+    }
+
+    public static FavoritesFragment newInstance() {
+        return new FavoritesFragment();
+    }
+
+    private ItemTouchHelper buildItemTouchHelper() {
+        return new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
+                                  RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                favoritesViewModel.swiped(((ScheduleAdapter.ScheduleViewHolder)viewHolder)
+                        .getItemScheduleBinding().getItemScheduleViewModel());
+
+                ((ScheduleAdapter)fragmentFavoritesBinding.recyclerFavorites.getAdapter())
+                        .getScheduleList().remove(viewHolder.getAdapterPosition());
+
+                fragmentFavoritesBinding.recyclerFavorites.getAdapter()
+                        .notifyItemRemoved(viewHolder.getAdapterPosition());
+            }
+        });
     }
 
 }

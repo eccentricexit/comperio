@@ -28,6 +28,7 @@ public class Schedule implements Serializable {
     @SerializedName("startMinute") public Integer startMinute;
     @SerializedName("endHour") public Integer endHour;
     @SerializedName("endMinute") public Integer endMinute;
+    @SerializedName("distance") public Float distance;
 
     public Schedule() {
         loc = new Float[2];
@@ -36,7 +37,7 @@ public class Schedule implements Serializable {
     public Schedule(String subjectName, Float hourPrice, String weekDaysAvailable, Float[] loc,
                     String teacherName, String teacherPicUrl, String teacherPhone, Float teacherRating,
                     String teacherStory, Integer startHour, Integer startMinute, Integer endHour,
-                    Integer endMinute) {
+                    Integer endMinute, Float distance) {
 
         this.subjectName = subjectName;
         this.hourPrice = hourPrice;
@@ -51,14 +52,21 @@ public class Schedule implements Serializable {
         this.startMinute = startMinute;
         this.endHour = endHour;
         this.endMinute = endMinute;
+        this.distance = distance;
     }
 
     public static List<Schedule> schedulesFromCursor(Cursor cursor) {
+        if(cursor.getCount()==0){
+            return new ArrayList<>();
+        }
+
         List<Schedule> schedules = new ArrayList<>();
 
         while (cursor.moveToNext()) {
             Schedule schedule = new Schedule();
 
+            schedule._id = cursor.getString(
+                    cursor.getColumnIndex(ComperioContract.ScheduleEntry.COLUMN_SCHEDULE_ID));
             schedule.subjectName = cursor.getString(
                     cursor.getColumnIndex(ComperioContract.ScheduleEntry.COLUMN_SUBJECT_NAME));
             schedule.hourPrice = cursor.getFloat(
@@ -87,6 +95,8 @@ public class Schedule implements Serializable {
                     cursor.getColumnIndex(ComperioContract.ScheduleEntry.COLUMN_END_HOUR));
             schedule.endMinute = cursor.getInt(
                     cursor.getColumnIndex(ComperioContract.ScheduleEntry.COLUMN_END_MINUTE));
+            schedule.distance = cursor.getFloat(
+                    cursor.getColumnIndex(ComperioContract.ScheduleEntry.COLUMN_TEACHER_DISTANCE));
 
             schedules.add(schedule);
 
