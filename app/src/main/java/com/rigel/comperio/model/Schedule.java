@@ -65,6 +65,8 @@ public class Schedule implements Serializable {
         while (cursor.moveToNext()) {
             Schedule schedule = new Schedule();
 
+            schedule._id = cursor.getString(
+                    cursor.getColumnIndex(ComperioContract.ScheduleEntry.COLUMN_SCHEDULE_ID));
             schedule.subjectName = cursor.getString(
                     cursor.getColumnIndex(ComperioContract.ScheduleEntry.COLUMN_SUBJECT_NAME));
             schedule.hourPrice = cursor.getFloat(
