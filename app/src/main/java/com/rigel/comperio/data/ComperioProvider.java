@@ -113,7 +113,7 @@ public class ComperioProvider extends ContentProvider {
                 long _id = db.insert(ComperioContract.ScheduleEntry.TABLE_NAME,
                         null, values);
                 if (_id > 0)
-                    returnUri = ComperioContract.ScheduleEntry.buildScheduleUri(_id);
+                    returnUri = ComperioContract.ScheduleEntry.buildScheduleUriWith(_id);
                 else
                     throw new android.database.SQLException("Failed to insert row into " + uri);
                 break;
@@ -122,7 +122,7 @@ public class ComperioProvider extends ContentProvider {
                 long _id = db.insert(ComperioContract.FavoriteEntry.TABLE_NAME,
                         null, values);
                 if (_id > 0)
-                    returnUri = ComperioContract.FavoriteEntry.buildFavoriteUri(_id);
+                    returnUri = ComperioContract.FavoriteEntry.buildFavoriteUriWith(_id);
                 else
                     throw new android.database.SQLException("Failed to insert row into " + uri);
                 break;

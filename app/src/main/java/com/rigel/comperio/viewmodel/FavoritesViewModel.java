@@ -77,8 +77,6 @@ public class FavoritesViewModel extends BaseViewModel implements LoaderManager.L
     }
 
     public void swiped(ItemScheduleViewModel itemScheduleViewModel) {
-        //TODO: fix this
-        logger.toast("Swiped "+itemScheduleViewModel.schedule.teacherName);
         persistenceManager.removeFromFavorites(itemScheduleViewModel.schedule);
     }
 }
