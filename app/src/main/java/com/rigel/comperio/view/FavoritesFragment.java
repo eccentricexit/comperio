@@ -23,31 +23,14 @@ public class FavoritesFragment extends BaseFragment implements Observer {
     FragmentFavoritesBinding fragmentFavoritesBinding;
     FavoritesViewModel favoritesViewModel;
 
-    public FavoritesFragment() {
-    }
+    public FavoritesFragment() {  }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
-        BaseActivity baseActivity = (BaseActivity) getActivity();
-        navigator = baseActivity.getNavigator();
-        logger = baseActivity.getLogger();
-        persistenceManager = baseActivity.getPersistenceManager();
-
-        favoritesViewModel = new FavoritesViewModel(navigator, persistenceManager, logger,
-                getLoaderManager(), getContext());
+        favoritesViewModel = new FavoritesViewModel(navigator, persistenceManager,
+                logger, getLoaderManager(), getContext());
         favoritesViewModel.addObserver(this);
-    }
-
-    public static FavoritesFragment newInstance() {
-        return new FavoritesFragment();
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        favoritesViewModel.initViewModel();
     }
 
     @Override
@@ -67,6 +50,12 @@ public class FavoritesFragment extends BaseFragment implements Observer {
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        favoritesViewModel.initViewModel();
+    }
+
+    @Override
     public void update(Observable observable, Object o) {
         if (!(observable instanceof FavoritesViewModel)) {
             return;
@@ -76,6 +65,10 @@ public class FavoritesFragment extends BaseFragment implements Observer {
                 (ScheduleAdapter) fragmentFavoritesBinding.recyclerFavorites.getAdapter();
         FavoritesViewModel favoritesViewModel = (FavoritesViewModel) observable;
         scheduleAdapter.setScheduleList(favoritesViewModel.getSchedules());
+    }
+
+    public static FavoritesFragment newInstance() {
+        return new FavoritesFragment();
     }
 
     private ItemTouchHelper buildItemTouchHelper() {

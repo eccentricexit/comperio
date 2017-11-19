@@ -20,9 +20,6 @@ public class ItemScheduleViewModel extends BaseObservable {
     }
 
     public void onItemClick(View view) {
-        logger.toast("touched "+schedule.teacherName);
-        logger.toast("touched id "+schedule._id);
-
         navigator.navigateToDetailsActivity(schedule);
     }
 

@@ -22,14 +22,13 @@ public class HomeFragment extends BaseFragment implements Observer {
     FragmentHomeBinding fragmentHomeBinding;
     HomeViewModel homeViewModel;
 
-    public HomeFragment() {
-    }
+    public HomeFragment() { }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        homeViewModel = new HomeViewModel(navigator, persistenceManager, logger,
-                getLoaderManager(), getContext());
+        homeViewModel = new HomeViewModel(navigator, persistenceManager,
+                logger, getLoaderManager(), getContext());
         homeViewModel.addObserver(this);
     }
 
@@ -39,12 +38,36 @@ public class HomeFragment extends BaseFragment implements Observer {
         fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false);
 
         fragmentHomeBinding.setHomeViewModel(homeViewModel);
-        fragmentHomeBinding.recyclerHome.setLayoutManager(new LinearLayoutManager(getActivity()));
-        fragmentHomeBinding.recyclerHome.setAdapter(new ScheduleAdapter(getContext(),
-                navigator, logger));
+        fragmentHomeBinding.recyclerHome.setLayoutManager(
+                new LinearLayoutManager(getActivity()));
+        fragmentHomeBinding.recyclerHome.setAdapter(
+                new ScheduleAdapter(getContext(),navigator, logger));
+
         buildItemTouchHelper().attachToRecyclerView(fragmentHomeBinding.recyclerHome);
 
         return fragmentHomeBinding.getRoot();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        homeViewModel.initViewModel();
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+        if (!(observable instanceof HomeViewModel)) {
+            return;
+        }
+
+        ScheduleAdapter scheduleAdapter =
+                (ScheduleAdapter) fragmentHomeBinding.recyclerHome.getAdapter();
+        HomeViewModel homeViewModel = (HomeViewModel) observable;
+        scheduleAdapter.setScheduleList(homeViewModel.getSchedules());
+    }
+
+    public static HomeFragment newInstance() {
+        return new HomeFragment();
     }
 
     private ItemTouchHelper buildItemTouchHelper() {
@@ -68,27 +91,6 @@ public class HomeFragment extends BaseFragment implements Observer {
                         .notifyItemRemoved(viewHolder.getAdapterPosition());
             }
         });
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        homeViewModel.initViewModel();
-    }
-
-    @Override
-    public void update(Observable observable, Object o) {
-        if (!(observable instanceof HomeViewModel)) {
-            return;
-        }
-
-        ScheduleAdapter scheduleAdapter = (ScheduleAdapter) fragmentHomeBinding.recyclerHome.getAdapter();
-        HomeViewModel homeViewModel = (HomeViewModel) observable;
-        scheduleAdapter.setScheduleList(homeViewModel.getSchedules());
-    }
-
-    public static HomeFragment newInstance() {
-        return new HomeFragment();
     }
 
 }

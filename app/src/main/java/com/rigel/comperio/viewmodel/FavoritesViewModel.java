@@ -67,7 +67,6 @@ public class FavoritesViewModel extends BaseViewModel implements LoaderManager.L
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         schedules = Schedule.schedulesFromCursor(data);
-        logger.toast("Total schedules fetched: " + schedules.size());
         refreshItems();
     }
 
