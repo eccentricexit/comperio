@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +61,8 @@ public class FavoritesFragment extends BaseFragment implements Observer {
         fragmentFavoritesBinding.recyclerFavorites.setAdapter(
                 new ScheduleAdapter(getContext(),navigator, logger));
 
+        buildItemTouchHelper().attachToRecyclerView(fragmentFavoritesBinding.recyclerFavorites);
+
         return fragmentFavoritesBinding.getRoot();
     }
 
@@ -72,6 +76,29 @@ public class FavoritesFragment extends BaseFragment implements Observer {
                 (ScheduleAdapter) fragmentFavoritesBinding.recyclerFavorites.getAdapter();
         FavoritesViewModel favoritesViewModel = (FavoritesViewModel) observable;
         scheduleAdapter.setScheduleList(favoritesViewModel.getSchedules());
+    }
+
+    private ItemTouchHelper buildItemTouchHelper() {
+        return new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
+                                  RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                favoritesViewModel.swiped(((ScheduleAdapter.ScheduleViewHolder)viewHolder)
+                        .getItemScheduleBinding().getItemScheduleViewModel());
+
+                ((ScheduleAdapter)fragmentFavoritesBinding.recyclerFavorites.getAdapter())
+                        .getScheduleList().remove(viewHolder.getAdapterPosition());
+
+                fragmentFavoritesBinding.recyclerFavorites.getAdapter()
+                        .notifyItemRemoved(viewHolder.getAdapterPosition());
+            }
+        });
     }
 
 }
