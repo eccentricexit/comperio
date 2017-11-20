@@ -10,7 +10,7 @@ import com.rigel.comperio.data.ComperioContract.ScheduleEntry;
 public class ComperioDbHelper extends SQLiteOpenHelper {
 
     static final String DATABASE_NAME = "comperio.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 15;
 
     public ComperioDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -25,11 +25,6 @@ public class ComperioDbHelper extends SQLiteOpenHelper {
 
                 ScheduleEntry.COLUMN_SCHEDULE_ID + " TEXT UNIQUE NOT NULL, " +
                 ScheduleEntry.COLUMN_HOUR_PRICE + " INTEGER NOT NULL, " +
-                ScheduleEntry.COLUMN_START_HOUR + " INTEGER NOT NULL, " +
-                ScheduleEntry.COLUMN_START_MINUTE + " INTEGER NOT NULL, " +
-                ScheduleEntry.COLUMN_END_HOUR + " INTEGER NOT NULL, " +
-                ScheduleEntry.COLUMN_END_MINUTE + " INTEGER NOT NULL, " +
-                ScheduleEntry.COLUMN_WEEK_DAYS + " TEXT NOT NULL, " +
                 ScheduleEntry.COLUMN_SUBJECT_NAME + " TEXT NOT NULL, " +
 
                 ScheduleEntry.COLUMN_TEACHER_NAME + " TEXT NOT NULL, " +

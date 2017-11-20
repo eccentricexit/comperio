@@ -46,10 +46,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
 
         navigator = new Navigator() {
-            @Override
-            public void navigateToFreeTimeActivity() {
-                navigate(FreeTimeActivity.class);
-            }
 
             @Override
             public void navigateToHomeActivity() {

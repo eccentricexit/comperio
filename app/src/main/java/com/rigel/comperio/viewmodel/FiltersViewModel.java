@@ -20,14 +20,6 @@ public class FiltersViewModel extends BaseViewModel {
         return filter.maxDistance + "m";
     }
 
-    public String getFormattedStartTime() {
-        return filter.startHour + ":" + filter.startMinute;
-    }
-
-    public String getFormattedEndTime() {
-        return filter.endHour + ":" + filter.endMinute;
-    }
-
     public void onPersistClick(View view) {
         persistenceManager.saveFilter(filter);
     }

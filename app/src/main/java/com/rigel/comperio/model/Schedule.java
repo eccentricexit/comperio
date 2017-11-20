@@ -11,11 +11,9 @@ import java.util.List;
 
 public class Schedule implements Serializable {
 
-
     @SerializedName("_id") public String _id;
     @SerializedName("subjectName") public String subjectName;
     @SerializedName("hourPrice") public Float hourPrice;
-    @SerializedName("weekDaysAvailable") public String weekDaysAvailable;
     @SerializedName("loc") public Float[] loc;
 
     @SerializedName("teacherName") public String teacherName;
@@ -24,34 +22,24 @@ public class Schedule implements Serializable {
     @SerializedName("teacherRating") public Float teacherRating;
     @SerializedName("teacherStory") public String teacherStory;
 
-    @SerializedName("startHour") public Integer startHour;
-    @SerializedName("startMinute") public Integer startMinute;
-    @SerializedName("endHour") public Integer endHour;
-    @SerializedName("endMinute") public Integer endMinute;
     @SerializedName("distance") public Float distance;
 
     public Schedule() {
         loc = new Float[2];
     }
 
-    public Schedule(String subjectName, Float hourPrice, String weekDaysAvailable, Float[] loc,
+    public Schedule(String subjectName, Float hourPrice, Float[] loc,
                     String teacherName, String teacherPicUrl, String teacherPhone, Float teacherRating,
-                    String teacherStory, Integer startHour, Integer startMinute, Integer endHour,
-                    Integer endMinute, Float distance) {
+                    String teacherStory, Float distance) {
 
         this.subjectName = subjectName;
         this.hourPrice = hourPrice;
-        this.weekDaysAvailable = weekDaysAvailable;
         this.loc = loc;
         this.teacherName = teacherName;
         this.teacherPicUrl = teacherPicUrl;
         this.teacherPhone = teacherPhone;
         this.teacherRating = teacherRating;
         this.teacherStory = teacherStory;
-        this.startHour = startHour;
-        this.startMinute = startMinute;
-        this.endHour = endHour;
-        this.endMinute = endMinute;
         this.distance = distance;
     }
 
@@ -71,8 +59,6 @@ public class Schedule implements Serializable {
                     cursor.getColumnIndex(ComperioContract.ScheduleEntry.COLUMN_SUBJECT_NAME));
             schedule.hourPrice = cursor.getFloat(
                     cursor.getColumnIndex(ComperioContract.ScheduleEntry.COLUMN_HOUR_PRICE));
-            schedule.weekDaysAvailable = cursor.getString(
-                    cursor.getColumnIndex(ComperioContract.ScheduleEntry.COLUMN_WEEK_DAYS));
             schedule.loc[0] = cursor.getFloat(
                     cursor.getColumnIndex(ComperioContract.ScheduleEntry.COLUMN_TEACHER_LONG));
             schedule.loc[1] = cursor.getFloat(
@@ -87,14 +73,6 @@ public class Schedule implements Serializable {
                     cursor.getColumnIndex(ComperioContract.ScheduleEntry.COLUMN_TEACHER_RATING));
             schedule.teacherStory = cursor.getString(
                     cursor.getColumnIndex(ComperioContract.ScheduleEntry.COLUMN_TEACHER_STORY));
-            schedule.startHour = cursor.getInt(
-                    cursor.getColumnIndex(ComperioContract.ScheduleEntry.COLUMN_START_HOUR));
-            schedule.startMinute = cursor.getInt(
-                    cursor.getColumnIndex(ComperioContract.ScheduleEntry.COLUMN_START_MINUTE));
-            schedule.endHour = cursor.getInt(
-                    cursor.getColumnIndex(ComperioContract.ScheduleEntry.COLUMN_END_HOUR));
-            schedule.endMinute = cursor.getInt(
-                    cursor.getColumnIndex(ComperioContract.ScheduleEntry.COLUMN_END_MINUTE));
             schedule.distance = cursor.getFloat(
                     cursor.getColumnIndex(ComperioContract.ScheduleEntry.COLUMN_TEACHER_DISTANCE));
 
