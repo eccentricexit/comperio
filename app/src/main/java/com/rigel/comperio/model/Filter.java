@@ -14,6 +14,8 @@ public class Filter implements Serializable {
 
     public Filter(){
         maxDistance = 2000;
+        userLoc = new Float[2];
+        subject = "";
     }
 
 }
