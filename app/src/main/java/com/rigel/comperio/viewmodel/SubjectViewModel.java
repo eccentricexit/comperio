@@ -28,7 +28,7 @@ public class SubjectViewModel extends BaseViewModel {
     public void nextOnClick(View view) {
         filter.initialized = true;
         persistenceManager.saveFilter(filter);
-        navigator.navigateToFreeTimeActivity();
+        navigator.navigateToHomeActivity();
     }
 
 }

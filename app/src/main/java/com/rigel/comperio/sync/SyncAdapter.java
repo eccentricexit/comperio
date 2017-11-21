@@ -126,12 +126,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
             values.put(ScheduleEntry.COLUMN_TEACHER_LONG, schedule.loc[0]);
             values.put(ScheduleEntry.COLUMN_TEACHER_PHONE, schedule.teacherPhone);
             values.put(ScheduleEntry.COLUMN_TEACHER_RATING, schedule.teacherRating);
-            values.put(ScheduleEntry.COLUMN_WEEK_DAYS, schedule.weekDaysAvailable);
             values.put(ScheduleEntry.COLUMN_HOUR_PRICE, schedule.hourPrice);
-            values.put(ScheduleEntry.COLUMN_START_HOUR, schedule.startHour);
-            values.put(ScheduleEntry.COLUMN_START_MINUTE, schedule.startMinute);
-            values.put(ScheduleEntry.COLUMN_END_HOUR, schedule.endHour);
-            values.put(ScheduleEntry.COLUMN_END_MINUTE, schedule.endMinute);
             values.put(ScheduleEntry.COLUMN_TEACHER_DISTANCE,schedule.distance);
 
             contentValuesVector.add(values);

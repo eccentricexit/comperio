@@ -18,85 +18,131 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
+            <com.rigel.comperio.view.IconTextView
+                android:id="@+id/iconTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="52dp"
+                android:text="@string/fa_cog"
+                android:textColor="@color/accent"
+                android:textSize="50sp"
+                app:layout_constraintEnd_toStartOf="@+id/textView10"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_margin="16dp"
+                android:layout_marginTop="112dp"
+                android:hint="@string/lblSubject"
+                android:text="@={filtersViewModel.filter.subject}"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iconTextView" />
+
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@{filtersViewModel.formattedDistance}"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/seekBar"
+                tools:text="20.5km" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="138dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:text="@string/lblDistance"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/seekBar"
+                app:layout_constraintEnd_toStartOf="@+id/seekBar"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/seekBar"
+                app:layout_constraintVertical_bias="0.666" />
+
+            <SeekBar
+                android:id="@+id/seekBar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginTop="56dp"
+                android:max="50000"
+                android:maxHeight="15dp"
+                android:maxWidth="15dp"
+                android:minHeight="15dp"
+                android:minWidth="15dp"
+                android:progress="@={filtersViewModel.filter.maxDistance}"
+                android:scrollbarSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+
+            <Switch
+                android:id="@+id/switch1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginTop="36dp"
+                android:checked="@={filtersViewModel.filter.useMetricSystem}"
+                android:text="@string/lblUseMetricSystem"
+                android:textColor="@color/secondary_text"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@color/accent"
+                android:onClick="@{filtersViewModel::onPersistClick}"
+                android:paddingBottom="16dp"
+                android:paddingEnd="36dp"
+                android:paddingStart="36dp"
+                android:paddingTop="16dp"
+                android:text="@string/lblSaveFilters"
+                android:textColor="@color/base"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/switch1" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent">
+                android:layout_marginTop="8dp"
+                android:text="@string/lblSettings"
+                android:textColor="@color/accent"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iconTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iconTextView"
+                app:layout_constraintVertical_bias="0.434" />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/lblSubject"
-                    android:text="@={filtersViewModel.filter.subject}" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{filtersViewModel.formattedDistance}" />
-
-                <SeekBar
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:max="50000"
-                    android:progress="@={filtersViewModel.filter.maxDistance}" />
-
-
-                <Switch
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:checked="@={filtersViewModel.filter.useMetricSystem}"
-                    android:text="@string/lblUseMetricSystem" />
-
-                <Button
-                    android:id="@+id/btnSelectDaysOfTheWeek"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/lblRecurrence" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
-
-                    <TextView
-                        android:id="@+id/txtStarTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:clickable="true"
-                        android:text="@{filtersViewModel.formattedStartTime}"
-                        android:textSize="20sp"
-                        tools:text="1:00" />
-
-                    <TextView
-                        android:id="@+id/txtEndTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:clickable="true"
-                        android:text="@{filtersViewModel.formattedEndTime}"
-                        android:textSize="20sp"
-                        tools:text="23:30" />
-
-                </LinearLayout>
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="@{filtersViewModel::onPersistClick}"
-                    android:text="@string/lblOK" />
-
-            </LinearLayout>
 
         </android.support.constraint.ConstraintLayout>
 

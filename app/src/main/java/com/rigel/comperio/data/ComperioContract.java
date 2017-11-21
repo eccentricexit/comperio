@@ -9,19 +9,10 @@ public class ComperioContract {
 
     public static final String CONTENT_AUTHORITY = "com.rigel.comperio";
 
-
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
-
-    private static final String COMPERIO_BASE_URL = "http://localhost:3000/v1/";
 
     public static final String PATH_SCHEDULE = "schedules";
     public static final String PATH_FAVORITE = "favorites";
-
-
-    private static Uri.Builder getScheduleUriBuilder() {
-        return Uri.parse(COMPERIO_BASE_URL).buildUpon().appendPath(PATH_SCHEDULE);
-    }
-
 
     public static final class ScheduleEntry implements BaseColumns {
 
@@ -36,11 +27,6 @@ public class ComperioContract {
 
         public static final String COLUMN_SCHEDULE_ID = "schedule_id";
         public static final String COLUMN_HOUR_PRICE = "hour_price";
-        public static final String COLUMN_START_HOUR = "start_hour";
-        public static final String COLUMN_START_MINUTE = "start_minute";
-        public static final String COLUMN_END_HOUR = "end_hour";
-        public static final String COLUMN_END_MINUTE = "end_minute";
-        public static final String COLUMN_WEEK_DAYS = "week_days";
         public static final String COLUMN_SUBJECT_NAME = "subject_name";
         public static final String COLUMN_TEACHER_NAME = "teacher_name";
         public static final String COLUMN_TEACHER_RATING = "teacher_rating";

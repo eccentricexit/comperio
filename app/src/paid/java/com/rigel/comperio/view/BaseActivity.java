@@ -3,6 +3,7 @@ package com.rigel.comperio.view;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
@@ -45,10 +46,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
 
         navigator = new Navigator() {
-            @Override
-            public void navigateToFreeTimeActivity() {
-                navigate(FreeTimeActivity.class);
-            }
 
             @Override
             public void navigateToHomeActivity() {
@@ -113,6 +110,10 @@ public abstract class BaseActivity extends AppCompatActivity {
 
             @Override
             public void addToFavorites(Schedule schedule) {
+                if(alreadyInFavorites(schedule)){
+                    return;
+                }
+
                 ContentValues contentValues = new ContentValues();
                 contentValues.put(ComperioContract.FavoriteEntry.COLUMN_SCHEDULE_KEY, schedule._id);
 
@@ -126,6 +127,26 @@ public abstract class BaseActivity extends AppCompatActivity {
                         ComperioContract.FavoriteEntry.CONTENT_URI,
                         ComperioContract.FavoriteEntry.COLUMN_SCHEDULE_KEY + " = ?",
                         new String[]{schedule._id});
+            }
+
+            @Override
+            public void requestSync() {
+                SyncAdapter.syncImmediately(BaseActivity.this);
+            }
+
+
+            private boolean alreadyInFavorites(Schedule schedule) {
+                Cursor cursor = getContentResolver().query(
+                        ComperioContract.FavoriteEntry.CONTENT_URI,
+                        null,
+                        ComperioContract.FavoriteEntry.COLUMN_SCHEDULE_KEY,
+                        new String[]{schedule._id},
+                        null
+                );
+                int count = cursor.getCount();
+                cursor.close();
+
+                return count>0;
             }
 
             private SharedPreferences.Editor getEditor() {

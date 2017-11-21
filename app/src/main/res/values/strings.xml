@@ -10,7 +10,7 @@
     <string name="lblNext">Next</string>
     <string name="lblWhenAreYouAvailable">When are you available?</string>
     <string name="lblLetsTalk">Let\'s Talk</string>
-    <string name="lblOK">OK</string>
+    <string name="lblSaveFilters">Save and Sync</string>
     <string name="lblCancel">Cancel</string>
     <string name="lblRecurrence">Days of the week</string>
     <string name="lblUseMetricSystem">Use Metric System</string>
@@ -648,5 +648,7 @@
     <string name="schedule_thumbnail">Schedule Thumbnail</string>
     <string name="teacher">teacher</string>
     <string name="lblLetTalk">Let\'s Talk!</string>
+    <string name="lblDistance">Distance</string>
+    <string name="lblSettings">Settings</string>
 
 </resources>

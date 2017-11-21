@@ -12,29 +12,29 @@ public class DevUtils {
         List<Schedule> fakeHomeSchedules = new ArrayList<>();
 
         Schedule schedule1 = new Schedule(
-                "English", 23.5f, "Su,Mo,Tue", new Float[]{0f, 0f}, "Celina Mars",
+                "English", 23.5f, new Float[]{0f, 0f}, "Celina Mars",
                 "https://randomuser.me/api/portraits/women/20.jpg", "1234314919", 4.5f,
-                "Ever since I learned how to lorem ipsum I coudn't stop anymore.", 8, 0, 23, 30,3.2f);
+                "Ever since I learned how to lorem ipsum I coudn't stop anymore.",3.2f);
 
         Schedule schedule2 = new Schedule(
-                "English", 20.5f, "Su,Mo,Tue", new Float[]{0f, 0f}, "Jessica McDonnald",
+                "English", 20.5f,new Float[]{0f, 0f}, "Jessica McDonnald",
                 "https://randomuser.me/api/portraits/women/22.jpg", "1234314919", 4.0f,
-                "Ever since I learned how to lorem ipsum I coudn't stop anymore.", 8, 0, 23, 30,5.4f);
+                "Ever since I learned how to lorem ipsum I coudn't stop anymore.",5.4f);
 
         Schedule schedule3 = new Schedule(
-                "English", 43.5f, "Su,Mo,Tue", new Float[]{0f, 0f}, "Vlad Tron",
+                "English", 43.5f, new Float[]{0f, 0f}, "Vlad Tron",
                 "https://randomuser.me/api/portraits/men/22.jpg", "1234314919", 4.3f,
-                "Ever since I learned how to lorem ipsum I coudn't stop anymore.", 8, 0, 23, 30,1.3f);
+                "Ever since I learned how to lorem ipsum I coudn't stop anymore.", 1.3f);
 
         Schedule schedule4 = new Schedule(
-                "English", 26.5f, "Su,Mo,Tue", new Float[]{0f, 0f}, "Nathan Cypher",
+                "English", 26.5f, new Float[]{0f, 0f}, "Nathan Cypher",
                 "https://randomuser.me/api/portraits/men/21.jpg", "1234314919", 4.2f,
-                "Ever since I learned how to lorem ipsum I coudn't stop anymore.", 8, 0, 23, 30,3.5f);
+                "Ever since I learned how to lorem ipsum I coudn't stop anymore.", 3.5f);
 
         Schedule schedule5 = new Schedule(
-                "English", 43.5f, "Su,Mo,Tue", new Float[]{0f, 0f}, "Alice Cypher",
+                "English", 43.5f, new Float[]{0f, 0f}, "Alice Cypher",
                 "https://randomuser.me/api/portraits/women/24.jpg", "1234314919", 4.5f,
-                "Ever since I learned how to lorem ipsum I coudn't stop anymore.", 8, 0, 23, 30,3.2f);
+                "Ever since I learned how to lorem ipsum I coudn't stop anymore.", 3.2f);
 
         fakeHomeSchedules.add(schedule1);
         fakeHomeSchedules.add(schedule2);
@@ -49,14 +49,14 @@ public class DevUtils {
         List<Schedule> fakeHomeSchedules = new ArrayList<>();
 
         Schedule schedule1 = new Schedule(
-                "English", 23.5f, "Su,Mo,Tue", new Float[]{0f, 0f}, "Buterin Poon",
+                "English", 23.5f, new Float[]{0f, 0f}, "Buterin Poon",
                 "https://randomuser.me/api/portraits/men/20.jpg", "1234314919", 4.5f,
-                "Ever since I learned how to lorem ipsum I coudn't stop anymore.", 8, 0, 23, 30, 3.2f);
+                "Ever since I learned how to lorem ipsum I coudn't stop anymore.",3.2f);
 
         Schedule schedule2 = new Schedule(
-                "English", 20.5f, "Su,Mo,Tue", new Float[]{0f, 0f}, "James Larimer",
+                "English", 20.5f, new Float[]{0f, 0f}, "James Larimer",
                 "https://randomuser.me/api/portraits/women/22.jpg", "1234314919", 4.0f,
-                "Ever since I learned how to lorem ipsum I coudn't stop anymore.", 8, 0, 23, 30, 2.5f);
+                "Ever since I learned how to lorem ipsum I coudn't stop anymore.", 2.5f);
 
         fakeHomeSchedules.add(schedule1);
         fakeHomeSchedules.add(schedule2);
