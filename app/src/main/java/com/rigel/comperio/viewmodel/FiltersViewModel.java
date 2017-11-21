@@ -22,6 +22,7 @@ public class FiltersViewModel extends BaseViewModel {
 
     public void onPersistClick(View view) {
         persistenceManager.saveFilter(filter);
+        persistenceManager.requestSync();
     }
 
 }

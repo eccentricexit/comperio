@@ -13,4 +13,5 @@ public interface PersistenceManager {
 
     void removeFromFavorites(Schedule schedule);
 
+    void requestSync();
 }

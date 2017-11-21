@@ -129,6 +129,12 @@ public abstract class BaseActivity extends AppCompatActivity {
                         new String[]{schedule._id});
             }
 
+            @Override
+            public void requestSync() {
+                SyncAdapter.syncImmediately(BaseActivity.this);
+            }
+
+
             private boolean alreadyInFavorites(Schedule schedule) {
                 Cursor cursor = getContentResolver().query(
                         ComperioContract.FavoriteEntry.CONTENT_URI,

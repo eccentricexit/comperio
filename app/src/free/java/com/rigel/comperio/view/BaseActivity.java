@@ -24,6 +24,7 @@ import com.rigel.comperio.R;
 import com.rigel.comperio.data.ComperioContract;
 import com.rigel.comperio.model.Filter;
 import com.rigel.comperio.model.Schedule;
+import com.rigel.comperio.sync.SyncAdapter;
 
 import timber.log.Timber;
 
@@ -138,6 +139,11 @@ public abstract class BaseActivity extends AppCompatActivity {
                         ComperioContract.FavoriteEntry.CONTENT_URI,
                         ComperioContract.FavoriteEntry.COLUMN_SCHEDULE_KEY + " = ?",
                         new String[]{schedule._id});
+            }
+
+            @Override
+            public void requestSync() {
+                SyncAdapter.syncImmediately(BaseActivity.this);
             }
 
             private boolean alreadyInFavorites(Schedule schedule) {
