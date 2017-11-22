@@ -12,7 +12,7 @@ public interface ComperioService {
 
     @GET("schedules/")
     Call<List<Schedule>> listSchedules(@Query("subject") String subject,
-                                       @Query("maxDist") Integer maxDist,
+                                       @Query("maxDistance") Integer maxDist,
                                        @Query("lat")Float lat,
                                        @Query("lon")Float lon);
 

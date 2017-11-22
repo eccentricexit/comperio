@@ -84,11 +84,11 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
     }
 
     private void syncComperio(Uri uri) {
-
         Filter filter = loadFilter();
 
         ComperioService comperioService = ComperioApplication.get(context).getComperioService();
         List<Schedule> schedules = null;
+        Log.d(LOG_TAG,"Filter: "+filter.toString());
         try {
             schedules = comperioService.listSchedules(filter.subject,filter.maxDistance,
                     filter.userLoc[1],filter.userLoc[0]).execute().body();
