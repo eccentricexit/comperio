@@ -1,17 +1,21 @@
 package com.rigel.comperio.view;
 
 import android.databinding.DataBindingUtil;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.rigel.comperio.R;
 import com.rigel.comperio.adapters.SubjectAdapter;
 import com.rigel.comperio.databinding.ActivitySubjectBinding;
+import com.rigel.comperio.model.Subject;
 import com.rigel.comperio.viewmodel.SubjectViewModel;
 
+//TODO: Refactor this
 public class SubjectActivity extends BaseActivity {
 
     @Override
     protected void initDataBinding() {
-        ActivitySubjectBinding subjectActivityBinding =
+        final ActivitySubjectBinding subjectActivityBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_subject);
 
         SubjectViewModel subjectViewModel = new SubjectViewModel(getNavigator(),
@@ -25,6 +29,34 @@ public class SubjectActivity extends BaseActivity {
         );
 
         subjectActivityBinding.setSpinnerAdapter(adapter);
+
+        int selection = -1;
+
+        for(int i=0;i<subjectActivityBinding.getSpinnerAdapter().getCount();i++){
+            Subject subject = (Subject) subjectActivityBinding.getSpinnerAdapter().getItem(i);
+            if(subject.equals(subjectViewModel.filter.subject)){
+                selection = i;
+                break;
+            }
+        }
+
+        if(selection!=-1) {
+            subjectActivityBinding.subjectSpinner.setSelection(selection);
+        }
+
+        subjectActivityBinding.subjectSpinner.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                subjectActivityBinding.getSubjectViewModel().filter.subject =
+                        ((Subject) subjectActivityBinding.subjectSpinner.getSelectedItem()).name;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                //no op
+            }
+        });
     }
 
 
