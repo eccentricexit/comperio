@@ -7,15 +7,18 @@ import android.content.ContentProviderClient;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.SyncResult;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.rigel.comperio.ComperioApplication;
 import com.rigel.comperio.R;
 import com.rigel.comperio.data.ComperioContract;
 import com.rigel.comperio.data.ComperioContract.ScheduleEntry;
+import com.rigel.comperio.model.Filter;
 import com.rigel.comperio.model.Schedule;
 
 import java.io.IOException;
@@ -81,11 +84,14 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
     }
 
     private void syncComperio(Uri uri) {
+        Filter filter = loadFilter();
 
         ComperioService comperioService = ComperioApplication.get(context).getComperioService();
         List<Schedule> schedules = null;
+        Log.d(LOG_TAG,"Filter: "+filter.toString());
         try {
-            schedules = comperioService.listSchedules().execute().body();
+            schedules = comperioService.listSchedules(filter.subject,filter.maxDistance,
+                    filter.userLoc[1],filter.userLoc[0]).execute().body();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -132,6 +138,23 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
             contentValuesVector.add(values);
         }
         return contentValuesVector;
+    }
+
+    public Filter loadFilter() {
+        Gson gson = new Gson();
+        String json = getComperioPreferences()
+                .getString(context.getResources().getString(R.string.FILTER_KEY), "");
+
+        if (!json.equals("")) {
+            return gson.fromJson(json, Filter.class);
+        } else {
+            return new Filter();
+        }
+    }
+
+    private SharedPreferences getComperioPreferences() {
+        String key = context.getResources().getString(R.string.SHARED_PREFERENCES_KEY);
+        return context.getSharedPreferences(key, 0);
     }
 
 }

@@ -13,7 +13,16 @@ public class Filter implements Serializable {
     @SerializedName("useMetricSystem") public boolean useMetricSystem;
 
     public Filter(){
-        maxDistance = 2000;
+        maxDistance = 3500;
+        userLoc = new Float[2];
+        subject = "";
+        initialized = false;
     }
 
+    @Override
+    public String toString() {
+        return "{subject: "+subject+", maxDistance: "+maxDistance+", userLoc[lon,lat]: "
+                +userLoc[0]+","+userLoc[1]+", initialized: "+initialized+", useMetricSystem: "+
+                useMetricSystem+"}";
+    }
 }

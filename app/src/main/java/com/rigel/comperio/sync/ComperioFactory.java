@@ -5,11 +5,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ComperioFactory {
     private static final String PROTOCOL = "http";
-    private static final String HOST = "nextcloud.ti.eng.br";
+    private static final String PROD_HOST = "nextcloud.ti.eng.br";
     private static final String PORT = "3000";
     private static final String API_VERSION = "v1";
 
-    private static final String BASE_URL = PROTOCOL + "://" + HOST + ":" + PORT + "/" + API_VERSION + "/";
+    private static final String BASE_URL = PROTOCOL + "://" + PROD_HOST + ":" + PORT + "/" + API_VERSION + "/";
 
     public static ComperioService create() {
         return new Retrofit.Builder()

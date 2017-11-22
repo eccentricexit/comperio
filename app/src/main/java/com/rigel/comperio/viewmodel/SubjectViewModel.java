@@ -20,7 +20,7 @@ public class SubjectViewModel extends BaseViewModel {
 
         filter = persistenceManager.loadFilter();
         subjects = DevUtils.getFakeSubjects();
-        if (filter.initialized) {
+        if (filter.initialized && filter.subject!=null && !filter.subject.equals("")) {
             navigator.navigateToHomeActivity();
         }
     }
