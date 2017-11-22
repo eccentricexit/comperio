@@ -18,4 +18,10 @@ public class Filter implements Serializable {
         subject = "";
     }
 
+    @Override
+    public String toString() {
+        return "{subject: "+subject+", maxDistance: "+maxDistance+", userLoc[lon,lat]: "
+                +userLoc[0]+","+userLoc[1]+", initialized: "+initialized+", useMetricSystem: "+
+                useMetricSystem+"}";
+    }
 }
