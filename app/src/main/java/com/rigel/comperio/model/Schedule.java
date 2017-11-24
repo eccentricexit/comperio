@@ -26,6 +26,11 @@ public class Schedule implements Serializable {
 
     public Schedule() {
         loc = new Float[2];
+        hourPrice = 0f;
+        teacherName = "";
+        teacherStory = "";
+        teacherPhone = "";
+        subjectName = "";
     }
 
     public Schedule(String subjectName, Float hourPrice, Float[] loc,

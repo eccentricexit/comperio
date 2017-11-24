@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.view.View;
 
 import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.Navigator;
@@ -77,5 +78,9 @@ public class HomeViewModel extends BaseViewModel implements LoaderManager.Loader
 
     public void swiped(ItemScheduleViewModel itemScheduleViewModel) {
         persistenceManager.addToFavorites(itemScheduleViewModel.schedule);
+    }
+
+    public void onClickNewSchedule(View view){
+        navigator.navigateToNewSchedule();
     }
 }

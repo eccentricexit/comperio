@@ -10,7 +10,7 @@ import com.rigel.comperio.data.ComperioContract.ScheduleEntry;
 public class ComperioDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "comperio.db";
-    private static final int DATABASE_VERSION = 16;
+    private static final int DATABASE_VERSION = 20;
 
     public ComperioDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

@@ -85,6 +85,11 @@ public abstract class BaseActivity extends AppCompatActivity {
                 startActivityForResult(intent,REQUEST_CODE);
             }
 
+            @Override
+            public void navigateToNewSchedule() {
+                navigate(NewScheduleActivity.class);
+            }
+
             private void navigate(Class<?> destination) {
                 Intent intent = new Intent(BaseActivity.this, destination);
                 startActivity(intent);
