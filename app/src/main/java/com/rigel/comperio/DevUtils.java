@@ -79,6 +79,14 @@ public class DevUtils {
         return new Gson().toJson(object);
     }
 
+    public static String getFakeUrl() {
+        return "http://shackmanlab.org/wp-content/uploads/2013/07/person-placeholder.jpg";
+    }
+
+    public static Float getFakeRating() {
+        return 4f;
+    }
+
     public interface Logger {
         void log(String message);
 

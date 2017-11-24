@@ -10,12 +10,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
 import com.google.gson.Gson;
-import com.rigel.comperio.BuildConfig;
 import com.rigel.comperio.ComperioApplication;
 import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.Navigator;
@@ -24,8 +20,10 @@ import com.rigel.comperio.R;
 import com.rigel.comperio.data.ComperioContract;
 import com.rigel.comperio.model.Filter;
 import com.rigel.comperio.model.Schedule;
+import com.rigel.comperio.sync.ComperioService;
 import com.rigel.comperio.sync.SyncAdapter;
 
+import retrofit2.Call;
 import timber.log.Timber;
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -85,6 +83,11 @@ public abstract class BaseActivity extends AppCompatActivity {
                 startActivityForResult(intent,REQUEST_CODE);
             }
 
+            @Override
+            public void navigateToNewSchedule() {
+                navigate(NewScheduleActivity.class);
+            }
+
             private void navigate(Class<?> destination) {
                 Intent intent = new Intent(BaseActivity.this, destination);
                 startActivity(intent);
@@ -100,6 +103,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
 
         persistenceManager = new PersistenceManager() {
+
+            ComperioService comperioService;
 
             @Override
             public Filter loadFilter() {
@@ -144,6 +149,29 @@ public abstract class BaseActivity extends AppCompatActivity {
             @Override
             public void requestSync() {
                 SyncAdapter.syncImmediately(BaseActivity.this);
+            }
+
+            @Override
+            public Call<Schedule> publishNewSchedule(Schedule schedule) {
+
+                return getComperioService().publishNewSchedule(schedule.teacherName,
+                        DevUtils.getFakeUrl(),
+                        DevUtils.getFakeRating(),
+                        schedule.teacherPhone,
+                        schedule.subjectName,
+                        schedule.loc,
+                        schedule.hourPrice,
+                        schedule.teacherStory);
+
+            }
+
+            private ComperioService getComperioService(){
+                if(comperioService==null){
+                    comperioService = ComperioApplication.get(BaseActivity.this)
+                            .getComperioService();
+                }
+
+                return  comperioService;
             }
 
             private boolean alreadyInFavorites(Schedule schedule) {

@@ -9,4 +9,6 @@ public interface Navigator {
     void navigateToDetailsActivity(Schedule schedule);
 
     void navigateToAddContact(Schedule schedule);
+
+    void navigateToNewSchedule();
 }

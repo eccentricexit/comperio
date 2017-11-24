@@ -650,5 +650,14 @@
     <string name="lblLetTalk">Let\'s Talk!</string>
     <string name="lblDistance">Distance</string>
     <string name="lblSettings">Settings</string>
+    <string name="lblNewSchedule">New Schedule</string>
+    <string name="hintName">John Doe</string>
+    <string name="phoneHint">(555) 1234 432</string>
+    <string name="hintTeacherStory">Ever since I traveled to shangri-la I fell in love with...</string>
+    <string name="lblPerHour">/hour</string>
+    <string name="hintHouRate">34.3</string>
+    <string name="btnChooseLocation">Location</string>
+    <string name="btnPublish">Publish</string>
+    <string name="btnNewSchedule">+</string>
 
 </resources>
