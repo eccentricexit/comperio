@@ -18,17 +18,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
-        <activity android:name=".view.SubjectActivity">
+        <activity android:name=".view.SubjectActivity" android:noHistory="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".view.ScheduleDetailActivity" />
-        <activity
-            android:name=".view.MainActivity"
-            android:label="@string/title_activity_home" />
+        <activity android:name=".view.NewScheduleActivity" />
+        <activity android:name=".view.MainActivity" android:label="@string/title_activity_home" />
 
         <provider
             android:name=".data.ComperioProvider"
@@ -72,7 +70,7 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".view.NewScheduleActivity"></activity>
+
     </application>
 
 </manifest>
