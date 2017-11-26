@@ -2,7 +2,6 @@ package com.rigel.comperio.view;
 
 import android.database.Cursor;
 import android.databinding.DataBindingUtil;
-import android.util.Log;
 
 import com.rigel.comperio.R;
 import com.rigel.comperio.data.ComperioContract;
@@ -23,7 +22,7 @@ public class MainActivity extends BottomNavigationActivity {
 
         mainActivityBinding.setMainViewModel(mainViewModel);
 
-        Cursor cursor = getContentResolver().query(ComperioContract.ScheduleEntry.CONTENT_URI,
+        Cursor cursor = getContentResolver().query(ComperioContract.ScheduleTable.CONTENT_URI,
                 null,
                 null,
                 null,

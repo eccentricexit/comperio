@@ -56,7 +56,7 @@ public class FavoritesViewModel extends BaseViewModel implements LoaderManager.L
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
                 context,
-                ComperioContract.FavoriteEntry.CONTENT_URI,
+                ComperioContract.FavoriteTable.CONTENT_URI,
                 null,
                 null,
                 null,

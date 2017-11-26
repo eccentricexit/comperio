@@ -3,10 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="filtersViewModel"
             type="com.rigel.comperio.viewmodel.FiltersViewModel" />
+
+        <variable
+            name="spinnerAdapter"
+            type="android.widget.ArrayAdapter" />
     </data>
 
     <FrameLayout
@@ -31,19 +34,18 @@
                 app:layout_constraintEnd_toStartOf="@+id/textView10"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:layout_margin="16dp"
-                android:layout_marginTop="112dp"
-                android:hint="@string/lblSubject"
-                android:text="@={filtersViewModel.filter.subject}"
-                android:textSize="18sp"
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/subjectSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="40dp"
+                app:adapter="@{spinnerAdapter}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iconTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/iconTextView"/>
 
 
             <TextView
@@ -91,7 +93,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textView9"
-                app:layout_constraintTop_toBottomOf="@+id/editText" />
+                app:layout_constraintTop_toBottomOf="@+id/subjectSpinner" />
 
 
             <Switch
@@ -109,23 +111,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:background="@color/accent"
-                android:onClick="@{filtersViewModel::onPersistClick}"
-                android:paddingBottom="16dp"
-                android:paddingEnd="36dp"
-                android:paddingStart="36dp"
-                android:paddingTop="16dp"
-                android:text="@string/lblSaveFilters"
-                android:textColor="@color/base"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.502"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/switch1" />
 
             <TextView
                 android:id="@+id/textView10"

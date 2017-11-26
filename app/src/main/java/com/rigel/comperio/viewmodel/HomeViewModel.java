@@ -56,7 +56,7 @@ public class HomeViewModel extends BaseViewModel implements LoaderManager.Loader
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(
                 context,
-                ComperioContract.ScheduleEntry.CONTENT_URI,
+                ComperioContract.ScheduleTable.CONTENT_URI,
                 null,
                 null,
                 null,

@@ -9,7 +9,6 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.rigel.comperio.sync.ComperioFactory;
 import com.rigel.comperio.sync.ComperioService;
-import com.rigel.comperio.sync.SyncAdapter;
 
 import timber.log.Timber;
 

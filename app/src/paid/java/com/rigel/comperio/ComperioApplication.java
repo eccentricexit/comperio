@@ -5,7 +5,6 @@ import android.content.Context;
 
 import com.rigel.comperio.sync.ComperioFactory;
 import com.rigel.comperio.sync.ComperioService;
-import com.rigel.comperio.sync.SyncAdapter;
 
 import timber.log.Timber;
 
