@@ -26,6 +26,8 @@ import com.rigel.comperio.sync.SyncAdapter;
 import retrofit2.Call;
 import timber.log.Timber;
 
+import static com.rigel.comperio.sync.SyncAdapter.getContentValuesFrom;
+
 public abstract class BaseActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE = 0;
@@ -131,18 +133,17 @@ public abstract class BaseActivity extends AppCompatActivity {
                     return;
                 }
 
-                ContentValues contentValues = new ContentValues();
-                contentValues.put(ComperioContract.FavoriteEntry.COLUMN_SCHEDULE_KEY, schedule._id);
+                ContentValues contentValues = getContentValuesFrom(schedule);
 
                 getContentResolver()
-                        .insert(ComperioContract.FavoriteEntry.CONTENT_URI, contentValues);
+                        .insert(ComperioContract.FavoriteTable.CONTENT_URI, contentValues);
             }
 
             @Override
             public void removeFromFavorites(Schedule schedule) {
                 getContentResolver().delete(
-                        ComperioContract.FavoriteEntry.CONTENT_URI,
-                        ComperioContract.FavoriteEntry.COLUMN_SCHEDULE_KEY + " = ?",
+                        ComperioContract.FavoriteTable.CONTENT_URI,
+                        ComperioContract.FavoriteTable.COLUMN_SCHEDULE_ID + " = ?",
                         new String[]{schedule._id});
             }
 
@@ -176,9 +177,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
             private boolean alreadyInFavorites(Schedule schedule) {
                 Cursor cursor = getContentResolver().query(
-                        ComperioContract.FavoriteEntry.CONTENT_URI,
+                        ComperioContract.FavoriteTable.CONTENT_URI,
                         null,
-                        ComperioContract.FavoriteEntry.COLUMN_SCHEDULE_KEY,
+                        ComperioContract.FavoriteTable.COLUMN_SCHEDULE_ID + " = ? ",
                         new String[]{schedule._id},
                         null
                 );

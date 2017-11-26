@@ -17,7 +17,7 @@ import com.google.gson.Gson;
 import com.rigel.comperio.ComperioApplication;
 import com.rigel.comperio.R;
 import com.rigel.comperio.data.ComperioContract;
-import com.rigel.comperio.data.ComperioContract.ScheduleEntry;
+import com.rigel.comperio.data.ComperioContract.ScheduleTable;
 import com.rigel.comperio.model.Filter;
 import com.rigel.comperio.model.Schedule;
 
@@ -80,7 +80,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
         Log.d(LOG_TAG, "Attempting sync...");
 
-        syncComperio(ScheduleEntry.CONTENT_URI);
+        syncComperio(ScheduleTable.CONTENT_URI);
     }
 
     private void syncComperio(Uri uri) {
@@ -121,23 +121,28 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         Vector<ContentValues> contentValuesVector = new Vector<>(schedules.size());
 
         for (Schedule schedule : schedules) {
-            ContentValues values = new ContentValues();
-
-            values.put(ScheduleEntry.COLUMN_SCHEDULE_ID, schedule._id);
-            values.put(ScheduleEntry.COLUMN_SUBJECT_NAME, schedule.subjectName);
-            values.put(ScheduleEntry.COLUMN_TEACHER_NAME, schedule.teacherName);
-            values.put(ScheduleEntry.COLUMN_TEACHER_STORY, schedule.teacherStory);
-            values.put(ScheduleEntry.COLUMN_TEACHER_PIC_URL, schedule.teacherPicUrl);
-            values.put(ScheduleEntry.COLUMN_TEACHER_LAT, schedule.loc[1]);
-            values.put(ScheduleEntry.COLUMN_TEACHER_LONG, schedule.loc[0]);
-            values.put(ScheduleEntry.COLUMN_TEACHER_PHONE, schedule.teacherPhone);
-            values.put(ScheduleEntry.COLUMN_TEACHER_RATING, schedule.teacherRating);
-            values.put(ScheduleEntry.COLUMN_HOUR_PRICE, schedule.hourPrice);
-            values.put(ScheduleEntry.COLUMN_TEACHER_DISTANCE,schedule.distance);
-
-            contentValuesVector.add(values);
+            contentValuesVector.add(getContentValuesFrom(schedule));
         }
+
         return contentValuesVector;
+    }
+
+    public static ContentValues getContentValuesFrom(Schedule schedule){
+        ContentValues values = new ContentValues();
+
+        values.put(ScheduleTable.COLUMN_SCHEDULE_ID, schedule._id);
+        values.put(ScheduleTable.COLUMN_SUBJECT_NAME, schedule.subjectName);
+        values.put(ScheduleTable.COLUMN_TEACHER_NAME, schedule.teacherName);
+        values.put(ScheduleTable.COLUMN_TEACHER_STORY, schedule.teacherStory);
+        values.put(ScheduleTable.COLUMN_TEACHER_PIC_URL, schedule.teacherPicUrl);
+        values.put(ScheduleTable.COLUMN_TEACHER_LAT, schedule.loc[1]);
+        values.put(ScheduleTable.COLUMN_TEACHER_LONG, schedule.loc[0]);
+        values.put(ScheduleTable.COLUMN_TEACHER_PHONE, schedule.teacherPhone);
+        values.put(ScheduleTable.COLUMN_TEACHER_RATING, schedule.teacherRating);
+        values.put(ScheduleTable.COLUMN_HOUR_PRICE, schedule.hourPrice);
+        values.put(ScheduleTable.COLUMN_TEACHER_DISTANCE,schedule.distance);
+
+        return values;
     }
 
     public Filter loadFilter() {
