@@ -2,14 +2,11 @@ package com.rigel.comperio.viewmodel;
 
 import android.view.View;
 
-import com.google.gson.JsonElement;
-import com.rigel.comperio.ComperioApplication;
 import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.Navigator;
 import com.rigel.comperio.PersistenceManager;
 import com.rigel.comperio.model.Schedule;
 import com.rigel.comperio.model.Subject;
-import com.rigel.comperio.sync.ComperioService;
 
 import retrofit2.Call;
 import retrofit2.Callback;

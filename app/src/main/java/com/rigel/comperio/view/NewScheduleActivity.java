@@ -1,7 +1,6 @@
 package com.rigel.comperio.view;
 
 import android.databinding.DataBindingUtil;
-import android.os.Bundle;
 
 import com.rigel.comperio.R;
 import com.rigel.comperio.adapters.SubjectAdapter;
