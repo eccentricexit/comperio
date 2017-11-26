@@ -37,7 +37,7 @@ public class SubjectAdapter extends ArrayAdapter<Subject> {
 
         TextView label = new TextView(context);
         label.setText(values[position].name);
-        label.setTextSize(24);
+        label.setTextSize(18);
 
         return label;
     }
