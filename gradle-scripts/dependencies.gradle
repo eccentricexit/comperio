@@ -1,5 +1,7 @@
 ext {
     supportVersion = '25.3.1'
+    servicesVersion = '11.6.2'
+    constraintLayoutVersion = '1.0.2'
 
     rxAndroidVersion = '2.0.1'
     rxJavaVersion  = '2.0.2'
@@ -12,17 +14,18 @@ ext {
     timberVersion = '4.5.1'
     swipeRecyclerVersion = '0.2.0'
 
+
     junitVersion = '4.12'
     mockitoVersion = '1.10.19'
     robolectricVersion = '3.0'
 
-    //Packages
     supportPackage = 'com.android.support'
     supportContraintPackage = 'com.android.support.constraint'
+    gmsPackage = 'com.google.android.gms'
+    firebasePackage = 'com.google.firebase'
+
     retrofitPackage = 'com.squareup.retrofit2'
-
     reactivePackage = 'io.reactivex.rxjava2'
-
     picassoPackage = 'com.squareup.picasso'
     hdodenhofPackage = 'de.hdodenhof'
     betterPickersPackage = 'com.code-troopers.betterpickers'
@@ -33,14 +36,20 @@ ext {
     mockitoPackage = 'org.mockito'
     robolectricPackage = 'org.robolectric'
 
-
     supportDependencies = [
             design           : buildDependency(supportPackage, 'design', supportVersion),
             recyclerView     : buildDependency(supportPackage, 'recyclerview-v7', supportVersion),
             cardView         : buildDependency(supportPackage, 'cardview-v7', supportVersion),
             appCompat        : buildDependency(supportPackage, 'appcompat-v7', supportVersion),
             vectorDrawable   : buildDependency(supportPackage, 'support-vector-drawable',supportVersion),
-            constraintLayout : buildDependency(supportContraintPackage,'constraint-layout','1.0.2')
+            constraintLayout : buildDependency(supportContraintPackage,'constraint-layout',constraintLayoutVersion),
+            support          : buildDependency(supportPackage,'support-v4',supportVersion)
+    ]
+
+    googleServicesDependencies = [
+            locationServices : buildDependency(gmsPackage,'play-services-location',servicesVersion),
+            adsServices : buildDependency(gmsPackage,'play-services-ads',servicesVersion),
+            firebaseServices : buildDependency(firebasePackage,'firebase-messaging',servicesVersion)
     ]
 
     retrofitDependencies = [
@@ -53,7 +62,6 @@ ext {
             rxAndroid: buildDependency(reactivePackage, 'rxandroid', rxAndroidVersion),
             rxJava   : buildDependency(reactivePackage, 'rxjava',rxJavaVersion)
     ]
-
 
     picasso = buildDependency(picassoPackage, 'picasso', picassoVersion)
     circleImageView = buildDependency(hdodenhofPackage, 'circleimageview', circleImageVersion)
