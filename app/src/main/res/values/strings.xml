@@ -653,11 +653,15 @@
     <string name="lblNewSchedule">New Schedule</string>
     <string name="hintName">John Doe</string>
     <string name="phoneHint">(555) 1234 432</string>
-    <string name="hintTeacherStory">Ever since I traveled to shangri-la I fell in love with...</string>
+    <string name="hintTeacherStory">Ever since I traveled to shangri-la I fell in love with</string>
     <string name="lblPerHour">/hour</string>
     <string name="hintHouRate">34.3</string>
     <string name="btnChooseLocation">Location</string>
     <string name="btnPublish">Publish</string>
     <string name="btnNewSchedule">+</string>
+    <string name="msg_fail_fetch_location">Failed to get location</string>
+    <string name="msg_location_disabled">Location won\'t be used</string>
+    <string name="hintSubject">Mandarin</string>
+    <string name="msg_location_saved">Location saved.</string>
 
 </resources>

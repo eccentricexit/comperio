@@ -3,14 +3,22 @@ package com.rigel.comperio.view;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+
+import android.location.Location;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
 import com.rigel.comperio.ComperioApplication;
 import com.rigel.comperio.DevUtils;
@@ -30,7 +38,8 @@ import static com.rigel.comperio.sync.SyncAdapter.getContentValuesFrom;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    private static final int REQUEST_CODE = 0;
+    private static final int REQUEST_CODE_ADD_TO_CONTACTS = 0;
+    private static final int REQUEST_CODE_LOCATION = 1;
 
     private Navigator navigator;
     private PersistenceManager persistenceManager;
@@ -40,6 +49,81 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initDataBinding();
+        checkLocationPermissions();
+    }
+
+    private void checkLocationPermissions() {
+        if (ContextCompat.checkSelfPermission( this,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION )
+                != PackageManager.PERMISSION_GRANTED ) {
+
+            ActivityCompat.requestPermissions( this, new String[] {
+                            android.Manifest.permission.ACCESS_COARSE_LOCATION  },
+                    REQUEST_CODE_LOCATION);
+        }else{
+            initLocationServices();
+        }
+    }
+
+    protected abstract void initDataBinding();
+
+    private void initLocationServices() {
+
+        if (ContextCompat.checkSelfPermission( this,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION )
+                != PackageManager.PERMISSION_GRANTED ) {
+
+            return;
+        }
+
+        if(alreadySavedLocation()){
+            return;
+        }
+
+        FusedLocationProviderClient fusedLocationClient =
+                LocationServices.getFusedLocationProviderClient(this);
+
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        Float[] loc = new Float[2];
+                        if (location == null) {
+                            loc[0] = 0f;
+                            loc[1] = 0f;
+                        }else{
+                            loc[0] = (float) location.getLongitude();
+                            loc[1] = (float) location.getLatitude();
+                        }
+
+                        Filter filter = getPersistenceManager().loadFilter();
+                        filter.userLoc = loc;
+                        persistenceManager.saveFilter(filter);
+                    }
+                });
+    }
+
+    private boolean alreadySavedLocation() {
+        Filter filter = getPersistenceManager().loadFilter();
+        return filter.userLoc[0]!=null &&
+                filter.userLoc[1]!=null &&
+                filter.userLoc[0]!=0f &&
+                filter.userLoc[1]!=0f;
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        if(requestCode!=REQUEST_CODE_LOCATION){
+            return;
+        }
+
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            initLocationServices();
+        } else {
+            logger.toast(getString(R.string.msg_location_disabled));
+        }
     }
 
     protected void showInterstitialAd(){
@@ -82,7 +166,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 intent.putExtra(ContactsContract.Intents.Insert.JOB_TITLE,
                         schedule.subjectName+" "+getString(R.string.teacher));
 
-                startActivityForResult(intent,REQUEST_CODE);
+                startActivityForResult(intent, REQUEST_CODE_ADD_TO_CONTACTS);
             }
 
             @Override
@@ -155,6 +239,12 @@ public abstract class BaseActivity extends AppCompatActivity {
             @Override
             public Call<Schedule> publishNewSchedule(Schedule schedule) {
 
+                if(schedule.loc[0]==null || schedule.loc[1]==null){
+                    logger.toast("Failed: no location available");
+
+                    return null;
+                }
+
                 return getComperioService().publishNewSchedule(schedule.teacherName,
                         DevUtils.getFakeUrl(),
                         DevUtils.getFakeRating(),
@@ -223,5 +313,4 @@ public abstract class BaseActivity extends AppCompatActivity {
         return logger;
     }
 
-    protected abstract void initDataBinding();
 }

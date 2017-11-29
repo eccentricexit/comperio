@@ -15,8 +15,8 @@ import retrofit2.Response;
 public class NewScheduleViewModel extends BaseViewModel {
 
     public Subject[] subjects;
-
     public Schedule schedule;
+
     public NewScheduleViewModel(Navigator navigator, PersistenceManager persistenceManager,
                          DevUtils.Logger logger) {
         super(navigator, persistenceManager, logger);
@@ -30,6 +30,8 @@ public class NewScheduleViewModel extends BaseViewModel {
     }
 
     public void onClickPublish(View view){
+        schedule.loc = persistenceManager.loadFilter().userLoc;
+
         persistenceManager
                 .publishNewSchedule(schedule)
                 .enqueue(new Callback<Schedule>() {
@@ -50,6 +52,7 @@ public class NewScheduleViewModel extends BaseViewModel {
     }
 
     public void setHourPrice(String hourPrice){
+        if("".equals(hourPrice)){hourPrice="0";}
         schedule.hourPrice = Float.parseFloat(hourPrice);
     }
 }

@@ -90,8 +90,13 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         List<Schedule> schedules = null;
         Log.d(LOG_TAG,"Filter: "+filter.toString());
         try {
-            schedules = comperioService.listSchedules(filter.subject,filter.maxDistance,
-                    filter.userLoc[1],filter.userLoc[0]).execute().body();
+            schedules = comperioService.listSchedules(
+                    filter.subject,
+                    filter.maxDistance,
+                    filter.userLoc[1],
+                    filter.userLoc[0])
+                    .execute().body();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
