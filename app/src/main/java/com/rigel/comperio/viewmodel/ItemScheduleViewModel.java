@@ -23,8 +23,7 @@ public class ItemScheduleViewModel extends BaseObservable {
         navigator.navigateToDetailsActivity(schedule);
     }
 
-    public String getFormattedDistance() {
-        return schedule.distance + "m";
+    public String getFormattedDistance() { return String.format("%.2f", schedule.distance/1000f) + "km";
     }
 
     public String getFormattedHourPrice(){

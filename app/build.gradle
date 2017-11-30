@@ -42,13 +42,16 @@ android {
 
 dependencies {
 
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     compile supportDependencies.appCompat
     compile supportDependencies.design
     compile supportDependencies.recyclerView
     compile supportDependencies.cardView
     compile supportDependencies.vectorDrawable
     compile supportDependencies.constraintLayout
+    compile supportDependencies.support
+
+    compile googleServicesDependencies.locationServices
+    freeCompile googleServicesDependencies.adsServices
 
     compile retrofitDependencies.retrofit
     compile retrofitDependencies.gson
@@ -66,12 +69,9 @@ dependencies {
     testCompile testingDependencies.mockito
     testCompile testingDependencies.robolectric
 
-    freeCompile 'com.google.android.gms:play-services-ads:11.6.0'
+    implementation supportDependencies.constraintLayout
+    implementation 'com.google.firebase:firebase-messaging:11.6.2'
 
-    implementation 'com.google.firebase:firebase-messaging:11.6.0'
-
-    // TODO: Remove these (since they are added from dependencies.gradle
-    compile 'com.android.support:support-v4:25.3.1'
 }
 
 
