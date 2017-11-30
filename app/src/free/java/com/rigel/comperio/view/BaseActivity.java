@@ -36,6 +36,7 @@ import timber.log.Timber;
 
 import static com.rigel.comperio.sync.SyncAdapter.getContentValuesFrom;
 
+// TODO: Swap change interfaces into concrete classes
 public abstract class BaseActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_ADD_TO_CONTACTS = 0;
