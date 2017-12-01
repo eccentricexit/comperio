@@ -62,15 +62,13 @@ dependencies {
 
     compile circleImageView
     compile picasso
-    compile betterPickers
-    compile timber
 
     testCompile testingDependencies.junit
     testCompile testingDependencies.mockito
     testCompile testingDependencies.robolectric
 
     implementation supportDependencies.constraintLayout
-    implementation 'com.google.firebase:firebase-messaging:11.6.2'
+    implementation googleServicesDependencies.firebaseServices
 
 }
 

@@ -6,7 +6,6 @@ import com.rigel.comperio.PersistenceManager;
 
 import java.util.Observable;
 
-// TODO: Swap/extend viewmodels for native viewmodel
 public class BaseViewModel extends Observable {
     protected Navigator navigator;
     protected PersistenceManager persistenceManager;

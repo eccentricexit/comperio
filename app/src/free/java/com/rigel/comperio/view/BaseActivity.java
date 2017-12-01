@@ -8,11 +8,13 @@ import android.database.Cursor;
 
 import android.location.Location;
 import android.os.Bundle;
+import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.InterstitialAd;
@@ -32,12 +34,12 @@ import com.rigel.comperio.sync.ComperioService;
 import com.rigel.comperio.sync.SyncAdapter;
 
 import retrofit2.Call;
-import timber.log.Timber;
 
 import static com.rigel.comperio.sync.SyncAdapter.getContentValuesFrom;
 
-// TODO: Swap change interfaces into concrete classes
 public abstract class BaseActivity extends AppCompatActivity {
+
+    private static final String LOG_TAG = BaseColumns.class.getSimpleName();
 
     private static final int REQUEST_CODE_ADD_TO_CONTACTS = 0;
     private static final int REQUEST_CODE_LOCATION = 1;
@@ -132,7 +134,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (interstitialAd.isLoaded()) {
             interstitialAd.show();
         } else {
-            Timber.d("The interstitial wasn't loaded yet.");
+            Log.d(LOG_TAG,"The interstitial wasn't loaded yet.");
         }
     }
 
@@ -302,7 +304,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         logger = new DevUtils.Logger() {
             @Override
             public void log(String logMessage) {
-                Timber.d(logMessage);
+                Log.d(LOG_TAG,logMessage);
             }
 
             @Override

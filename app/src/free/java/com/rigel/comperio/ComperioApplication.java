@@ -10,8 +10,6 @@ import com.google.android.gms.ads.MobileAds;
 import com.rigel.comperio.sync.ComperioFactory;
 import com.rigel.comperio.sync.ComperioService;
 
-import timber.log.Timber;
-
 public class ComperioApplication extends Application {
 
     private ComperioService comperioService;
@@ -20,7 +18,6 @@ public class ComperioApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Timber.plant(new Timber.DebugTree());
         initAds();
     }
 

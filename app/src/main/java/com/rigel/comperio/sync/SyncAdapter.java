@@ -27,7 +27,6 @@ import java.util.Vector;
 
 public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
-    // TODO: Swap default logger for timber
     private static final String LOG_TAG = SyncAdapter.class.getSimpleName();
 
     private Context context;

@@ -10,7 +10,6 @@ import com.rigel.comperio.databinding.ActivitySubjectBinding;
 import com.rigel.comperio.model.Subject;
 import com.rigel.comperio.viewmodel.SubjectViewModel;
 
-//TODO: Refactor this
 public class SubjectActivity extends BaseActivity {
 
     @Override
