@@ -20,7 +20,7 @@ public class NewScheduleActivity extends BaseActivity {
         newScheduleActivityBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_new_schedule);
 
-        newScheduleViewModel = new NewScheduleViewModel(getNavigator(), getPersistenceManager(),
+        newScheduleViewModel = new NewScheduleViewModel(getNavigationManager(), getPersistanceManager(),
                 getLogger());
 
         newScheduleActivityBinding.setNewScheduleViewModel(newScheduleViewModel);

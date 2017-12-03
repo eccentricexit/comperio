@@ -69,7 +69,8 @@ public class DevUtils {
                 new Subject(0, "English"),
                 new Subject(1, "Spanish"),
                 new Subject(2, "German"),
-                new Subject(3, "Kotlin"),
+                new Subject(3, "Portuguese"),
+                new Subject(3, "French")
         };
 
         return subjects;
@@ -87,10 +88,5 @@ public class DevUtils {
         return 4f;
     }
 
-    public interface Logger {
-        void log(String message);
-
-        void toast(String message);
-    }
 
 }

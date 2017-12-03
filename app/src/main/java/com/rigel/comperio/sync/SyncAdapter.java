@@ -7,21 +7,21 @@ import android.content.ContentProviderClient;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.SyncResult;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.rigel.comperio.ComperioApplication;
+import com.rigel.comperio.PersistenceManager;
 import com.rigel.comperio.R;
 import com.rigel.comperio.data.ComperioContract;
 import com.rigel.comperio.data.ComperioContract.ScheduleTable;
-import com.rigel.comperio.model.Filter;
 import com.rigel.comperio.model.Schedule;
+import com.rigel.comperio.model.UserData;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -79,21 +79,29 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
         Log.d(LOG_TAG, "Attempting sync...");
 
-        syncComperio(ScheduleTable.CONTENT_URI);
+        List<Schedule> schedules = syncComperio(ScheduleTable.CONTENT_URI);
+
+        if(!schedules.isEmpty()) {
+            UserData userData = getPersistanceManager().loadUserData();
+            userData.suggestedSchedule = schedules.get(0);
+            getPersistanceManager().saveUserData(userData);
+        }
+
+
     }
 
-    private void syncComperio(Uri uri) {
-        Filter filter = loadFilter();
+    private List<Schedule> syncComperio(Uri uri) {
+        UserData userData = getPersistanceManager().loadUserData();
 
         ComperioService comperioService = ComperioApplication.get(context).getComperioService();
         List<Schedule> schedules = null;
-        Log.d(LOG_TAG,"Filter: "+filter.toString());
+        Log.d(LOG_TAG,"UserData: "+ userData.toString());
         try {
             schedules = comperioService.listSchedules(
-                    filter.subject,
-                    filter.maxDistance,
-                    filter.userLoc[1],
-                    filter.userLoc[0])
+                    userData.subject,
+                    userData.maxDistance,
+                    userData.userLoc[1],
+                    userData.userLoc[0])
                     .execute().body();
 
         } catch (IOException e) {
@@ -102,7 +110,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
         if (schedules == null || schedules.isEmpty()) {
             Log.e(LOG_TAG, "No data returned. schedules == null || schedules.isEmpty().");
-            return;
+            return new ArrayList<>();
         }
 
         Log.e(LOG_TAG, "Fetched " + schedules.size() + " schedules.");
@@ -119,6 +127,8 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         }
 
         Log.d(LOG_TAG, "Synced " + uri.getLastPathSegment() + ". " + cVVector.size() + " added");
+
+        return schedules;
     }
 
     private Vector<ContentValues> getContentVVectorFor(List<Schedule> schedules) {
@@ -149,21 +159,9 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         return values;
     }
 
-    public Filter loadFilter() {
-        Gson gson = new Gson();
-        String json = getComperioPreferences()
-                .getString(context.getResources().getString(R.string.FILTER_KEY), "");
 
-        if (!json.equals("")) {
-            return gson.fromJson(json, Filter.class);
-        } else {
-            return new Filter();
-        }
-    }
-
-    private SharedPreferences getComperioPreferences() {
-        String key = context.getResources().getString(R.string.SHARED_PREFERENCES_KEY);
-        return context.getSharedPreferences(key, 0);
+    private PersistenceManager getPersistanceManager(){
+        return new PersistenceManager(context);
     }
 
 }

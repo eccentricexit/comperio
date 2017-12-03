@@ -1,13 +1,13 @@
 package com.rigel.comperio.viewmodel;
 
-import com.rigel.comperio.DevUtils;
-import com.rigel.comperio.Navigator;
+import com.rigel.comperio.LoggingManager;
+import com.rigel.comperio.NavigationManager;
 import com.rigel.comperio.PersistenceManager;
 
 public class MainViewModel extends BaseViewModel {
 
-    public MainViewModel(Navigator navigator, PersistenceManager persistenceManager,
-                         DevUtils.Logger logger) {
+    public MainViewModel(NavigationManager navigator, PersistenceManager persistenceManager,
+                        LoggingManager logger) {
         super(navigator, persistenceManager, logger);
     }
 }

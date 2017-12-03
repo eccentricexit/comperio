@@ -17,7 +17,7 @@ public class MainActivity extends BottomNavigationActivity {
         ActivityMainBinding mainActivityBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        mainViewModel = new MainViewModel(getNavigator(), getPersistenceManager(),
+        mainViewModel = new MainViewModel(getNavigationManager(), getPersistanceManager(),
                 getLogger());
 
         mainActivityBinding.setMainViewModel(mainViewModel);

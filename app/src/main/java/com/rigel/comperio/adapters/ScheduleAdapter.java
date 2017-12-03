@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.rigel.comperio.DevUtils;
-import com.rigel.comperio.Navigator;
+import com.rigel.comperio.LoggingManager;
+import com.rigel.comperio.NavigationManager;
 import com.rigel.comperio.R;
 import com.rigel.comperio.databinding.ItemScheduleBinding;
 import com.rigel.comperio.model.Schedule;
@@ -22,10 +22,10 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
     private final Context context;
 
     private List<Schedule> schedules;
-    private Navigator navigator;
-    private DevUtils.Logger logger;
+    private NavigationManager navigator;
+    private LoggingManager logger;
 
-    public ScheduleAdapter(Context context, Navigator navigator, DevUtils.Logger logger) {
+    public ScheduleAdapter(Context context, NavigationManager navigator, LoggingManager logger) {
         this.schedules = Collections.emptyList();
         this.navigator = navigator;
         this.logger = logger;
@@ -66,11 +66,11 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
 
     public static class ScheduleViewHolder extends RecyclerView.ViewHolder {
         ItemScheduleBinding itemScheduleBinding;
-        Navigator navigator;
-        DevUtils.Logger logger;
+        NavigationManager navigator;
+        LoggingManager logger;
 
         public ScheduleViewHolder(ItemScheduleBinding itemScheduleBinding,
-                                  Navigator navigator, DevUtils.Logger logger) {
+                                  NavigationManager navigator, LoggingManager logger) {
             super(itemScheduleBinding.itemScheduleLayout);
             this.itemScheduleBinding = itemScheduleBinding;
             this.navigator = navigator;

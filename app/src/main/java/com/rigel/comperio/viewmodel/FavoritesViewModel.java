@@ -7,8 +7,8 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 
-import com.rigel.comperio.DevUtils;
-import com.rigel.comperio.Navigator;
+import com.rigel.comperio.LoggingManager;
+import com.rigel.comperio.NavigationManager;
 import com.rigel.comperio.PersistenceManager;
 import com.rigel.comperio.data.ComperioContract;
 import com.rigel.comperio.model.Schedule;
@@ -25,8 +25,8 @@ public class FavoritesViewModel extends BaseViewModel implements LoaderManager.L
     List<Schedule> schedules;
 
 
-    public FavoritesViewModel(Navigator navigator, PersistenceManager persistenceManager,
-                              DevUtils.Logger logger, LoaderManager loaderManager, Context context) {
+    public FavoritesViewModel(NavigationManager navigator, PersistenceManager persistenceManager,
+                              LoggingManager logger, LoaderManager loaderManager, Context context) {
 
         super(navigator, persistenceManager, logger);
         this.loaderManager = loaderManager;

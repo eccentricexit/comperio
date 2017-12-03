@@ -3,14 +3,14 @@ package com.rigel.comperio.view;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 
-import com.rigel.comperio.DevUtils;
-import com.rigel.comperio.Navigator;
+import com.rigel.comperio.LoggingManager;
+import com.rigel.comperio.NavigationManager;
 import com.rigel.comperio.PersistenceManager;
 
 public abstract class BaseFragment extends Fragment {
 
-    Navigator navigator;
-    DevUtils.Logger logger;
+    NavigationManager navigator;
+    LoggingManager logger;
     PersistenceManager persistenceManager;
 
     @Override
@@ -18,9 +18,9 @@ public abstract class BaseFragment extends Fragment {
         super.onAttach(context);
 
         BaseActivity baseActivity = (BaseActivity) getActivity();
-        navigator = baseActivity.getNavigator();
+        navigator = baseActivity.getNavigationManager();
         logger = baseActivity.getLogger();
-        persistenceManager = baseActivity.getPersistenceManager();
+        persistenceManager = baseActivity.getPersistanceManager();
     }
 
 }

@@ -22,8 +22,8 @@ public class ScheduleDetailActivity extends BaseActivity {
                 DataBindingUtil.setContentView(this, R.layout.activity_schedule_detail);
 
         Schedule schedule = (Schedule) getIntent().getSerializableExtra(getString(R.string.EXTRA_SCHEDULE));
-        scheduleDetailViewModel = new ScheduleDetailViewModel(getNavigator(), getPersistenceManager(),
-                schedule, getLogger());
+        scheduleDetailViewModel = new ScheduleDetailViewModel(getNavigationManager(), getPersistanceManager(),
+                schedule, getLogger(),this);
 
         scheduleDetailActivityBinding.setScheduleDetailViewModel(scheduleDetailViewModel);
 

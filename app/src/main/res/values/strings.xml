@@ -660,5 +660,10 @@
     <string name="msg_location_disabled">Location won\'t be used</string>
     <string name="hintSubject">Mandarin</string>
     <string name="msg_location_saved">Location saved.</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="widgetThbImage">Teacher profile picture</string>
+    <string name="SUGGESTED_SCHEDULE_KEY">suggested_schedule_key</string>
+    <string name="msg_no_data_available">No data available</string>
 
 </resources>

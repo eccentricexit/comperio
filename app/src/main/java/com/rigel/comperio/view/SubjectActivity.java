@@ -17,8 +17,8 @@ public class SubjectActivity extends BaseActivity {
         final ActivitySubjectBinding subjectActivityBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_subject);
 
-        SubjectViewModel subjectViewModel = new SubjectViewModel(getNavigator(),
-                getPersistenceManager(), getLogger());
+        SubjectViewModel subjectViewModel = new SubjectViewModel(getNavigationManager(),
+                getPersistanceManager(), getLogger());
         subjectActivityBinding.setSubjectViewModel(subjectViewModel);
 
         SubjectAdapter adapter = new SubjectAdapter(
@@ -33,7 +33,7 @@ public class SubjectActivity extends BaseActivity {
 
         for(int i=0;i<subjectActivityBinding.getSpinnerAdapter().getCount();i++){
             Subject subject = (Subject) subjectActivityBinding.getSpinnerAdapter().getItem(i);
-            if(subject.equals(subjectViewModel.filter.subject)){
+            if(subject.equals(subjectViewModel.userData.subject)){
                 selection = i;
                 break;
             }
@@ -47,7 +47,7 @@ public class SubjectActivity extends BaseActivity {
                 new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                subjectActivityBinding.getSubjectViewModel().filter.subject =
+                subjectActivityBinding.getSubjectViewModel().userData.subject =
                         ((Subject) subjectActivityBinding.subjectSpinner.getSelectedItem()).name;
             }
 
