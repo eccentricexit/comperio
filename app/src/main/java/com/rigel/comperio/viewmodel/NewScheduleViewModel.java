@@ -3,7 +3,8 @@ package com.rigel.comperio.viewmodel;
 import android.view.View;
 
 import com.rigel.comperio.DevUtils;
-import com.rigel.comperio.Navigator;
+import com.rigel.comperio.LoggingManager;
+import com.rigel.comperio.NavigationManager;
 import com.rigel.comperio.PersistenceManager;
 import com.rigel.comperio.model.Schedule;
 import com.rigel.comperio.model.Subject;
@@ -17,8 +18,8 @@ public class NewScheduleViewModel extends BaseViewModel {
     public Subject[] subjects;
     public Schedule schedule;
 
-    public NewScheduleViewModel(Navigator navigator, PersistenceManager persistenceManager,
-                         DevUtils.Logger logger) {
+    public NewScheduleViewModel(NavigationManager navigator, PersistenceManager persistenceManager,
+                                LoggingManager logger) {
         super(navigator, persistenceManager, logger);
 
         schedule = new Schedule();
@@ -30,7 +31,7 @@ public class NewScheduleViewModel extends BaseViewModel {
     }
 
     public void onClickPublish(View view){
-        schedule.loc = persistenceManager.loadFilter().userLoc;
+        schedule.loc = persistenceManager.loadUserData().userLoc;
 
         persistenceManager
                 .publishNewSchedule(schedule)

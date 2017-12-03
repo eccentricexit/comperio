@@ -3,6 +3,7 @@ package com.rigel.comperio.view;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -10,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.rigel.comperio.R;
 import com.rigel.comperio.adapters.ScheduleAdapter;
 import com.rigel.comperio.databinding.FragmentHomeBinding;
+import com.rigel.comperio.model.Schedule;
 import com.rigel.comperio.viewmodel.HomeViewModel;
 
 import java.util.Observable;
@@ -41,12 +44,14 @@ public class HomeFragment extends BaseFragment implements Observer {
         fragmentHomeBinding.recyclerHome.setLayoutManager(
                 new LinearLayoutManager(getActivity()));
         fragmentHomeBinding.recyclerHome.setAdapter(
-                new ScheduleAdapter(getContext(),navigator, logger));
+                new ScheduleAdapter(getContext(),navigator, logger, buildOnClickHandler()));
 
         buildItemTouchHelper().attachToRecyclerView(fragmentHomeBinding.recyclerHome);
 
         return fragmentHomeBinding.getRoot();
     }
+
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -79,9 +84,11 @@ public class HomeFragment extends BaseFragment implements Observer {
                 return false;
             }
 
+
+
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                homeViewModel.swiped(((ScheduleAdapter.ScheduleViewHolder)viewHolder)
+                homeViewModel.addToFavorites(((ScheduleAdapter.ScheduleViewHolder)viewHolder)
                         .getItemScheduleBinding().getItemScheduleViewModel());
 
                 ((ScheduleAdapter)fragmentHomeBinding.recyclerHome.getAdapter())
@@ -90,6 +97,8 @@ public class HomeFragment extends BaseFragment implements Observer {
                 fragmentHomeBinding.recyclerHome.getAdapter()
                         .notifyItemRemoved(viewHolder.getAdapterPosition());
             }
+
+
         });
     }
 

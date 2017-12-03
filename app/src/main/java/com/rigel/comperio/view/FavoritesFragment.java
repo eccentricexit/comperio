@@ -42,7 +42,7 @@ public class FavoritesFragment extends BaseFragment implements Observer {
         fragmentFavoritesBinding.recyclerFavorites.setLayoutManager(
                 new LinearLayoutManager(getActivity()));
         fragmentFavoritesBinding.recyclerFavorites.setAdapter(
-                new ScheduleAdapter(getContext(),navigator, logger));
+                new ScheduleAdapter(getContext(),navigator, logger,buildOnClickHandler()));
 
         buildItemTouchHelper().attachToRecyclerView(fragmentFavoritesBinding.recyclerFavorites);
 

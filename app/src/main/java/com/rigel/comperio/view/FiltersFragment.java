@@ -54,7 +54,7 @@ public class FiltersFragment extends BaseFragment {
 
         for(int i=0;i<fragmentFiltersBinding.getSpinnerAdapter().getCount();i++){
             Subject subject = (Subject) fragmentFiltersBinding.getSpinnerAdapter().getItem(i);
-            if(subject.equals(filtersViewModel.filter.subject)){
+            if(subject.equals(filtersViewModel.userData.subject)){
                 selection = i;
                 break;
             }
@@ -68,7 +68,7 @@ public class FiltersFragment extends BaseFragment {
                 new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                        fragmentFiltersBinding.getFiltersViewModel().filter.subject =
+                        fragmentFiltersBinding.getFiltersViewModel().userData.subject =
                                 ((Subject) fragmentFiltersBinding.subjectSpinner.getSelectedItem()).name;
                     }
 
