@@ -665,5 +665,6 @@
     <string name="widgetThbImage">Teacher profile picture</string>
     <string name="SUGGESTED_SCHEDULE_KEY">suggested_schedule_key</string>
     <string name="msg_no_data_available">No data available</string>
+    <string name="teacherPicTransitionName">teacherPicTransition</string>
 
 </resources>

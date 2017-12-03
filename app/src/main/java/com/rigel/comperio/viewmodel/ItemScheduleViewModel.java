@@ -1,6 +1,7 @@
 package com.rigel.comperio.viewmodel;
 
 import android.databinding.BaseObservable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
 
 import com.rigel.comperio.LoggingManager;
@@ -19,10 +20,6 @@ public class ItemScheduleViewModel extends BaseObservable {
         this.logger = logger;
     }
 
-    public void onItemClick(View view) {
-        navigator.navigateToDetailsActivity(schedule);
-    }
-
     public String getFormattedDistance() { return String.format("%.2f", schedule.distance/1000f) + "km";
     }
 
@@ -30,4 +27,7 @@ public class ItemScheduleViewModel extends BaseObservable {
         return "$"+schedule.hourPrice+"/hour";
     }
 
+    public void onItemTap(ActivityOptionsCompat options) {
+        navigator.navigateToScheduleDetails(schedule,options);
+    }
 }

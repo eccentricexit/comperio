@@ -76,7 +76,7 @@ public class HomeViewModel extends BaseViewModel implements LoaderManager.Loader
         refreshItems();
     }
 
-    public void swiped(ItemScheduleViewModel itemScheduleViewModel) {
+    public void addToFavorites(ItemScheduleViewModel itemScheduleViewModel) {
         persistenceManager.addToFavorites(itemScheduleViewModel.schedule);
     }
 

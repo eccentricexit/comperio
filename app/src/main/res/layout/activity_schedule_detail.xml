@@ -141,6 +141,7 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageView"
+                android:transitionName="@string/teacherPicTransitionName"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:contentDescription="@string/ctDescTeacherPic"

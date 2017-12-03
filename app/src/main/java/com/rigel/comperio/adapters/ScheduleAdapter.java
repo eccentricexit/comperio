@@ -4,6 +4,7 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.rigel.comperio.LoggingManager;
@@ -24,12 +25,15 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
     private List<Schedule> schedules;
     private NavigationManager navigator;
     private LoggingManager logger;
+    private ScheduleAdapterOnClickHandler onClickHandler;
 
-    public ScheduleAdapter(Context context, NavigationManager navigator, LoggingManager logger) {
+    public ScheduleAdapter(Context context, NavigationManager navigator, LoggingManager logger,
+                           ScheduleAdapterOnClickHandler onclickHandler) {
         this.schedules = Collections.emptyList();
         this.navigator = navigator;
         this.logger = logger;
         this.context = context;
+        this.onClickHandler = onclickHandler;
     }
 
     @Override
@@ -64,7 +68,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
         return schedules;
     }
 
-    public static class ScheduleViewHolder extends RecyclerView.ViewHolder {
+    public class ScheduleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ItemScheduleBinding itemScheduleBinding;
         NavigationManager navigator;
         LoggingManager logger;
@@ -80,9 +84,21 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
         void bindSchedule(Schedule schedule) {
             itemScheduleBinding.setItemScheduleViewModel(
                     new ItemScheduleViewModel(schedule, navigator, logger));
+            itemScheduleBinding.itemScheduleLayout.setOnClickListener(this);
         }
+
         public ItemScheduleBinding getItemScheduleBinding(){
             return itemScheduleBinding;
         }
+
+
+        @Override
+        public void onClick(View view) {
+            onClickHandler.onClick(itemScheduleBinding.getItemScheduleViewModel().schedule,this);
+        }
+    }
+
+    public interface ScheduleAdapterOnClickHandler{
+        void onClick(Schedule schedule, ScheduleViewHolder vh);
     }
 }
