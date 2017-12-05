@@ -13,6 +13,7 @@ public class FiltersViewModel extends BaseViewModel {
 
     public UserData userData;
     public Subject[] subjects;
+    public Boolean isConnectedToInternet;
 
     public FiltersViewModel(NavigationManager navigator, PersistenceManager persistenceManager,
                             LoggingManager logger) {

@@ -1,14 +1,21 @@
 package com.rigel.comperio.view;
 
 import android.databinding.DataBindingUtil;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork;
 import com.rigel.comperio.R;
 import com.rigel.comperio.adapters.SubjectAdapter;
 import com.rigel.comperio.databinding.ActivityNewScheduleBinding;
 import com.rigel.comperio.model.Subject;
 import com.rigel.comperio.viewmodel.NewScheduleViewModel;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class NewScheduleActivity extends BaseActivity {
 
@@ -16,12 +23,29 @@ public class NewScheduleActivity extends BaseActivity {
     private ActivityNewScheduleBinding newScheduleActivityBinding;
 
     @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initObserveInternetConnectivity();
+    }
+
+    private void initObserveInternetConnectivity() {
+        ReactiveNetwork.observeInternetConnectivity()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Boolean>() {
+                    @Override public void accept(Boolean isConnectedToInternet) {
+                        newScheduleViewModel.isConnectedToInternet = isConnectedToInternet;
+                    }
+                });
+    }
+
+    @Override
     protected void initDataBinding() {
         newScheduleActivityBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_new_schedule);
 
-        newScheduleViewModel = new NewScheduleViewModel(getNavigationManager(), getPersistanceManager(),
-                getLogger());
+        newScheduleViewModel = new NewScheduleViewModel(getNavigationManager(),
+                getPersistanceManager(), getLogger(), this);
 
         newScheduleActivityBinding.setNewScheduleViewModel(newScheduleViewModel);
 

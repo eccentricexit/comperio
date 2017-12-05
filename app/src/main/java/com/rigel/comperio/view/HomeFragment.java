@@ -37,6 +37,17 @@ public class HomeFragment extends BaseFragment implements Observer {
     }
 
     @Override
+    public void onDetach() {
+        homeViewModel.deleteObserver(this);
+        super.onDetach();
+    }
+
+    @Override
+    protected void updateViewModel(Boolean isConnectedToInternet) {
+        homeViewModel.isConnectedToInternet = isConnectedToInternet;
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false);

@@ -8,6 +8,7 @@ import com.rigel.comperio.NavigationManager;
 import com.rigel.comperio.PersistenceManager;
 import com.rigel.comperio.model.Schedule;
 import com.rigel.comperio.model.Subject;
+import com.rigel.comperio.view.NewScheduleActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -15,22 +16,26 @@ import retrofit2.Response;
 
 public class NewScheduleViewModel extends BaseViewModel {
 
+    private final NewScheduleActivity newScheduleActivity;
     public Subject[] subjects;
     public Schedule schedule;
+    public Boolean isConnectedToInternet;
 
     public NewScheduleViewModel(NavigationManager navigator, PersistenceManager persistenceManager,
-                                LoggingManager logger) {
+                                LoggingManager logger, NewScheduleActivity newScheduleActivity) {
         super(navigator, persistenceManager, logger);
 
-        schedule = new Schedule();
-        subjects = DevUtils.getFakeSubjects();
-    }
-
-    public void onClickLocation(View view){
-        logger.toast("onClickLocation");
+        this.schedule = new Schedule();
+        this.subjects = DevUtils.getFakeSubjects();
+        this.newScheduleActivity = newScheduleActivity;
     }
 
     public void onClickPublish(View view){
+        if(!isConnectedToInternet){
+            logger.toast("No internet connection.");
+            return;
+        }
+
         schedule.loc = persistenceManager.loadUserData().userLoc;
 
         persistenceManager
@@ -38,14 +43,18 @@ public class NewScheduleViewModel extends BaseViewModel {
                 .enqueue(new Callback<Schedule>() {
                     @Override
                     public void onResponse(Call<Schedule> call, Response<Schedule> response) {
-                        logger.toast("Got response");
+                        logger.toast("Schedule succesfully published");
                     }
 
                     @Override
                     public void onFailure(Call<Schedule> call, Throwable t) {
-                        logger.toast("Failure");
+                        logger.toast("Error publishing schedule");
+                        logger.log(t.getMessage());
                     }
-                });
+                }
+        );
+
+        newScheduleActivity.finish();
     }
 
     public String getHourPrice(){

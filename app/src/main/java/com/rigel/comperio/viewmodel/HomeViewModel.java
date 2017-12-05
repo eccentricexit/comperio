@@ -21,9 +21,11 @@ public class HomeViewModel extends BaseViewModel implements LoaderManager.Loader
 
     private static final int SCHEDULES_LOADER = 1;
     private final Context context;
-    private LoaderManager loaderManager;
 
-    List<Schedule> schedules;
+    public boolean isConnectedToInternet;
+
+    private LoaderManager loaderManager;
+    private List<Schedule> schedules;
 
     public HomeViewModel(NavigationManager navigator, PersistenceManager persistenceManager,
                          LoggingManager logger, LoaderManager loaderManager, Context context) {
@@ -81,6 +83,10 @@ public class HomeViewModel extends BaseViewModel implements LoaderManager.Loader
     }
 
     public void onClickNewSchedule(View view){
+        if(!isConnectedToInternet){
+            logger.toast("No internet connection.");
+            return;
+        }
         navigator.navigateToNewSchedule();
     }
 }
