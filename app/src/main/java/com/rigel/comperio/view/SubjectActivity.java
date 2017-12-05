@@ -8,6 +8,7 @@ import com.rigel.comperio.R;
 import com.rigel.comperio.adapters.SubjectAdapter;
 import com.rigel.comperio.databinding.ActivitySubjectBinding;
 import com.rigel.comperio.model.Subject;
+import com.rigel.comperio.model.UserData;
 import com.rigel.comperio.viewmodel.SubjectViewModel;
 
 public class SubjectActivity extends BaseActivity {
@@ -29,6 +30,25 @@ public class SubjectActivity extends BaseActivity {
 
         subjectActivityBinding.setSpinnerAdapter(adapter);
 
+        subjectActivityBinding.subjectSpinner.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        subjectActivityBinding.getSubjectViewModel().userData.subject =
+                                ((Subject) subjectActivityBinding.subjectSpinner.getSelectedItem()).name;
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+                        //no op
+                    }
+                }
+        );
+
+        if(subjectViewModel.userData==null){
+            return;
+        }
+
         int selection = -1;
 
         for(int i=0;i<subjectActivityBinding.getSpinnerAdapter().getCount();i++){
@@ -43,19 +63,7 @@ public class SubjectActivity extends BaseActivity {
             subjectActivityBinding.subjectSpinner.setSelection(selection);
         }
 
-        subjectActivityBinding.subjectSpinner.setOnItemSelectedListener(
-                new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                subjectActivityBinding.getSubjectViewModel().userData.subject =
-                        ((Subject) subjectActivityBinding.subjectSpinner.getSelectedItem()).name;
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                //no op
-            }
-        });
     }
 
 

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="mainViewModel"
             type="com.rigel.comperio.viewmodel.MainViewModel" />
@@ -18,9 +17,10 @@
 
         <FrameLayout
             android:id="@+id/frame_layout"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/content_width"
             android:layout_height="match_parent"
             android:layout_above="@+id/navigation"
+            android:layout_centerHorizontal="true"
             android:animateLayoutChanges="true" />
 
 
@@ -29,7 +29,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@color/base"
             app:itemIconTint="@color/accent"
             app:itemTextColor="@color/accent"
             app:menu="@menu/navigation" />

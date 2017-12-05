@@ -86,12 +86,14 @@ public abstract class BaseActivity extends AppCompatActivity {
                         userData.userLoc = loc;
                         persistanceManagerImpl.saveUserData(userData);
                     }
-                });
+                }
+        );
     }
 
     private boolean alreadySavedLocation() {
         UserData userData = getPersistanceManager().loadUserData();
-        return userData.userLoc[0]!=null &&
+        return userData != null &&
+                userData.userLoc[0]!=null &&
                 userData.userLoc[1]!=null &&
                 userData.userLoc[0]!=0f &&
                 userData.userLoc[1]!=0f;

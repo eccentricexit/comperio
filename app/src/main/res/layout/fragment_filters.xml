@@ -12,21 +12,21 @@
             type="android.widget.ArrayAdapter" />
     </data>
 
-    <FrameLayout
+    <ScrollView
         android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
         <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="@dimen/content_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
 
             <com.rigel.comperio.view.IconTextView
                 android:id="@+id/iconTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 android:layout_marginTop="52dp"
                 android:text="@string/fa_cog"
                 android:textColor="@color/accent"
@@ -131,5 +131,5 @@
 
         </android.support.constraint.ConstraintLayout>
 
-    </FrameLayout>
+    </ScrollView>
 </layout>

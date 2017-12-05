@@ -16,7 +16,8 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_home"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/content_width"
+            android:layout_gravity="center_horizontal"
             android:layout_height="match_parent"
             tools:listitem="@layout/item_schedule" />
 
@@ -27,12 +28,11 @@
             android:layout_margin="@dimen/fab_margin"
             android:layout_marginBottom="@dimen/fab_margin"
             android:layout_marginEnd="@dimen/fab_margin"
-            android:layout_marginRight="@dimen/fab_margin"
             android:onClick="@{homeViewModel::onClickNewSchedule}"
             android:text="@string/btnNewSchedule"
             android:textSize="30sp"
             app:fabSize="normal"
-            android:layout_gravity="bottom|right"
+            android:layout_gravity="bottom|end"
             app:srcCompat="@drawable/ic_add_white_24dp" />
 
 

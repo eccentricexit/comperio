@@ -19,7 +19,8 @@
         android:maxWidth="704dp">
 
         <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/content_width"
+            android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:background="@color/accent"
             tools:context="com.rigel.comperio.view.ScheduleDetailActivity"

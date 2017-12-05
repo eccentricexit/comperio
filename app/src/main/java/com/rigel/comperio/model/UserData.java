@@ -7,17 +7,18 @@ import java.io.Serializable;
 public class UserData implements Serializable {
 
     @SerializedName("subject") public String subject;
-    @SerializedName("maxDistance") public int maxDistance;
+    @SerializedName("maxDistance") public Integer maxDistance;
     @SerializedName("userLoc") public Float[] userLoc;
-    @SerializedName("initialized") public boolean initialized;
-    @SerializedName("useMetricSystem") public boolean useMetricSystem;
+    @SerializedName("initialized") public Boolean initialized;
+    @SerializedName("useMetricSystem") public Boolean useMetricSystem;
     @SerializedName("suggestedSchedule") public Schedule suggestedSchedule;
 
     public UserData(){
+        subject = "";
         maxDistance = 3500;
         userLoc = new Float[2];
-        subject = "";
         initialized = false;
+        useMetricSystem = true;
     }
 
     @Override
