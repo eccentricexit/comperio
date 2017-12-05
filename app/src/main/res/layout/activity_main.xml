@@ -17,7 +17,7 @@
 
         <FrameLayout
             android:id="@+id/frame_layout"
-            android:layout_width="@dimen/content_width"
+            style="@style/width_match_parent_max_width"
             android:layout_height="match_parent"
             android:layout_above="@+id/navigation"
             android:layout_centerHorizontal="true"

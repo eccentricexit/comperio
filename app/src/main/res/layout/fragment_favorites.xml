@@ -10,13 +10,13 @@
     <FrameLayout
         android:id="@+id/content"
         android:layout_height="match_parent"
-        android:layout_width="@dimen/content_width"
+        android:layout_width="match_parent"
         android:layout_gravity="center_horizontal"
         >
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_favorites"
-                android:layout_width="match_parent"
+                style="@style/width_match_parent_max_width"
                 android:layout_height="match_parent"
                 tools:listitem="@layout/item_schedule"
                 />

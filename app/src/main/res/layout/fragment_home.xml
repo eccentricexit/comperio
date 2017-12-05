@@ -10,15 +10,15 @@
 
     <FrameLayout
         android:id="@+id/content"
-        android:layout_width="match_parent"
+        style="@style/width_match_parent_max_width"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_home"
-            android:layout_width="@dimen/content_width"
-            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
             tools:listitem="@layout/item_schedule" />
 
         <android.support.design.widget.FloatingActionButton
