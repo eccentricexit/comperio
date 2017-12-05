@@ -10,7 +10,6 @@ public class UserData implements Serializable {
     @SerializedName("maxDistance") public Integer maxDistance;
     @SerializedName("userLoc") public Float[] userLoc;
     @SerializedName("initialized") public Boolean initialized;
-    @SerializedName("useMetricSystem") public Boolean useMetricSystem;
     @SerializedName("suggestedSchedule") public Schedule suggestedSchedule;
 
     public UserData(){
@@ -18,13 +17,11 @@ public class UserData implements Serializable {
         maxDistance = 3500;
         userLoc = new Float[2];
         initialized = false;
-        useMetricSystem = true;
     }
 
     @Override
     public String toString() {
         return "{subject: "+subject+", maxDistance: "+maxDistance+", userLoc[lon,lat]: "
-                +userLoc[0]+","+userLoc[1]+", initialized: "+initialized+", useMetricSystem: "+
-                useMetricSystem+"}";
+                +userLoc[0]+","+userLoc[1]+", initialized: "+initialized+"}";
     }
 }

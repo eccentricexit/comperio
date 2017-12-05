@@ -95,23 +95,6 @@
                 app:layout_constraintStart_toEndOf="@+id/textView9"
                 app:layout_constraintTop_toBottomOf="@+id/subjectSpinner" />
 
-
-            <Switch
-                android:id="@+id/switch1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:layout_marginTop="36dp"
-                android:checked="@={filtersViewModel.userData.useMetricSystem}"
-                android:text="@string/lblUseMetricSystem"
-                android:textColor="@color/secondary_text"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-
             <TextView
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
