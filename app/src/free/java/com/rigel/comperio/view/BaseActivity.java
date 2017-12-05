@@ -27,8 +27,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     
     private static final int REQUEST_CODE_LOCATION = 1;
 
-    private NavigationManager NavigationManager;
-    private PersistenceManager persistanceManagerImpl;
+    private NavigationManager navigationManager;
+    private PersistenceManager persistenceManager;
     private LoggingManager logger;
 
     @Override
@@ -36,6 +36,15 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         initDataBinding();
         checkLocationPermissions();
+    }
+
+    protected void showInterstitialAd() {
+        InterstitialAd interstitialAd = ComperioApplication.get(this).getInterstitialAd();
+        if (interstitialAd.isLoaded()) {
+            interstitialAd.show();
+        } else {
+            Log.d(LOG_TAG, "The interstitial wasn't loaded yet.");
+        }
     }
 
     private void checkLocationPermissions() {
@@ -84,7 +93,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
                         UserData userData = getPersistanceManager().loadUserData();
                         userData.userLoc = loc;
-                        persistanceManagerImpl.saveUserData(userData);
+                        persistenceManager.saveUserData(userData);
                     }
                 }
         );
@@ -114,29 +123,20 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    protected void showInterstitialAd(){
-        InterstitialAd interstitialAd = ComperioApplication.get(this).getInterstitialAd();
-        if (interstitialAd.isLoaded()) {
-            interstitialAd.show();
-        } else {
-            Log.d(LOG_TAG,"The interstitial wasn't loaded yet.");
-        }
-    }
-
     protected NavigationManager getNavigationManager() {
-        if (NavigationManager == null) {
-            NavigationManager = new NavigationManager(this);
-        }        
+        if (navigationManager == null) {
+            navigationManager = new NavigationManager(this);
+        }
 
-        return NavigationManager;
+        return navigationManager;
     }
 
     protected PersistenceManager getPersistanceManager() {
-        if (persistanceManagerImpl == null) {
-            persistanceManagerImpl = new PersistenceManager(this);
-        }     
+        if (persistenceManager == null) {
+            persistenceManager = new PersistenceManager(this);
+        }
 
-        return persistanceManagerImpl;
+        return persistenceManager;
     }
 
     protected LoggingManager getLogger() {

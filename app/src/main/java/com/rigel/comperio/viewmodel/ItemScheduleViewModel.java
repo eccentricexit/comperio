@@ -2,7 +2,6 @@ package com.rigel.comperio.viewmodel;
 
 import android.databinding.BaseObservable;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.view.View;
 
 import com.rigel.comperio.LoggingManager;
 import com.rigel.comperio.NavigationManager;

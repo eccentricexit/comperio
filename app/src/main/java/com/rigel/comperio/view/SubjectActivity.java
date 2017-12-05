@@ -8,7 +8,6 @@ import com.rigel.comperio.R;
 import com.rigel.comperio.adapters.SubjectAdapter;
 import com.rigel.comperio.databinding.ActivitySubjectBinding;
 import com.rigel.comperio.model.Subject;
-import com.rigel.comperio.model.UserData;
 import com.rigel.comperio.viewmodel.SubjectViewModel;
 
 public class SubjectActivity extends BaseActivity {

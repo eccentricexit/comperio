@@ -3,10 +3,8 @@ package com.rigel.comperio.widget;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
-import android.content.Intent;
 import android.widget.RemoteViews;
 
-import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.PersistenceManager;
 import com.rigel.comperio.R;
 import com.rigel.comperio.model.Schedule;
