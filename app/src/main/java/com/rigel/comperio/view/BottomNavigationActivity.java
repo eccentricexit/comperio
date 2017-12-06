@@ -10,6 +10,8 @@ import android.view.MenuItem;
 
 import com.rigel.comperio.R;
 
+// TODO: Save fragment state to prevent reinstantiation:
+// http://emuneee.com/blog/2013/01/07/saving-fragment-states/
 public abstract class BottomNavigationActivity extends BaseActivity {
 
     private static final String CURRENT_SCREEN_KEY = "current_screen_key";
