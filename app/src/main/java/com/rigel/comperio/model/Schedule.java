@@ -15,13 +15,11 @@ public class Schedule implements Serializable {
     @SerializedName("subjectName") public String subjectName;
     @SerializedName("hourPrice") public Float hourPrice;
     @SerializedName("loc") public Float[] loc;
-
     @SerializedName("teacherName") public String teacherName;
     @SerializedName("teacherPicUrl") public String teacherPicUrl;
     @SerializedName("teacherPhone") public String teacherPhone;
     @SerializedName("teacherRating") public Float teacherRating;
     @SerializedName("teacherStory") public String teacherStory;
-
     @SerializedName("distance") public Float distance;
 
     public Schedule() {

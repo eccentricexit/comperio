@@ -19,8 +19,53 @@ import java.util.Observer;
 
 public class HomeFragment extends BaseFragment implements Observer {
 
+    public static final String TAG = "HomeFragmentTag";
+
     FragmentHomeBinding fragmentHomeBinding;
     HomeViewModel homeViewModel;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        logger.log("homefragment: onCreateView");
+
+        fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false);
+        return fragmentHomeBinding.getRoot();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        logger.log("homefragment: onActivityCreated");
+
+        fragmentHomeBinding.recyclerHome.setLayoutManager(
+                new LinearLayoutManager(getActivity()));
+        fragmentHomeBinding.recyclerHome.setAdapter(
+                new ScheduleAdapter(getContext(),navigator, logger, buildOnClickHandler()));
+
+        buildItemTouchHelper().attachToRecyclerView(fragmentHomeBinding.recyclerHome);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        logger.log("homefragment: onstart");
+
+        homeViewModel = new HomeViewModel(navigator, persistenceManager, logger,
+                getLoaderManager(), getContext());
+        fragmentHomeBinding.setHomeViewModel(homeViewModel);
+
+        homeViewModel.addObserver(this);
+        homeViewModel.initializeLoader();
+    }
+
+    @Override
+    public void onStop() {
+        logger.log("homefragment: onstop");
+        homeViewModel.deleteObserver(this);
+        super.onStop();
+    }
 
     public HomeFragment() { }
 
@@ -29,44 +74,15 @@ public class HomeFragment extends BaseFragment implements Observer {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        homeViewModel = new HomeViewModel(navigator, persistenceManager,
-                logger, getLoaderManager(), getContext());
-        homeViewModel.addObserver(this);
+    protected void updateConnectivityStatus(Boolean isConnectedToInternet) {
+        if(homeViewModel!=null) {
+            homeViewModel.isConnectedToInternet = isConnectedToInternet;
+        }
     }
 
     @Override
-    public void onDetach() {
-        homeViewModel.deleteObserver(this);
-        super.onDetach();
-    }
-
-    @Override
-    protected void updateViewModel(Boolean isConnectedToInternet) {
-        homeViewModel.isConnectedToInternet = isConnectedToInternet;
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false);
-
-        fragmentHomeBinding.setHomeViewModel(homeViewModel);
-        fragmentHomeBinding.recyclerHome.setLayoutManager(
-                new LinearLayoutManager(getActivity()));
-        fragmentHomeBinding.recyclerHome.setAdapter(
-                new ScheduleAdapter(getContext(),navigator, logger, buildOnClickHandler()));
-
-        buildItemTouchHelper().attachToRecyclerView(fragmentHomeBinding.recyclerHome);
-
-        return fragmentHomeBinding.getRoot();
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        homeViewModel.initViewModel();
+    public String getFragmentTag() {
+        return TAG;
     }
 
     @Override
@@ -89,8 +105,6 @@ public class HomeFragment extends BaseFragment implements Observer {
                                   RecyclerView.ViewHolder target) {
                 return false;
             }
-
-
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {

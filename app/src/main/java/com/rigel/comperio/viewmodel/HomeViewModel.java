@@ -1,11 +1,11 @@
 package com.rigel.comperio.viewmodel;
 
+import android.app.LoaderManager;
 import android.content.Context;
+import android.content.CursorLoader;
+import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
 import android.view.View;
 
 import com.rigel.comperio.LoggingManager;
@@ -37,16 +37,12 @@ public class HomeViewModel extends BaseViewModel implements LoaderManager.Loader
         schedules = new ArrayList<>();
     }
 
-    public void initViewModel() {
-        initializeLoader();
-    }
-
     public void refreshItems() {
         setChanged();
         notifyObservers();
     }
 
-    private void initializeLoader() {
+    public void initializeLoader() {
         loaderManager.initLoader(SCHEDULES_LOADER, null, this);
     }
 

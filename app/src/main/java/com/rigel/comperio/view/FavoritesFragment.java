@@ -20,6 +20,7 @@ import java.util.Observer;
 
 public class FavoritesFragment extends BaseFragment implements Observer {
 
+    public static final String TAG = "FavoritesFragmentTag";
     FragmentFavoritesBinding fragmentFavoritesBinding;
     FavoritesViewModel favoritesViewModel;
 
@@ -40,8 +41,13 @@ public class FavoritesFragment extends BaseFragment implements Observer {
     }
 
     @Override
-    protected void updateViewModel(Boolean isConnectedToInternet) {
+    protected void updateConnectivityStatus(Boolean isConnectedToInternet) {
         favoritesViewModel.isConnectedToInternet = isConnectedToInternet;
+    }
+
+    @Override
+    public String getFragmentTag() {
+        return TAG;
     }
 
     @Override
