@@ -13,144 +13,152 @@
             type="android.widget.ArrayAdapter" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.rigel.comperio.view.NewScheduleActivity">
+    <ScrollView
+        style="@style/width_match_parent_max_width"
+        android:layout_height="match_parent">
 
-        <com.rigel.comperio.view.IconTextView
-            android:id="@+id/iconTextView"
-            android:layout_width="wrap_content"
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/fa_bullhorn"
-            android:textColor="@color/accent"
-            android:textSize="50sp"
-            app:layout_constraintEnd_toStartOf="@+id/textView10"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_gravity="center_horizontal"
+            tools:context="com.rigel.comperio.view.NewScheduleActivity">
 
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="84dp"
-            android:layout_marginRight="84dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/lblNewSchedule"
-            android:textColor="@color/accent"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/iconTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/iconTextView" />
+            <com.rigel.comperio.view.IconTextView
+                android:id="@+id/iconTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="32dp"
+                android:gravity="right"
+                android:text="@string/fa_bullhorn"
+                android:textColor="@color/accent"
+                android:textSize="50sp"
+                app:layout_constraintEnd_toStartOf="@+id/textView10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/editText2"
-            android:text="@={newScheduleViewModel.schedule.teacherName}"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:ems="10"
-            android:hint="@string/hintName"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/lblNewSchedule"
+                android:textColor="@color/accent"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iconTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iconTextView" />
 
-        <EditText
-            android:id="@+id/editText3"
-            android:text="@={newScheduleViewModel.schedule.teacherPhone}"
-            android:layout_width="193dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:ems="10"
-            android:hint="@string/phoneHint"
-            android:inputType="phone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText2" />
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:hint="@string/hintName"
+                android:inputType="textPersonName"
+                android:text="@={newScheduleViewModel.schedule.teacherName}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/spinner"
-            app:adapter="@{spinnerAdapter}"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText3" />
+            <EditText
+                android:id="@+id/editText3"
+                android:layout_width="193dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="@string/phoneHint"
+                android:inputType="phone"
+                android:text="@={newScheduleViewModel.schedule.teacherPhone}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText2" />
 
-        <EditText
-            android:id="@+id/editText4"
-            android:text="@={newScheduleViewModel.hourPrice}"
-            android:layout_width="147dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:ems="10"
-            android:hint="@string/hintHouRate"
-            android:inputType="numberDecimal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner" />
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:adapter="@{spinnerAdapter}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText3" />
 
-        <TextView
-            android:layout_width="139dp"
-            android:layout_height="46dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="15dp"
-            android:ems="10"
-            android:gravity="center_vertical"
-            android:text="@string/lblPerHour"
-            android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/editText4"
-            app:layout_constraintTop_toBottomOf="@+id/spinner" />
+            <EditText
+                android:id="@+id/editText4"
+                android:layout_width="147dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="@string/hintHouRate"
+                android:inputType="numberDecimal"
+                android:text="@={newScheduleViewModel.hourPrice}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
-
-        <EditText
-            android:id="@+id/editText5"
-            android:text="@={newScheduleViewModel.schedule.teacherStory}"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:ems="10"
-            android:gravity="top"
-            android:hint="@string/hintTeacherStory"
-            android:inputType="textMultiLine"
-            android:maxLength="120"
-            android:minHeight="100dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText4" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/btnPublish"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText5"
-            android:onClick="@{newScheduleViewModel::onClickPublish}"/>
+            <TextView
+                android:layout_width="139dp"
+                android:layout_height="46dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="15dp"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:text="@string/lblPerHour"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@+id/editText4"
+                app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
 
-    </android.support.constraint.ConstraintLayout>
+            <EditText
+                android:id="@+id/editText5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="@string/hintTeacherStory"
+                android:inputType="textMultiLine"
+                android:maxLength="120"
+                android:minHeight="100dp"
+                android:text="@={newScheduleViewModel.schedule.teacherStory}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText4" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="8dp"
+                android:onClick="@{newScheduleViewModel::onClickPublish}"
+                android:text="@string/btnPublish"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText5" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
 
 </layout>

@@ -15,11 +15,11 @@
         android:layout_height="match_parent"
         android:fillViewport="true"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"
-        android:maxWidth="704dp">
+        tools:layout_editor_absoluteY="0dp">
 
         <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
+            style="@style/width_match_parent_max_width"
+            android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:background="@color/accent"
             tools:context="com.rigel.comperio.view.ScheduleDetailActivity"
@@ -41,10 +41,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/base"
-                android:textSize="18sp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="@{scheduleDetailViewModel.schedule.teacherName}"
+                android:textColor="@color/base"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toStartOf="parent"
@@ -183,6 +183,7 @@
                 android:paddingTop="16dp"
                 android:text="@string/lblLetTalk"
                 android:textSize="20sp"
+                android:textColor="@color/bpWhite"
                 app:layout_constraintBottom_toBottomOf="@+id/view4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

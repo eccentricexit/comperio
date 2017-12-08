@@ -84,4 +84,9 @@ public class FiltersFragment extends BaseFragment {
         filtersViewModel.save(null);
         super.onStop();
     }
+
+    @Override
+    protected void updateViewModel(Boolean isConnectedToInternet) {
+        filtersViewModel.isConnectedToInternet = isConnectedToInternet;
+    }
 }

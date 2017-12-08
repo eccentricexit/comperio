@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="favoritesViewModel"
             type="com.rigel.comperio.viewmodel.FavoritesViewModel" />
@@ -12,7 +11,7 @@
 
     <LinearLayout
         android:id="@+id/container"
-        android:layout_width="match_parent"
+        style="@style/width_match_parent_max_width"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context="com.rigel.comperio.view.FavoritesActivity">
@@ -20,6 +19,7 @@
         <FrameLayout
             android:id="@+id/content"
             android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal"
             android:layout_height="0dp"
             android:layout_weight="1">
 
@@ -34,7 +34,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/primary_dark" />
+                    android:background="@color/primary_dark"
+                    tools:listitem="@layout/item_schedule" />
 
             </android.support.v4.widget.SwipeRefreshLayout>
 
@@ -45,7 +46,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="?android:attr/windowBackground"
             app:menu="@menu/navigation" />
 
     </LinearLayout>

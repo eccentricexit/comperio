@@ -20,9 +20,11 @@ public class FavoritesViewModel extends BaseViewModel implements LoaderManager.L
 
     private static final int SCHEDULES_LOADER = 1;
     private final Context context;
-    private LoaderManager loaderManager;
 
-    List<Schedule> schedules;
+    public Boolean isConnectedToInternet;
+
+    private LoaderManager loaderManager;
+    private List<Schedule> schedules;
 
 
     public FavoritesViewModel(NavigationManager navigator, PersistenceManager persistenceManager,

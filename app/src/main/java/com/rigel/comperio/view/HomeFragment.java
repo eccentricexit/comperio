@@ -3,7 +3,6 @@ package com.rigel.comperio.view;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -11,10 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.rigel.comperio.R;
 import com.rigel.comperio.adapters.ScheduleAdapter;
 import com.rigel.comperio.databinding.FragmentHomeBinding;
-import com.rigel.comperio.model.Schedule;
 import com.rigel.comperio.viewmodel.HomeViewModel;
 
 import java.util.Observable;
@@ -27,12 +24,27 @@ public class HomeFragment extends BaseFragment implements Observer {
 
     public HomeFragment() { }
 
+    public static HomeFragment newInstance() {
+        return new HomeFragment();
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         homeViewModel = new HomeViewModel(navigator, persistenceManager,
                 logger, getLoaderManager(), getContext());
         homeViewModel.addObserver(this);
+    }
+
+    @Override
+    public void onDetach() {
+        homeViewModel.deleteObserver(this);
+        super.onDetach();
+    }
+
+    @Override
+    protected void updateViewModel(Boolean isConnectedToInternet) {
+        homeViewModel.isConnectedToInternet = isConnectedToInternet;
     }
 
     @Override
@@ -51,8 +63,6 @@ public class HomeFragment extends BaseFragment implements Observer {
         return fragmentHomeBinding.getRoot();
     }
 
-
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -69,10 +79,6 @@ public class HomeFragment extends BaseFragment implements Observer {
                 (ScheduleAdapter) fragmentHomeBinding.recyclerHome.getAdapter();
         HomeViewModel homeViewModel = (HomeViewModel) observable;
         scheduleAdapter.setScheduleList(homeViewModel.getSchedules());
-    }
-
-    public static HomeFragment newInstance() {
-        return new HomeFragment();
     }
 
     private ItemTouchHelper buildItemTouchHelper() {

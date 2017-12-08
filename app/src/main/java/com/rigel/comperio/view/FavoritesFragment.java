@@ -34,6 +34,17 @@ public class FavoritesFragment extends BaseFragment implements Observer {
     }
 
     @Override
+    public void onDetach() {
+        favoritesViewModel.deleteObserver(this);
+        super.onDetach();
+    }
+
+    @Override
+    protected void updateViewModel(Boolean isConnectedToInternet) {
+        favoritesViewModel.isConnectedToInternet = isConnectedToInternet;
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         fragmentFavoritesBinding = FragmentFavoritesBinding.inflate(inflater, container, false);

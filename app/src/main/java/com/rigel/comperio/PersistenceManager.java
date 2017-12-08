@@ -33,7 +33,7 @@ public class PersistenceManager {
         if (!json.equals("")) {
             return gson.fromJson(json, UserData.class);
         } else {
-            return null;
+            return new UserData();
         }
     }
 

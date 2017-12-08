@@ -21,9 +21,11 @@ public class SubjectViewModel extends BaseViewModel {
 
         userData = persistenceManager.loadUserData();
         subjects = DevUtils.getFakeSubjects();
-        if (userData.initialized && userData.subject!=null && !userData.subject.equals("")) {
-            navigator.navigateToHomeActivity();
+        if(userData == null || userData.initialized == null){
+            return;
         }
+
+        navigator.navigateToHomeActivity();
     }
 
     public void nextOnClick(View view) {

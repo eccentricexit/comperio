@@ -29,6 +29,25 @@ public class SubjectActivity extends BaseActivity {
 
         subjectActivityBinding.setSpinnerAdapter(adapter);
 
+        subjectActivityBinding.subjectSpinner.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        subjectActivityBinding.getSubjectViewModel().userData.subject =
+                                ((Subject) subjectActivityBinding.subjectSpinner.getSelectedItem()).name;
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+                        //no op
+                    }
+                }
+        );
+
+        if(subjectViewModel.userData==null){
+            return;
+        }
+
         int selection = -1;
 
         for(int i=0;i<subjectActivityBinding.getSpinnerAdapter().getCount();i++){
@@ -43,19 +62,7 @@ public class SubjectActivity extends BaseActivity {
             subjectActivityBinding.subjectSpinner.setSelection(selection);
         }
 
-        subjectActivityBinding.subjectSpinner.setOnItemSelectedListener(
-                new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                subjectActivityBinding.getSubjectViewModel().userData.subject =
-                        ((Subject) subjectActivityBinding.subjectSpinner.getSelectedItem()).name;
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                //no op
-            }
-        });
     }
 
 

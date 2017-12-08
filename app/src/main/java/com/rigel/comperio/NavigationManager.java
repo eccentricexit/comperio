@@ -1,6 +1,5 @@
 package com.rigel.comperio;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.ContactsContract;
