@@ -14,6 +14,7 @@ import com.rigel.comperio.viewmodel.FiltersViewModel;
 
 public class FiltersFragment extends BaseFragment {
 
+    public static final String TAG = "FilterFragmentTag";
     FragmentFiltersBinding fragmentFiltersBinding;
     FiltersViewModel filtersViewModel;
 
@@ -86,7 +87,12 @@ public class FiltersFragment extends BaseFragment {
     }
 
     @Override
-    protected void updateViewModel(Boolean isConnectedToInternet) {
+    protected void updateConnectivityStatus(Boolean isConnectedToInternet) {
         filtersViewModel.isConnectedToInternet = isConnectedToInternet;
+    }
+
+    @Override
+    public String getFragmentTag() {
+        return TAG;
     }
 }

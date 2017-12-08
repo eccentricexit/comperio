@@ -9,7 +9,7 @@
     </data>
 
     <FrameLayout
-        android:id="@+id/content"
+        android:id="@+id/fragment_home"
         style="@style/width_match_parent_max_width"
         android:layout_height="match_parent"
         android:orientation="vertical">

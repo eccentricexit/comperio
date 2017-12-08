@@ -1,8 +1,9 @@
 package com.rigel.comperio.view;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.app.Fragment;
+
 
 import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork;
 import com.rigel.comperio.LoggingManager;
@@ -39,12 +40,12 @@ public abstract class BaseFragment extends Fragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Boolean>() {
                     @Override public void accept(Boolean isConnectedToInternet) {
-                        updateViewModel(isConnectedToInternet);
+                        updateConnectivityStatus(isConnectedToInternet);
                     }
                 });
     }
 
-    protected abstract void updateViewModel(Boolean isConnectedToInternet);
+    protected abstract void updateConnectivityStatus(Boolean isConnectedToInternet);
 
     protected ScheduleAdapter.ScheduleAdapterOnClickHandler buildOnClickHandler() {
         return new ScheduleAdapter.ScheduleAdapterOnClickHandler() {
@@ -60,5 +61,7 @@ public abstract class BaseFragment extends Fragment {
             }
         };
     }
+
+    public abstract String getFragmentTag();
 
 }

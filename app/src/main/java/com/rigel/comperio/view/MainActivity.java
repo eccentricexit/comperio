@@ -11,14 +11,12 @@ import com.rigel.comperio.viewmodel.MainViewModel;
 
 public class MainActivity extends BottomNavigationActivity {
 
-    private MainViewModel mainViewModel;
-
     protected void initDataBinding() {
         ActivityMainBinding mainActivityBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        mainViewModel = new MainViewModel(getNavigationManager(), getPersistanceManager(),
-                getLogger());
+        MainViewModel mainViewModel = new MainViewModel(getNavigationManager(),
+                getPersistanceManager(), getLogger());
 
         mainActivityBinding.setMainViewModel(mainViewModel);
 

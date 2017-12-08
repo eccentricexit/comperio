@@ -1,34 +1,97 @@
 package com.rigel.comperio.view;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 
 import com.rigel.comperio.R;
 
 public abstract class BottomNavigationActivity extends BaseActivity {
 
-    private static final String CURRENT_SCREEN_KEY = "current_screen_key";
-    private static final int HOME_SCREEN = 0;
-    private static final int FAVORITES_SCREEN = 1;
-    private static final int FILTERS_SCREEN = 2;
+    private static final String DEFAULT_FRAGMENT = HomeFragment.TAG;
+    private static final String CURRENT_FRAGMENT_KEY = "current_fragment_key";
 
-    private int currentScreen = HOME_SCREEN; // Default screen
+    private String currentFragment;
+    private int currentView;
+
+    private FavoritesFragment favoritesFragment;
+    private FiltersFragment filtersFragment;
+    private HomeFragment homeFragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState != null) {
-            currentScreen = savedInstanceState.getInt(CURRENT_SCREEN_KEY);
-        }
+        getLogger().toast("onCreate");
 
         setupBottomNavigationView();
 
-        showFragment(selectFragmentFor(currentScreen));
+        if(savedInstanceState==null){
+            currentView = R.id.frame_layout;
+            display(DEFAULT_FRAGMENT);
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        getLogger().toast("onRestoreInstanceState");
+
+        FragmentManager manager = getFragmentManager();
+        homeFragment = (HomeFragment) manager.getFragment(savedInstanceState,HomeFragment.TAG);
+        favoritesFragment = (FavoritesFragment) manager.getFragment(savedInstanceState,FavoritesFragment.TAG);
+        filtersFragment = (FiltersFragment) manager.getFragment(savedInstanceState,FiltersFragment.TAG);
+
+
+        currentFragment = savedInstanceState.getString(CURRENT_FRAGMENT_KEY);
+        display(currentFragment);
+    }
+
+    private void display(String fragmentTag) {
+        getLogger().toast("display:"+fragmentTag);
+        switch (fragmentTag){
+            case (HomeFragment.TAG):{
+                if(homeFragment==null){
+                    homeFragment = HomeFragment.newInstance();
+                }
+                currentFragment = HomeFragment.TAG;
+                transact(homeFragment);
+                break;
+            }
+            case (FavoritesFragment.TAG):{
+                if(favoritesFragment==null){
+                    favoritesFragment = FavoritesFragment.newInstance();
+                }
+                currentFragment = FavoritesFragment.TAG;
+                transact(favoritesFragment);
+                break;
+            }
+            case (FiltersFragment.TAG):{
+                if(filtersFragment==null){
+                    filtersFragment = FiltersFragment.newInstance();
+                }
+                currentFragment = FiltersFragment.TAG;
+                transact(filtersFragment);
+                break;
+            }
+        }
+    }
+
+    private void transact(BaseFragment fragment) {
+        getLogger().toast("transact: "+fragment.getFragmentTag());
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+
+        getLogger().log("transact + view before "+currentView);
+        transaction.replace(currentView, fragment);
+        transaction.commit();
+
+        currentView = fragment.getId();
+        getLogger().log("transact + view after "+currentView);
     }
 
     @NonNull
@@ -43,52 +106,45 @@ public abstract class BottomNavigationActivity extends BaseActivity {
 
                         switch (item.getItemId()) {
                             case R.id.navigation_home:
-                                currentScreen = HOME_SCREEN;
+                                display(HomeFragment.TAG);
                                 break;
                             case R.id.navigation_favorites:
-                                currentScreen = FAVORITES_SCREEN;
+                                display(FavoritesFragment.TAG);
                                 break;
                             case R.id.navigation_filters:
-                                currentScreen = FILTERS_SCREEN;
+                                display(FiltersFragment.TAG);
                                 break;
                         }
-
-                        showFragment(selectFragmentFor(currentScreen));
                         return true;
                     }
 
-                });
+                }
+        );
 
-        navigation.getMenu().getItem(currentScreen).setChecked(true);
-    }
-
-    private Fragment selectFragmentFor(int currentScreen) {
-        switch (currentScreen) {
-            case HOME_SCREEN: {
-                return HomeFragment.newInstance();
-            }
-            case FAVORITES_SCREEN: {
-                return FavoritesFragment.newInstance();
-            }
-            case FILTERS_SCREEN: {
-                return FiltersFragment.newInstance();
-            }
-            default: {
-                throw new UnsupportedOperationException();
-            }
-        }
-    }
-
-    private void showFragment(Fragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout, fragment);
-        transaction.commit();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putInt(CURRENT_SCREEN_KEY, currentScreen);
+        getLogger().toast("onSaveInstanceState");
+
+        outState.putString(CURRENT_FRAGMENT_KEY,currentFragment);
+
+        FragmentManager manager = getFragmentManager();
+        if(homeFragment!=null) {
+            manager.putFragment(outState, HomeFragment.TAG, homeFragment);
+        }
+
+        if(favoritesFragment!=null) {
+            manager.putFragment(outState, FavoritesFragment.TAG, favoritesFragment);
+        }
+
+        if(filtersFragment!=null) {
+            manager.putFragment(outState, FiltersFragment.TAG, filtersFragment);
+        }
+
         super.onSaveInstanceState(outState);
     }
+
+
 
 }
