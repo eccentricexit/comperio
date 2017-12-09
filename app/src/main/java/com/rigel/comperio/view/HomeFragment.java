@@ -44,13 +44,13 @@ public class HomeFragment extends BaseFragment implements Observer {
 
     @Override
     public void onStart() {
-        super.onStart();
         homeViewModel = new HomeViewModel(navigator, persistenceManager, logger,
                 getLoaderManager(), getContext());
         fragmentHomeBinding.setHomeViewModel(homeViewModel);
 
         homeViewModel.addObserver(this);
         homeViewModel.initializeLoader();
+        super.onStart();
     }
 
     @Override
