@@ -27,8 +27,6 @@ public class HomeFragment extends BaseFragment implements Observer {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        logger.log("homefragment: onCreateView");
-
         fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false);
         return fragmentHomeBinding.getRoot();
     }
@@ -36,33 +34,28 @@ public class HomeFragment extends BaseFragment implements Observer {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        logger.log("homefragment: onActivityCreated");
-
         fragmentHomeBinding.recyclerHome.setLayoutManager(
                 new LinearLayoutManager(getActivity()));
         fragmentHomeBinding.recyclerHome.setAdapter(
                 new ScheduleAdapter(getContext(),navigator, logger, buildOnClickHandler()));
 
         buildItemTouchHelper().attachToRecyclerView(fragmentHomeBinding.recyclerHome);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        logger.log("homefragment: onstart");
 
         homeViewModel = new HomeViewModel(navigator, persistenceManager, logger,
                 getLoaderManager(), getContext());
         fragmentHomeBinding.setHomeViewModel(homeViewModel);
 
-        homeViewModel.addObserver(this);
         homeViewModel.initializeLoader();
     }
 
     @Override
+    public void onStart() {
+        homeViewModel.addObserver(this);
+        super.onStart();
+    }
+
+    @Override
     public void onStop() {
-        logger.log("homefragment: onstop");
         homeViewModel.deleteObserver(this);
         super.onStop();
     }
