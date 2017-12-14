@@ -66,8 +66,6 @@ public class HomeFragment extends BaseFragment implements Observer {
             lastVisiblePosition = pos;
         }
 
-        logger.toast("onStop"+lastVisiblePosition);
-
         homeViewModel.deleteObserver(this);
         super.onStop();
     }
@@ -102,8 +100,9 @@ public class HomeFragment extends BaseFragment implements Observer {
         scheduleAdapter.setScheduleList(homeViewModel.getSchedules());
 
         if(lastVisiblePosition!=-1 && lastVisiblePosition!=0) {
-            logger.toast("update "+lastVisiblePosition);
-            fragmentHomeBinding.recyclerHome.getLayoutManager().scrollToPosition(lastVisiblePosition);
+            fragmentHomeBinding.recyclerHome
+                    .getLayoutManager()
+                    .scrollToPosition(lastVisiblePosition);
         }
 
     }
