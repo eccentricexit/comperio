@@ -11,6 +11,7 @@ import android.view.View;
 import com.rigel.comperio.LoggingManager;
 import com.rigel.comperio.NavigationManager;
 import com.rigel.comperio.PersistenceManager;
+import com.rigel.comperio.R;
 import com.rigel.comperio.data.ComperioContract;
 import com.rigel.comperio.model.Schedule;
 
@@ -76,6 +77,7 @@ public class HomeViewModel extends BaseViewModel implements LoaderManager.Loader
 
     public void addToFavorites(ItemScheduleViewModel itemScheduleViewModel) {
         persistenceManager.addToFavorites(itemScheduleViewModel.schedule);
+        logger.toast(context.getResources().getString(R.string.msg_added_favorite));
     }
 
     public void onClickNewSchedule(View view){

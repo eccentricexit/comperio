@@ -666,5 +666,7 @@
     <string name="SUGGESTED_SCHEDULE_KEY">suggested_schedule_key</string>
     <string name="msg_no_data_available">No data available</string>
     <string name="teacherPicTransitionName">teacherPicTransition</string>
+    <string name="msg_removed_favorite">Removed from favorites</string>
+    <string name="msg_added_favorite">Added to favorites</string>
 
 </resources>

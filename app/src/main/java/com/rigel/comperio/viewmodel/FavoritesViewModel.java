@@ -10,6 +10,7 @@ import android.os.Bundle;
 import com.rigel.comperio.LoggingManager;
 import com.rigel.comperio.NavigationManager;
 import com.rigel.comperio.PersistenceManager;
+import com.rigel.comperio.R;
 import com.rigel.comperio.data.ComperioContract;
 import com.rigel.comperio.model.Schedule;
 
@@ -80,5 +81,6 @@ public class FavoritesViewModel extends BaseViewModel implements LoaderManager.L
 
     public void swiped(ItemScheduleViewModel itemScheduleViewModel) {
         persistenceManager.removeFromFavorites(itemScheduleViewModel.schedule);
+        logger.toast(context.getResources().getString(R.string.msg_removed_favorite));
     }
 }
