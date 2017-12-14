@@ -21,6 +21,8 @@ import java.util.Observer;
 public class FavoritesFragment extends BaseFragment implements Observer {
 
     public static final String TAG = "FavoritesFragmentTag";
+    //private static int lastVisiblePosition;
+
     FragmentFavoritesBinding fragmentFavoritesBinding;
     FavoritesViewModel favoritesViewModel;
 
@@ -31,12 +33,28 @@ public class FavoritesFragment extends BaseFragment implements Observer {
         super.onAttach(context);
         favoritesViewModel = new FavoritesViewModel(navigator, persistenceManager,
                 logger, getLoaderManager(), getContext());
+
+    }
+
+    @Override
+    public void onStart() {
         favoritesViewModel.addObserver(this);
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+//        lastVisiblePosition =
+//                ((LinearLayoutManager)fragmentFavoritesBinding.recyclerFavorites.getLayoutManager())
+//                        .findFirstCompletelyVisibleItemPosition();
+
+        favoritesViewModel.deleteObserver(this);
+        super.onStop();
     }
 
     @Override
     public void onDetach() {
-        favoritesViewModel.deleteObserver(this);
+
         super.onDetach();
     }
 
@@ -82,6 +100,10 @@ public class FavoritesFragment extends BaseFragment implements Observer {
                 (ScheduleAdapter) fragmentFavoritesBinding.recyclerFavorites.getAdapter();
         FavoritesViewModel favoritesViewModel = (FavoritesViewModel) observable;
         scheduleAdapter.setScheduleList(favoritesViewModel.getSchedules());
+
+//        fragmentFavoritesBinding.recyclerFavorites
+//                .getLayoutManager()
+//                .scrollToPosition(lastVisiblePosition);
     }
 
     public static FavoritesFragment newInstance() {
