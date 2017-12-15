@@ -21,6 +21,7 @@ import java.util.Observer;
 public class FiltersFragment extends BaseFragment implements Observer {
 
     public static final String TAG = "FilterFragmentTag";
+
     FragmentFiltersBinding fragmentFiltersBinding;
     FiltersViewModel filtersViewModel;
 
