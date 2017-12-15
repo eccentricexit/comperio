@@ -13,6 +13,8 @@ import com.squareup.picasso.Picasso;
 public class ScheduleDetailActivity extends BaseActivity {
 
     private static final int REQUEST_CODE = 0;
+    private static final String TAG = ScheduleDetailActivity.class.getSimpleName();
+
     private ActivityScheduleDetailBinding scheduleDetailActivityBinding;
     private ScheduleDetailViewModel scheduleDetailViewModel;
 
@@ -30,6 +32,11 @@ public class ScheduleDetailActivity extends BaseActivity {
         Picasso.with(this)
                 .load(scheduleDetailActivityBinding.getScheduleDetailViewModel().schedule.teacherPicUrl)
                 .into(scheduleDetailActivityBinding.imageView);
+    }
+
+    @Override
+    protected String getTag() {
+        return TAG;
     }
 
     @Override

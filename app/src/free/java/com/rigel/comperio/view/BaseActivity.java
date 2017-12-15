@@ -22,9 +22,8 @@ import com.rigel.comperio.R;
 import com.rigel.comperio.model.UserData;
 
 public abstract class BaseActivity extends AppCompatActivity {
-    
-    private static final String LOG_TAG = BaseColumns.class.getSimpleName();
-    
+
+    private static final String LOG_TAG = BaseActivity.class.getSimpleName();
     private static final int REQUEST_CODE_LOCATION = 1;
 
     private NavigationManager navigationManager;
@@ -141,10 +140,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected LoggingManager getLogger() {
         if (logger == null) {
-            logger = new LoggingManager(this,LOG_TAG);
+            logger = new LoggingManager(this,getTag());
         }       
 
         return logger;
     }
+
+    protected abstract String getTag();
 
 }

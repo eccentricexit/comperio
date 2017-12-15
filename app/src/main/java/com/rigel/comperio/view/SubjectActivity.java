@@ -12,6 +12,8 @@ import com.rigel.comperio.viewmodel.SubjectViewModel;
 
 public class SubjectActivity extends BaseActivity {
 
+    private static final String TAG = SubjectActivity.class.getSimpleName();
+
     @Override
     protected void initDataBinding() {
         final ActivitySubjectBinding subjectActivityBinding =
@@ -63,6 +65,11 @@ public class SubjectActivity extends BaseActivity {
         }
 
 
+    }
+
+    @Override
+    protected String getTag() {
+        return TAG;
     }
 
 
