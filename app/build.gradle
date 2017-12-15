@@ -61,11 +61,9 @@ dependencies {
 
     compile circleImageView
     compile picasso
-    compile 'com.github.pwittchen:reactivenetwork-rx2:0.12.2'
+    compile reactiveNetwork
 
     testCompile testingDependencies.junit
-    testCompile testingDependencies.mockito
-    testCompile testingDependencies.robolectric
 
     implementation supportDependencies.constraintLayout
     implementation googleServicesDependencies.firebaseServices
