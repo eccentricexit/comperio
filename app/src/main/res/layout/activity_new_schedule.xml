@@ -14,13 +14,16 @@
     </data>
 
     <ScrollView
-        style="@style/width_match_parent_max_width"
-        android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/people_coffee"
+        android:fillViewport="true">
 
         <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/width_match_parent_max_width"
             android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:background="#f7ffffff"
             tools:context="com.rigel.comperio.view.NewScheduleActivity">
 
             <com.rigel.comperio.view.IconTextView
@@ -149,6 +152,8 @@
                 android:layout_marginEnd="50dp"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="8dp"
+                android:background="@color/accent"
+                android:textColor="@color/bpWhite"
                 android:onClick="@{newScheduleViewModel::onClickPublish}"
                 android:text="@string/btnPublish"
                 app:layout_constraintEnd_toEndOf="parent"

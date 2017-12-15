@@ -47,6 +47,7 @@ public class SubjectAdapter extends ArrayAdapter<Subject> {
                                 ViewGroup parent) {
         TextView label = new TextView(context);
         label.setText(values[position].name);
+        label.setTextSize(18);
 
         return label;
     }
