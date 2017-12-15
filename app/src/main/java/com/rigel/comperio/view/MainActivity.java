@@ -11,6 +11,8 @@ import com.rigel.comperio.viewmodel.MainViewModel;
 
 public class MainActivity extends BottomNavigationActivity {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     protected void initDataBinding() {
         ActivityMainBinding mainActivityBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_main);
@@ -32,6 +34,11 @@ public class MainActivity extends BottomNavigationActivity {
 
         cursor.close();
 
+    }
+
+    @Override
+    protected String getTag() {
+        return TAG;
     }
 
 }
