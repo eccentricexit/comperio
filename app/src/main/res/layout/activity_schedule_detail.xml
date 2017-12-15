@@ -12,7 +12,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/airplane"
         android:fillViewport="true"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
@@ -21,7 +22,7 @@
             style="@style/width_match_parent_max_width"
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
-            android:background="@color/accent"
+            android:background="#59ffffff"
             tools:context="com.rigel.comperio.view.ScheduleDetailActivity"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp">
@@ -101,7 +102,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="2dp"
-                        android:layout_marginRight="2dp"
                         android:gravity="center"
                         android:textAlignment="center"
                         android:textSize="15sp"
@@ -158,7 +158,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:layout_marginTop="20dp"
                 android:text="@{scheduleDetailViewModel.schedule.teacherStory}"
                 android:textAlignment="center"
@@ -167,14 +166,16 @@
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/linearLayout2"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-                tools:text="Blabalbla Text about myself no longer than 140 chars" />
+                tools:text="Text about myself no longer than  chars ext about myself no lonxt about
+                myself no longer than 140 chars ext about myself no longer tbout myself no longer t
+                han ars " />
 
             <Button
                 android:id="@+id/button"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="24dp"
+                android:layout_height="59dp"
+                android:layout_marginBottom="100dp"
+                android:layout_marginTop="84dp"
                 android:background="@color/accent"
                 android:onClick="@{scheduleDetailViewModel::onLetsTalkClick}"
                 android:paddingBottom="16dp"
@@ -182,13 +183,14 @@
                 android:paddingStart="36dp"
                 android:paddingTop="16dp"
                 android:text="@string/lblLetTalk"
-                android:textSize="20sp"
                 android:textColor="@color/bpWhite"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/view4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView18"
-                app:layout_constraintVertical_bias="0" />
+                app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+
 
 
         </android.support.constraint.ConstraintLayout>

@@ -11,6 +11,7 @@ ext {
     picassoVersion = '2.5.2'
     circleImageVersion = '1.3.0'
     swipeRecyclerVersion = '0.2.0'
+    reactiveNetworkVersion = '0.12.2'
 
     junitVersion = '4.12'
     mockitoVersion = '1.10.19'
@@ -26,6 +27,7 @@ ext {
     picassoPackage = 'com.squareup.picasso'
     hdodenhofPackage = 'de.hdodenhof'
     swipeRecyclerPackage = 'com.github.TR4Android'
+    pwittchenPackage = 'com.github.pwittchen'
 
     junitPackage = 'junit'
     mockitoPackage = 'org.mockito'
@@ -61,11 +63,10 @@ ext {
     picasso = buildDependency(picassoPackage, 'picasso', picassoVersion)
     circleImageView = buildDependency(hdodenhofPackage, 'circleimageview', circleImageVersion)
     swipeRecycler = buildDependency(swipeRecyclerPackage,'Swipeable-RecyclerView',swipeRecyclerVersion)
+    reactiveNetwork = buildDependency(pwittchenPackage,'reactivenetwork-rx2',reactiveNetworkVersion)
 
     testingDependencies = [
-            junit      : buildDependency(junitPackage, 'junit', junitVersion),
-            mockito    : buildDependency(mockitoPackage, 'mockito-core', mockitoVersion),
-            robolectric: buildDependency(robolectricPackage, 'robolectric', robolectricVersion),
+            junit      : buildDependency(junitPackage, 'junit', junitVersion)
     ]
 }
 
