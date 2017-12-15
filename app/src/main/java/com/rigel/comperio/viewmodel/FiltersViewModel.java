@@ -27,9 +27,14 @@ public class FiltersViewModel extends BaseViewModel {
         return userData.maxDistance + "m";
     }
 
-    public void save(View view) {
+    public void save() {
         persistenceManager.saveUserData(userData);
         persistenceManager.requestSync();
     }
 
+    public void setMaxDistance(int i) {
+        userData.maxDistance = i;
+        setChanged();
+        notifyObservers();
+    }
 }
