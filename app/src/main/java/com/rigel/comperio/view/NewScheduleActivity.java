@@ -20,6 +20,7 @@ import io.reactivex.schedulers.Schedulers;
 public class NewScheduleActivity extends BaseActivity {
 
     private static final String TAG = NewScheduleActivity.class.getSimpleName();
+
     private NewScheduleViewModel newScheduleViewModel;
     private ActivityNewScheduleBinding newScheduleActivityBinding;
 

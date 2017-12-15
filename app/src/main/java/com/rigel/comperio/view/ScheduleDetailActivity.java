@@ -12,8 +12,9 @@ import com.squareup.picasso.Picasso;
 
 public class ScheduleDetailActivity extends BaseActivity {
 
-    private static final int REQUEST_CODE = 0;
     private static final String TAG = ScheduleDetailActivity.class.getSimpleName();
+
+    private static final int REQUEST_CODE = 0;
 
     private ActivityScheduleDetailBinding scheduleDetailActivityBinding;
     private ScheduleDetailViewModel scheduleDetailViewModel;
