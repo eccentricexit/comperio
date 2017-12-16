@@ -98,9 +98,10 @@ public class FiltersFragment extends BaseFragment implements Observer {
         }
 
         if(selection!=-1) {
+            final int finalSelection = selection;
             new Handler().postDelayed(new Runnable() {
                 public void run() {
-                    fragmentFiltersBinding.subjectSpinner.setSelection(1);
+                    fragmentFiltersBinding.subjectSpinner.setSelection(finalSelection);
                 }
             }, 100);
         }
