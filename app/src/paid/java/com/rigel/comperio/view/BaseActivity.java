@@ -131,7 +131,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected LoggingManager getLogger() {
         if (logger == null) {
-            logger = new LoggingManager(this,LOG_TAG);
+            logger = new LoggingManager(this,getTag());
         }
 
         return logger;
