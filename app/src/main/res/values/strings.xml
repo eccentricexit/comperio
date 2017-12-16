@@ -18,6 +18,7 @@
     <string name="lblSubject">Subject</string>
 
     <string name="ctDescTeacherPic">Teacher profile picture</string>
+    <string name="ctDescFab">Publish a new schedule</string>
 
     <string name="pref_subject">pref_subject</string>
     <string name="pref_recurrence">pref_recurrence</string>
@@ -47,6 +48,33 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="SHARED_PREFERENCES_KEY">shared_pref_key</string>
+
+    <string name="schedule_thumbnail">Schedule Thumbnail</string>
+    <string name="teacher">teacher</string>
+    <string name="lblLetTalk">Let\'s Talk!</string>
+    <string name="lblDistance">Distance</string>
+    <string name="lblSettings">Settings</string>
+    <string name="lblNewSchedule">New Schedule</string>
+    <string name="hintName">John Doe</string>
+    <string name="phoneHint">(555) 1234 432</string>
+    <string name="hintTeacherStory">Ever since I traveled to shangri-la I fell in love with</string>
+    <string name="lblPerHour">/hour</string>
+    <string name="hintHouRate">34.3</string>
+    <string name="btnChooseLocation">Location</string>
+    <string name="btnPublish">Publish</string>
+    <string name="btnNewSchedule">+</string>
+    <string name="msg_fail_fetch_location">Failed to get location</string>
+    <string name="msg_location_disabled">Location won\'t be used</string>
+    <string name="hintSubject">Mandarin</string>
+    <string name="msg_location_saved">Location saved.</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="widgetThbImage">Teacher profile picture</string>
+    <string name="SUGGESTED_SCHEDULE_KEY">suggested_schedule_key</string>
+    <string name="msg_no_data_available">No data available</string>
+    <string name="teacherPicTransitionName">teacherPicTransition</string>
+    <string name="msg_removed_favorite">Removed from favorites</string>
+    <string name="msg_added_favorite">Added to favorites</string>
 
     <!--Font awesome icon names-->
     <string name="fa_glass">&#xf000;</string>
@@ -642,31 +670,11 @@
     <string name="fa_train">&#xf238;</string>
     <string name="fa_subway">&#xf239;</string>
     <string name="fa_medium">&#xf23a;</string>
-    <string name="schedule_thumbnail">Schedule Thumbnail</string>
-    <string name="teacher">teacher</string>
-    <string name="lblLetTalk">Let\'s Talk!</string>
-    <string name="lblDistance">Distance</string>
-    <string name="lblSettings">Settings</string>
-    <string name="lblNewSchedule">New Schedule</string>
-    <string name="hintName">John Doe</string>
-    <string name="phoneHint">(555) 1234 432</string>
-    <string name="hintTeacherStory">Ever since I traveled to shangri-la I fell in love with</string>
-    <string name="lblPerHour">/hour</string>
-    <string name="hintHouRate">34.3</string>
-    <string name="btnChooseLocation">Location</string>
-    <string name="btnPublish">Publish</string>
-    <string name="btnNewSchedule">+</string>
-    <string name="msg_fail_fetch_location">Failed to get location</string>
-    <string name="msg_location_disabled">Location won\'t be used</string>
-    <string name="hintSubject">Mandarin</string>
-    <string name="msg_location_saved">Location saved.</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
-    <string name="widgetThbImage">Teacher profile picture</string>
-    <string name="SUGGESTED_SCHEDULE_KEY">suggested_schedule_key</string>
-    <string name="msg_no_data_available">No data available</string>
-    <string name="teacherPicTransitionName">teacherPicTransition</string>
-    <string name="msg_removed_favorite">Removed from favorites</string>
-    <string name="msg_added_favorite">Added to favorites</string>
+    <string name="btnViewSchedule">VIEW</string>
+    <string name="msg_no_internet">No internet connection.</string>
+    <string name="msg_schedule_published">Schedule successfully published</string>
+    <string name="msg_error_publishing_schedule">Error publishing schedule</string>
+    <string name="msg_ad_not_loaded">The interstitial wasn\'t loaded yet.</string>
+
 
 </resources>

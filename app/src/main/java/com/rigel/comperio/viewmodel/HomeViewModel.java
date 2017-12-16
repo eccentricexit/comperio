@@ -82,7 +82,7 @@ public class HomeViewModel extends BaseViewModel implements LoaderManager.Loader
 
     public void onClickNewSchedule(View view){
         if(!isConnectedToInternet){
-            logger.toast("No internet connection.");
+            logger.toast(context.getResources().getString(R.string.msg_no_internet));
             return;
         }
         navigator.navigateToNewSchedule();

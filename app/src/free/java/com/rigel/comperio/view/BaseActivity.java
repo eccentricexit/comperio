@@ -43,7 +43,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (interstitialAd.isLoaded()) {
             interstitialAd.show();
         } else {
-            Log.d(LOG_TAG, "The interstitial wasn't loaded yet.");
+            Log.d(LOG_TAG, getResources().getString(R.string.msg_ad_not_loaded));
         }
     }
 

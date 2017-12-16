@@ -6,6 +6,7 @@ import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.LoggingManager;
 import com.rigel.comperio.NavigationManager;
 import com.rigel.comperio.PersistenceManager;
+import com.rigel.comperio.R;
 import com.rigel.comperio.model.Schedule;
 import com.rigel.comperio.model.Subject;
 import com.rigel.comperio.view.NewScheduleActivity;
@@ -32,7 +33,7 @@ public class NewScheduleViewModel extends BaseViewModel {
 
     public void onClickPublish(View view){
         if(!isConnectedToInternet){
-            logger.toast("No internet connection.");
+            logger.toast(newScheduleActivity.getResources().getString(R.string.msg_no_internet));
             return;
         }
 
@@ -43,12 +44,20 @@ public class NewScheduleViewModel extends BaseViewModel {
                 .enqueue(new Callback<Schedule>() {
                     @Override
                     public void onResponse(Call<Schedule> call, Response<Schedule> response) {
-                        logger.toast("Schedule succesfully published");
+                        logger.toast(
+                                newScheduleActivity
+                                        .getResources()
+                                        .getString(R.string.msg_schedule_published)
+                        );
                     }
 
                     @Override
                     public void onFailure(Call<Schedule> call, Throwable t) {
-                        logger.toast("Error publishing schedule");
+                        logger.toast(
+                                newScheduleActivity
+                                        .getResources()
+                                        .getString(R.string.msg_error_publishing_schedule)
+                        );
                         logger.log(t.getMessage());
                     }
                 }
