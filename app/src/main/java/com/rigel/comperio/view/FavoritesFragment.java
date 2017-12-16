@@ -57,12 +57,6 @@ public class FavoritesFragment extends BaseFragment implements Observer {
     }
 
     @Override
-    public void onDetach() {
-
-        super.onDetach();
-    }
-
-    @Override
     protected void updateConnectivityStatus(Boolean isConnectedToInternet) {
         favoritesViewModel.isConnectedToInternet = isConnectedToInternet;
     }

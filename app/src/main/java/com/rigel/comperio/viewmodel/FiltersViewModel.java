@@ -1,7 +1,5 @@
 package com.rigel.comperio.viewmodel;
 
-import android.view.View;
-
 import com.rigel.comperio.DevUtils;
 import com.rigel.comperio.LoggingManager;
 import com.rigel.comperio.NavigationManager;

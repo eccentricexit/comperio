@@ -20,8 +20,6 @@ import com.rigel.comperio.model.UserData;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    private static final String LOG_TAG = BaseActivity.class.getSimpleName();
-
     private static final int REQUEST_CODE_LOCATION = 1;
 
     private NavigationManager navigationManager;

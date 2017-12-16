@@ -24,9 +24,6 @@ public class FiltersFragment extends BaseFragment implements Observer {
     FragmentFiltersBinding fragmentFiltersBinding;
     FiltersViewModel filtersViewModel;
 
-    public FiltersFragment() {
-    }
-
     public static FiltersFragment newInstance() {
         return new FiltersFragment();
     }
