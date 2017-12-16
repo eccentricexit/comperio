@@ -7,6 +7,7 @@ import com.rigel.comperio.data.ComperioContract;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Schedule implements Serializable {
@@ -84,5 +85,21 @@ public class Schedule implements Serializable {
         }
 
         return schedules;
+    }
+
+    @Override
+    public String toString() {
+        return "Schedule{" +
+                "_id='" + _id + '\'' +
+                ", subjectName='" + subjectName + '\'' +
+                ", hourPrice=" + hourPrice +
+                ", loc=" + Arrays.toString(loc) +
+                ", teacherName='" + teacherName + '\'' +
+                ", teacherPicUrl='" + teacherPicUrl + '\'' +
+                ", teacherPhone='" + teacherPhone + '\'' +
+                ", teacherRating=" + teacherRating +
+                ", teacherStory='" + teacherStory + '\'' +
+                ", distance=" + distance +
+                '}';
     }
 }
