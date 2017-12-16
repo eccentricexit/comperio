@@ -46,21 +46,21 @@ public class SubjectActivity extends BaseActivity {
                 }
         );
 
-        if(subjectViewModel.userData==null){
+        if (subjectViewModel.userData == null) {
             return;
         }
 
         int selection = -1;
 
-        for(int i=0;i<subjectActivityBinding.getSpinnerAdapter().getCount();i++){
+        for (int i = 0; i < subjectActivityBinding.getSpinnerAdapter().getCount(); i++) {
             Subject subject = (Subject) subjectActivityBinding.getSpinnerAdapter().getItem(i);
-            if(subject.equals(subjectViewModel.userData.subject)){
+            if (subject.equals(subjectViewModel.userData.subject)) {
                 selection = i;
                 break;
             }
         }
 
-        if(selection!=-1) {
+        if (selection != -1) {
             subjectActivityBinding.subjectSpinner.setSelection(selection);
         }
 

@@ -1,5 +1,6 @@
 package com.rigel.comperio.viewmodel;
 
+import android.text.TextUtils;
 import android.view.View;
 
 import com.rigel.comperio.DevUtils;
@@ -71,7 +72,7 @@ public class NewScheduleViewModel extends BaseViewModel {
     }
 
     public void setHourPrice(String hourPrice){
-        if("".equals(hourPrice)){hourPrice="0";}
+        if(TextUtils.isEmpty(hourPrice)){hourPrice="0";}
         schedule.hourPrice = Float.parseFloat(hourPrice);
     }
 }
