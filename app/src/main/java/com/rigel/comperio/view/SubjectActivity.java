@@ -72,5 +72,8 @@ public class SubjectActivity extends BaseActivity {
         return TAG;
     }
 
-
+    @Override
+    protected void checkLocationPermissions() {
+        // no op
+    }
 }

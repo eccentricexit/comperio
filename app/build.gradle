@@ -3,6 +3,20 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     buildToolsVersion '26.0.2'
+    signingConfigs {
+        release {
+            keyAlias "key"
+            keyPassword "udacity"
+            storeFile file("keystore.jks")
+            storePassword "udacity"
+        }
+        debug {
+            keyAlias 'key'
+            keyPassword 'udacity'
+            storeFile file('keystore.jks')
+            storePassword 'udacity'
+        }
+    }
     defaultConfig {
         applicationId "com.rigel.comperio"
         minSdkVersion 23
@@ -15,7 +29,11 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.debug
         }
     }
 
@@ -41,35 +59,26 @@ android {
 }
 
 dependencies {
-
-    compile supportDependencies.appCompat
-    compile supportDependencies.design
-    compile supportDependencies.recyclerView
-    compile supportDependencies.cardView
-    compile supportDependencies.vectorDrawable
-    compile supportDependencies.constraintLayout
-    compile supportDependencies.support
-
-    compile googleServicesDependencies.locationServices
-
-    compile retrofitDependencies.retrofit
-    compile retrofitDependencies.gson
-    compile retrofitDependencies.rxAdapterJava
-
-    compile rxDependencies.rxAndroid
-    compile rxDependencies.rxJava
-
-    compile circleImageView
-    compile picasso
-    compile reactiveNetwork
-
-    testCompile testingDependencies.junit
-
+    implementation supportDependencies.appCompat
+    implementation supportDependencies.design
+    implementation supportDependencies.recyclerView
+    implementation supportDependencies.cardView
+    implementation supportDependencies.vectorDrawable
+    implementation supportDependencies.constraintLayout
+    implementation supportDependencies.support
+    implementation googleServicesDependencies.locationServices
+    implementation retrofitDependencies.retrofit
+    implementation retrofitDependencies.gson
+    implementation retrofitDependencies.rxAdapterJava
+    implementation rxDependencies.rxAndroid
+    implementation rxDependencies.rxJava
+    implementation circleImageView
+    implementation picasso
+    implementation reactiveNetwork
     implementation supportDependencies.constraintLayout
     implementation googleServicesDependencies.firebaseServices
 
-    freeCompile googleServicesDependencies.adsServices
-
+    freeImplementation googleServicesDependencies.adsServices
 }
 
 

@@ -33,6 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initDataBinding();
+        checkLocationPermissions();
     }
 
     protected void showInterstitialAd(){
@@ -78,7 +79,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 );
     }
 
-    private void checkLocationPermissions() {
+    protected void checkLocationPermissions() {
         if (ContextCompat.checkSelfPermission(this,
                 android.Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
