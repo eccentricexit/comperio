@@ -34,7 +34,10 @@ To keep the local database in sync with the one controlled by [comperio-backend]
 This way, there is no need for the app to periodically query the db for new data, saving battery and bandwidth.
 
 ## Screenshots
-![]()
+![screenshot1](https://raw.githubusercontent.com/mtsalenc/comperio/master/docs/screenshots/Screenshot_20171219-210847.png)
+![screenshot2](https://raw.githubusercontent.com/mtsalenc/comperio/master/docs/screenshots/Screenshot_20171219-214927.png)
+![screenshot3](https://raw.githubusercontent.com/mtsalenc/comperio/master/docs/screenshots/Screenshot_20171219-210823.png)
+
 
 ## Install
 
