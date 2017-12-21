@@ -62,4 +62,4 @@ PRs accepted.
 
 ## License
 
- © Matheus Faria de Alencar
+ AGPL
