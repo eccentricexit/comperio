@@ -62,4 +62,4 @@ PRs accepted.
 
 ## License
 
-MIT © Matheus Faria de Alencar
+ © Matheus Faria de Alencar
