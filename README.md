@@ -6,7 +6,7 @@
 
 This app was built for educational purposes, part of my nanodegree program.
 
-A nodejs server is a companion project to this one. It is a firebase cloud messaging server and handles persistance on mongodb. More information [here](https://github.com/tfalencar)
+A nodejs server is a companion project to this one. It is a firebase cloud messaging server and handles persistance on mongodb. More information [here](https://github.com/mtsalenc/comperio-backend)
 
 Feel free to play `POST` and `GET` the endpoint but please don't be mean to it so I don't have to take it down. It is a mighty raspberrypi, kindly maintained by a [wizard](https://github.com/tfalencar).
 
