@@ -1,5 +1,7 @@
 # Comperio
 
+![project banner](comperio/images/banner.png)
+
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme) [![Build Status](https://travis-ci.org/mtsalenc/comperio.svg?branch=master)](https://travis-ci.org/mtsalenc/comperio)
 
 > Learn a new language with teachers near you. Make yourself available to students.
